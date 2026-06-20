@@ -58,7 +58,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
         title={city.hero.title}
         highlight={city.hero.titleHighlight}
         subtitle={city.hero.subtitle}
-        image={{ src: heroImage, alt: `${city.name} araç alımı - Yenice Otomotiv` }}
+        image={{ src: city.hero.image || heroImage, alt: `${city.name} araç alımı - Yenice Otomotiv` }}
         whatsappMessage={`Merhaba, ${city.name}'da araç alımı için bilgi almak istiyorum.`}
       >
         <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
