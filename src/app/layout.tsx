@@ -1,0 +1,105 @@
+// src/app/layout.tsx
+import type { Metadata, Viewport } from 'next';
+import { Manrope } from 'next/font/google';
+import './globals.css';
+import TopBar from '@/components/layout/TopBar';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import FloatingButtons from '@/components/layout/FloatingButtons';
+
+const manrope = Manrope({
+  subsets: ['latin'],
+  variable: '--font-manrope',
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
+});
+import GoogleTagManager from '@/components/analytics/GoogleTagManager';
+import GoogleAdsConversion from '@/components/analytics/GoogleAdsConversion';
+import JsonLd from '@/components/analytics/JsonLd';
+import { siteConfig } from '@/config/site';
+import CallPopupModal from '@/components/layout/CallPopupModal';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#0a1a30',
+  colorScheme: 'light',
+};
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: `${siteConfig.name} | Kazalı, Hasarlı, Pert ve Hurda Araç Alan Firma - En Yüksek Fiyat`,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  applicationName: siteConfig.name,
+  authors: [{ name: 'Yenice Otomotiv' }],
+  creator: 'Yenice Otomotiv',
+  publisher: 'Yenice Otomotiv',
+  category: 'Automotive',
+  // Stops iOS Safari from auto-styling phone numbers and breaking the dark UI
+  formatDetection: { telephone: true, email: true, address: false },
+  alternates: {
+    canonical: '/',
+  },
+  // Inherited by every page that doesn't set its own openGraph/twitter
+  openGraph: {
+    type: 'website',
+    locale: 'tr_TR',
+    siteName: siteConfig.name,
+    url: siteConfig.url,
+    title: `${siteConfig.name} - Kazalı, Hasarlı ve Hurda Araç Alan Firma`,
+    description: siteConfig.description,
+    images: [{ url: '/images/kazali-arac.png', width: 1200, height: 630, alt: 'Yenice Otomotiv' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${siteConfig.name} - Araç Alımında Uzman Ekip`,
+    description: 'Kazalı, hasarlı, pert ve hurda araç alımında en yüksek fiyat garantisi sizi bekliyor.',
+    images: ['/images/kazali-arac.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  // Paste your Search Console code into NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION to verify ownership
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : undefined,
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="tr" className={manrope.variable}>
+      <body suppressHydrationWarning>
+        {/* Analytics & SEO */}
+        <JsonLd />
+        <GoogleTagManager />
+        {/* Loads gtag with your AW- ID only when NEXT_PUBLIC_ADS_CONVERSION_ID is set */}
+        <GoogleAdsConversion />
+        {/* GA4 is handled inside GTM */}
+
+        {/* Layout */}
+        <TopBar />
+        <Header />
+        <main className="min-h-screen pb-20 md:pb-0">{children}</main>
+        <Footer />
+        <FloatingButtons />
+        <CallPopupModal />
+      </body>
+    </html>
+  );
+}
