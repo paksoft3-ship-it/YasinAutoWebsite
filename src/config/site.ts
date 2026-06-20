@@ -9,7 +9,7 @@ export const siteConfig = {
   phoneDisplay: '+90 530 344 40 97',
   phoneClean: '05303444097', // For tracking logic
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '905303444097',
-  email: process.env.NEXT_PUBLIC_EMAIL || 'info@yeniceotomotiv.com',
+  email: process.env.NEXT_PUBLIC_EMAIL || 'cabucaksatemlak@gmail.com',
 
   // Business hours
   businessHours: {
