@@ -104,7 +104,7 @@ export default function QuoteFormSection() {
                   <span className="h-px w-7 bg-brand-purple/70" aria-hidden="true" />
                   <span className="text-[12px] font-bold uppercase tracking-[0.14em] text-brand-purple">Teklif Formu</span>
                 </div>
-                <h2 className="mt-4 text-[24px] font-extrabold leading-[1.2]">
+                <h2 className="mt-4 text-[24px] font-extrabold leading-[1.2] text-white">
                   30 dakikada <span className="text-brand-green">en iyi teklifi</span> alın
                 </h2>
                 <p className="mt-3 text-[14px] leading-relaxed text-white/65">
