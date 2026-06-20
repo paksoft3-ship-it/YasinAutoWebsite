@@ -37,22 +37,11 @@ export default function AssetImage({
     <div
       style={{ aspectRatio: `${width} / ${height}` }}
       className={cn(
-        'group/asset relative w-full overflow-hidden bg-gradient-to-br from-brand-green-pale via-white to-brand-purple-soft',
+        'group/asset relative w-full overflow-hidden bg-surface-alt',
         rounded,
         wrapperClassName
       )}
     >
-      {/* soft glow behind the car */}
-      <div
-        className="pointer-events-none absolute left-1/2 top-[46%] h-[78%] w-[82%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/70 blur-2xl"
-        aria-hidden="true"
-      />
-      {/* decorative ring */}
-      <div
-        className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full border-[10px] border-brand-green/15"
-        aria-hidden="true"
-      />
-
       {ASSETS_READY ? (
         <>
           <Image
@@ -62,14 +51,9 @@ export default function AssetImage({
             priority={priority}
             sizes={sizes}
             className={cn(
-              'object-contain p-4 drop-shadow-[0_20px_24px_rgba(7,20,38,0.22)] transition-transform duration-500 group-hover/asset:scale-[1.03]',
+              'object-cover transition-transform duration-500 group-hover/asset:scale-[1.03]',
               className
             )}
-          />
-          {/* ground shadow */}
-          <div
-            className="pointer-events-none absolute bottom-3 left-1/2 h-3 w-3/5 -translate-x-1/2 rounded-[100%] bg-navy-950/25 blur-md"
-            aria-hidden="true"
           />
         </>
       ) : (
