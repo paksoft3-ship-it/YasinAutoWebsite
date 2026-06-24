@@ -3,11 +3,12 @@ import { siteConfig } from '@/config/site';
 import LegalLayout from '@/components/shared/LegalLayout';
 
 export const metadata: Metadata = {
-  title: 'Kullanım Şartları',
+  title: 'Kullanım Şartları | Yenice Oto',
   description: 'Yenice Otomotiv web sitesinin kullanım şartları ve koşullarına ilişkin bilgilendirme.',
   alternates: {
-    canonical: '/kullanim-sartlari',
+    canonical: 'https://www.yeniceotohasarli.com/kullanim-sartlari',
   },
+  openGraph: { url: 'https://www.yeniceotohasarli.com/kullanim-sartlari' },
 };
 
 export default function TermsOfUsePage() {

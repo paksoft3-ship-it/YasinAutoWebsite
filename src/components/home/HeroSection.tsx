@@ -96,7 +96,7 @@ export default function HeroSection() {
 
           <AssetImage
             src={heroImage}
-            alt="Hasarlı aracını Yenice Otomotiv aracılığıyla satan müşterinin aracı"
+            alt="Ön darbe almış kazalı siyah SUV çekici üzerinde - Yenice Otomotiv kazalı, hasarlı ve pert araç alımı"
             width={900}
             height={560}
             priority

@@ -25,8 +25,8 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
     title: city.metaTitle,
     description: city.metaDescription,
     keywords: city.keywords,
-    alternates: { canonical: `/sehirler/${city.slug}` },
-    openGraph: { title: city.metaTitle, description: city.metaDescription },
+    alternates: { canonical: city.canonical },
+    openGraph: { title: city.metaTitle, description: city.metaDescription, url: city.ogUrl },
   };
 }
 
@@ -70,6 +70,15 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
           ))}
         </div>
       </PageHero>
+
+      {/* SEO intro paragraph */}
+      {city.intro && (
+        <section className="section bg-surface-alt">
+          <Container className="max-w-4xl">
+            <p className="text-[15px] leading-relaxed text-ink-soft">{city.intro}</p>
+          </Container>
+        </section>
+      )}
 
       {/* Services available */}
       <section className="section bg-surface">

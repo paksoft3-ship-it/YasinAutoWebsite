@@ -21,7 +21,7 @@ export interface Benefit {
 
 export const benefits: Benefit[] = [
   { icon: ShieldCheck, title: 'Noter Güvencesiyle Devir', description: 'Tüm satış, baştan sona resmi noter işlemiyle güvence altına alınır.' },
-  { icon: Users, title: 'Alanında Uzman Ekip', description: '7+ yıllık birikimimizle aracınıza adil ve doğru bir değer biçeriz.' },
+  { icon: Users, title: 'Alanında Uzman Ekip', description: '5+ yıllık birikimimizle aracınıza adil ve doğru bir değer biçeriz.' },
   { icon: Truck, title: 'Ücretsiz Çekici Hizmeti', description: 'Çalışmayan araçlar dahil, bulunduğunuz adresten ücretsiz alıyoruz.' },
   { icon: Clock, title: '30 Dakikada Fiyat', description: 'Araç bilgisi ve fotoğraflarla en geç 30 dakikada fiyat aralığını paylaşırız.' },
   { icon: FileText, title: 'Evrak İşleri Bizde', description: 'Noter ve tescil dahil tüm resmi işlemleri sizin yerinize tamamlarız.' },
@@ -56,20 +56,20 @@ export const reasons: Reason[] = [
   { icon: Truck, title: 'Ücretsiz Çekici', description: 'Aracınızı olduğu yerden ücretsiz çekiyoruz.' },
   { icon: FileText, title: 'Evraklar Bizden', description: 'Noter ve tescil işlemleri tarafımızdan.' },
   { icon: HandCoins, title: 'Anında Ödeme', description: 'Nakit ya da EFT ile hızlı ödeme.' },
-  { icon: BadgeCheck, title: '7+ Yıl Deneyim', description: '10.000+ memnun müşteri.' },
+  { icon: BadgeCheck, title: '5+ Yıl Deneyim', description: '10.000+ memnun müşteri.' },
 ];
 
-/* ---- Service images (transparent cars in /public/cars) ---- */
+/* ---- Service images (real damage photos in /public/images/cars) ---- */
 export const serviceImages: Record<string, string> = {
-  kazali: '/cars/damaged-gray-sedan-front-left.png',
-  hasarli: '/cars/side-damaged-silver-station-wagon-front-right.png',
-  pert: '/cars/severely-damaged-white-luxury-sedan-front-left.png',
-  hurda: '/cars/rusty-scrap-brown-sedan-front-right.png',
+  kazali: '/images/cars/kazali-arac-on-darbe-beyaz-bmw.jpeg',
+  hasarli: '/images/cars/hasarli-arac-yan-darbe-yesil-suv.jpeg',
+  pert: '/images/cars/pert-arac-agir-hasarli-beyaz-sedan.jpeg',
+  hurda: '/images/cars/hurda-arac-su-baskini-motor.jpeg',
 };
 
-/* ---- Hero + CTA images ---- */
-export const heroImage = '/cars/front-damaged-black-suv-front-right.png';
-export const ctaImage = '/cars/undamaged-black-luxury-sedan-front-left.png';
+/* ---- Hero + CTA images (real damage photos) ---- */
+export const heroImage = '/images/cars/kazali-suv-cekici-uzerinde.jpeg';
+export const ctaImage = '/images/cars/hasarli-arac-yol-kenari-gumus-station-wagon.jpeg';
 
 /* ---- Homepage testimonials (real, on-site) ---- */
 export interface Testimonial {

@@ -3,11 +3,12 @@ import { siteConfig } from '@/config/site';
 import LegalLayout from '@/components/shared/LegalLayout';
 
 export const metadata: Metadata = {
-  title: 'Gizlilik Politikası',
+  title: 'Gizlilik Politikası | Yenice Oto',
   description: 'Yenice Otomotiv gizlilik politikası ve kişisel verilerin işlenmesine ilişkin bilgilendirme.',
   alternates: {
-    canonical: '/gizlilik-politikasi',
+    canonical: 'https://www.yeniceotohasarli.com/gizlilik-politikasi',
   },
+  openGraph: { url: 'https://www.yeniceotohasarli.com/gizlilik-politikasi' },
 };
 
 export default function PrivacyPolicyPage() {

@@ -52,13 +52,13 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     title: `${siteConfig.name} - Kazalı, Hasarlı ve Hurda Araç Alan Firma`,
     description: siteConfig.description,
-    images: [{ url: '/images/kazali-arac.png', width: 1200, height: 630, alt: 'Yenice Otomotiv' }],
+    images: [{ url: '/images/cars/kazali-suv-cekici-uzerinde.jpeg', width: 1200, height: 630, alt: 'Kazalı, hasarlı, pert ve hurda araç alımı - Yenice Otomotiv' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: `${siteConfig.name} - Araç Alımında Uzman Ekip`,
     description: 'Kazalı, hasarlı, pert ve hurda araç alımında en yüksek fiyat garantisi sizi bekliyor.',
-    images: ['/images/kazali-arac.png'],
+    images: ['/images/cars/kazali-suv-cekici-uzerinde.jpeg'],
   },
   robots: {
     index: true,

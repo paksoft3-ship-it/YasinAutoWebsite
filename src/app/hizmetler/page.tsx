@@ -10,11 +10,12 @@ import WhyChooseUsSection from '@/components/home/WhyChooseUsSection';
 import ProcessSection from '@/components/home/ProcessSection';
 
 export const metadata: Metadata = {
-  title: 'Hizmetlerimiz | Kazalı, Hasarlı, Pert, Hurda Araç Alan Firma',
+  title: 'Hizmetlerimiz | Kazalı, Hasarlı, Pert, Hurda Araç Alımı',
   description:
-    'Yenice Otomotiv olarak kazalı araç alımı, hasarlı araç alımı, pert araç alımı ve hurda araç alımı alanında hizmet veriyoruz. En yüksek fiyat garantisi.',
-  keywords: ['araç alım hizmetleri', 'kazalı araç', 'hasarlı araç', 'pert araç', 'hurda araç', 'araç satış'],
-  alternates: { canonical: '/hizmetler' },
+    'Yenice Oto: kazalı, hasarlı, pert ve hurda araç alımı. En yüksek fiyat garantisi, ücretsiz çekici, anında ödeme. Tüm hizmetlerimizi inceleyin.',
+  keywords: ['araç alım hizmetleri', 'hasarlı kazalı pert hurda araç alan'],
+  alternates: { canonical: 'https://www.yeniceotohasarli.com/hizmetler' },
+  openGraph: { url: 'https://www.yeniceotohasarli.com/hizmetler' },
 };
 
 const vehicleTypes = [

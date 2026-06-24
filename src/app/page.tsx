@@ -11,15 +11,15 @@ import FAQSection from '@/components/home/FAQSection';
 import FinalCTASection from '@/components/home/FinalCTASection';
 
 export const metadata: Metadata = {
-  title: 'Hasarlı, Kazalı, Pert ve Hurda Araç Alan Firma',
+  title: 'Hasarlı, Kazalı, Pert ve Hurda Araç Alımı | Yenice Oto',
   description:
-    'Yenice Otomotiv ile kazalı, hasarlı, pert ve hurda aracınız için dakikalar içinde teklif alın. Ücretsiz çekici, noterde güvenli devir ve anında ödeme ayrıcalıklarıyla tanışın.',
-  alternates: { canonical: '/' },
+    'Yenice Oto ile kazalı, hasarlı, pert ve hurda aracınız için 30 dakikada teklif alın. Ücretsiz çekici, noterde güvenli devir, anında nakit ödeme.',
+  alternates: { canonical: 'https://www.yeniceotohasarli.com/' },
   openGraph: {
     title: 'Hasarlı, Kazalı, Pert ve Hurda Araç Alan Firma | Yenice Otomotiv',
     description:
       'Kazalı, hasarlı, pert ve hurda araçlarınıza 30 dakikada teklif. Ücretsiz çekici, noterde güvenli devir ve anında ödeme.',
-    url: '/',
+    url: 'https://www.yeniceotohasarli.com/',
     type: 'website',
   },
 };

@@ -1,8 +1,8 @@
 // src/config/site.ts
 export const siteConfig = {
   name: 'Yenice Otomotiv',
-  description: 'Kazalı, Hasarlı, Pert ve Hurda Araç Alımında Türkiye\'nin En Güvenilir ve En Yüksek Fiyat Veren Merkezi. 7+ Yıl Tecrübe, 10.000+ Mutlu Müşteri.',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://yeniceotomotiv.com',
+  description: 'Kazalı, Hasarlı, Pert ve Hurda Araç Alımında Güvenilir Çözüm. 5+ Yıl Tecrübe, 10.000+ Mutlu Müşteri.',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.yeniceotohasarli.com',
 
   // CRITICAL: Main conversion points for Yenice Otomotiv
   phone: process.env.NEXT_PUBLIC_PHONE || '+905303444097',
@@ -91,7 +91,7 @@ export const siteConfig = {
     },
     {
       icon: '🏆',
-      title: '7+ Yıl Tecrübe',
+      title: '5+ Yıl Tecrübe',
       description: '10.000+ mutlu müşteri',
     },
   ],
@@ -127,7 +127,7 @@ export const siteConfig = {
   // Stats for homepage
   stats: [
     {
-      value: '7+',
+      value: '5+',
       label: 'YIL TECRÜBE',
       color: 'lime',
     },

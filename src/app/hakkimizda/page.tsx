@@ -7,16 +7,17 @@ import WhyChooseUsSection from '@/components/home/WhyChooseUsSection';
 import { ModernIcon } from '@/components/ui/Icons';
 
 export const metadata: Metadata = {
-  title: "Hakkımızda | Türkiye'nin En Güvenilir Araç Alan Merkezi",
+  title: "Hakkımızda | Türkiye'nin Güvenilir Araç Alım Merkezi",
   description:
-    "7+ yıl deneyim, 10.000+ memnun müşteri. Yenice Otomotiv olarak kazalı, hasarlı, pert ve hurda araç alımında Türkiye'nin önde gelen firmasıyız.",
-  alternates: { canonical: '/hakkimizda' },
+    "5+ yıl tecrübe, 10.000+ memnun müşteri. Yenice Oto olarak kazalı, hasarlı, pert ve hurda araç alımında Türkiye genelinde güvenilir hizmet.",
+  alternates: { canonical: 'https://www.yeniceotohasarli.com/hakkimizda' },
+  openGraph: { url: 'https://www.yeniceotohasarli.com/hakkimizda' },
 };
 
 const values = [
   { icon: 'garanti', title: 'Güven', text: 'Açık ve dürüst fiyatlandırmamızla müşterilerimizin güvenini kazanıyoruz.' },
   { icon: 'anında', title: 'Hız', text: '30 dakikada değerlendirme ve aynı gün ödeme ile vaktinizden tasarruf ettiriyoruz.' },
-  { icon: 'tecrübe', title: 'Profesyonellik', text: '7+ yıllık birikimimiz ve uzman kadromuzla profesyonel bir hizmet veriyoruz.' },
+  { icon: 'tecrübe', title: 'Profesyonellik', text: '5+ yıllık birikimimiz ve uzman kadromuzla profesyonel bir hizmet veriyoruz.' },
 ];
 
 export default function AboutPage() {
@@ -27,7 +28,7 @@ export default function AboutPage() {
         eyebrow="Hakkımızda"
         title="Türkiye'nin"
         highlight="En Güvenilir Adresi"
-        subtitle="7+ yıldır kazalı, hasarlı, pert ve hurda araç alımında öncülük eden firma. 10.000+ memnun müşteriyle Türkiye'nin lideriyiz."
+        subtitle="5+ yıldır kazalı, hasarlı, pert ve hurda araç alımında öncülük eden firma. 10.000+ memnun müşteriyle Türkiye'nin lideriyiz."
         showStats
       />
 
@@ -37,8 +38,8 @@ export default function AboutPage() {
           <SectionHeader eyebrow="Hikayemiz" title="Bizim" highlight="Hikayemiz" />
           <div className="space-y-5 text-[16px] leading-relaxed text-ink-soft">
             <p>
-              <strong className="text-ink">Yenice Otomotiv</strong>, 2018 yılından itibaren Türkiye'nin her köşesinde
-              kazalı, hasarlı, pert ve hurda araç alım-satım hizmeti sunmaktadır. 7 yılı aşan deneyimimiz ve
+              <strong className="text-ink">Yenice Otomotiv</strong>, 2021 yılından itibaren Türkiye'nin her köşesinde
+              kazalı, hasarlı, pert ve hurda araç alım-satım hizmeti sunmaktadır. 5 yılı aşan deneyimimiz ve
               10.000'i geçen memnun müşterimizle sektörün önde gelen firmalarından biriyiz.
             </p>
             <p>
@@ -77,7 +78,7 @@ export default function AboutPage() {
       <CTABanner
         title="Bizimle Çalışın,"
         highlight="En Yüksek Fiyatı Alın"
-        subtitle="7+ yıllık deneyimimizden yararlanın."
+        subtitle="5+ yıllık deneyimimizden yararlanın."
         source="hakkimizda-cta"
       />
     </div>

@@ -7,12 +7,12 @@ import { trackCTAClick } from '@/lib/analytics';
 import { ModernIcon } from '@/components/ui/Icons';
 import SectionLabel from '@/components/ui/SectionLabel';
 
-// Real damage photos already in /public/images, keyed by service id
+// Real damage photos in /public/images/cars, keyed by service id
 const serviceImages: Record<string, string> = {
-  kazali: '/images/kazali-arac.png',
-  hasarli: '/images/hasarli-arac.png',
-  pert: '/images/pert-arac.png',
-  hurda: '/images/hurda-arac.png',
+  kazali: '/images/cars/kazali-arac-on-darbe-beyaz-bmw.jpeg',
+  hasarli: '/images/cars/hasarli-arac-yan-darbe-yesil-suv.jpeg',
+  pert: '/images/cars/pert-arac-agir-hasarli-beyaz-sedan.jpeg',
+  hurda: '/images/cars/hurda-arac-su-baskini-motor.jpeg',
 };
 
 export default function ServicesGrid() {
@@ -74,7 +74,7 @@ export default function ServicesGrid() {
                 {/* Real damage photo */}
                 <div className="relative h-32 sm:h-44 w-full overflow-hidden bg-gray-100">
                   <Image
-                    src={serviceImages[service.id] ?? '/images/kazali-arac.png'}
+                    src={serviceImages[service.id] ?? '/images/cars/kazali-arac-on-darbe-beyaz-bmw.jpeg'}
                     alt={`${service.title} - Yenice Otomotiv`}
                     fill
                     sizes="(max-width: 640px) 50vw, 25vw"

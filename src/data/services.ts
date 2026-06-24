@@ -10,6 +10,8 @@ export interface ServiceData {
   metaTitle: string;
   metaDescription: string;
   keywords: string[];
+  canonical: string;
+  ogUrl: string;
 
 
 
@@ -81,23 +83,24 @@ export const servicesData: Record<string, ServiceData> = {
     icon: '🚗',
     color: 'lime',
 
-    metaTitle: 'Kazalı Araç Alımı | 30 Dakikada Fiyat - Yenice Otomotiv',
-    metaDescription: 'Kaza yapmış araçlarınıza 30 dakikada değer biçiyoruz. En yüksek fiyat güvencesi, ücretsiz çekici ve noter işlemleri dahil. Anında ödeme, 24 saat hizmet.',
+    metaTitle: 'Kazalı Araç Alımı | 30 Dakikada Teklif - Yenice Oto',
+    metaDescription: 'Kaza geçirmiş aracınızı 30 dakikada değerlendiriyoruz. En yüksek fiyat, ücretsiz çekici, aynı gün nakit ödeme. 5+ yıl tecrübe, hemen teklif alın.',
     keywords: [
       'kazalı araç alan',
-      'kazalı araç satmak',
-      'kazalı araç alım',
+      'kazalı araç alımı',
+      'kazalı araba alan',
+      'kaza yapmış araç alan',
       'kazalı oto alan',
-      'kaza geçirmiş araç',
-      'kazalı araç satan yerler',
     ],
+    canonical: 'https://www.yeniceotohasarli.com/kazali-arac-alim',
+    ogUrl: 'https://www.yeniceotohasarli.com/kazali-arac-alim',
 
     hero: {
       badge: '🚗 KAZALI ARAÇ ALIMI',
-      title: 'KAZALI ARACINIZ',
-      titleHighlight: 'EN YÜKSEK FİYATA',
+      title: 'Kazalı Aracınız',
+      titleHighlight: 'En Yüksek Fiyata',
       subtitle: 'Kaza geçirmiş her marka araç için hemen değer biçiyoruz. 30 dakikada teklif, ücretsiz çekici, anında ödeme.',
-      image: '/images/kazali-arac.png',
+      image: '/images/cars/kazali-arac-on-darbe-beyaz-bmw.jpeg',
     },
 
     features: [
@@ -129,7 +132,7 @@ export const servicesData: Record<string, ServiceData> = {
       {
         icon: '🏆',
         title: 'Tecrübeli Ekip',
-        description: '7+ yıllık kazalı araç alım satım deneyimi.',
+        description: '5+ yıllık kazalı araç alım satım deneyimi.',
       },
     ],
 
@@ -140,7 +143,7 @@ export const servicesData: Record<string, ServiceData> = {
       },
       {
         question: 'Ne tür kazalı araçlar alıyorsunuz?',
-        answer: 'Hasarın türüne veya büyüklüğüne bakmaksızın her kazalı aracı alıyoruz. Önden, yandan, arkadan darbe almış, devrilmiş ve takla atmış araçların hepsi alım kapsamımıza giriyor. Motor, şanzıman, diferansiyel ya da kaporta hasarı bulunan, hava yastığı açılmış ve şasi hasarı olan araçları da değerlendiriyoruz. Sürülemeyen, hareket edemeyen veya yangın görmüş araçlar için de ücretsiz çekiciyle yerinden alım yapıyoruz. 7+ yıllık deneyimimizle daha önce karşılaşmadığımız hasar neredeyse kalmadı.',
+        answer: 'Hasarın türüne veya büyüklüğüne bakmaksızın her kazalı aracı alıyoruz. Önden, yandan, arkadan darbe almış, devrilmiş ve takla atmış araçların hepsi alım kapsamımıza giriyor. Motor, şanzıman, diferansiyel ya da kaporta hasarı bulunan, hava yastığı açılmış ve şasi hasarı olan araçları da değerlendiriyoruz. Sürülemeyen, hareket edemeyen veya yangın görmüş araçlar için de ücretsiz çekiciyle yerinden alım yapıyoruz. 5+ yıllık deneyimimizle daha önce karşılaşmadığımız hasar neredeyse kalmadı.',
       },
       {
         question: 'Kazalı araca ne kadar ödeme yapıyorsunuz?',
@@ -224,7 +227,7 @@ export const servicesData: Record<string, ServiceData> = {
       },
       whyChooseUs: [
         'Türkiye\'de kazalı araca en yüksek fiyatı veren firmayız',
-        '7+ yıl kazalı araç alım satım deneyimi',
+        '5+ yıl kazalı araç alım satım deneyimi',
         'Her marka ve model için profesyonel değer biçme',
         'Şeffaf ve güvenilir bir işlem akışı',
         'Tüm Türkiye genelinde ücretsiz çekici hizmeti',
@@ -246,22 +249,24 @@ export const servicesData: Record<string, ServiceData> = {
     icon: '🔧',
     color: 'purple',
 
-    metaTitle: 'Hasarlı Araç Alımı | Mekanik & Kaporta Hasarlı Araç Alan - Yenice Otomotiv',
-    metaDescription: 'Motoru, şanzımanı veya kaportası hasarlı araçları alıyoruz. Ayrıntılı ekspertiz, adil fiyat ve ücretsiz çekici. Evrak işlemleri bizden, anında ödeme güvencesi.',
+    metaTitle: 'Hasarlı Araç Alımı | En Yüksek Fiyat - Yenice Oto',
+    metaDescription: 'Hasarlı aracınızı marka model fark etmeksizin alıyoruz. Ücretsiz ekspertiz, aynı gün nakit ödeme, ücretsiz çekici. Hemen ücretsiz teklif alın.',
     keywords: [
       'hasarlı araç alan',
-      'hasarlı araç satmak',
-      'mekanik hasarlı araç',
-      'kaporta hasarlı araç',
-      'motor hasarlı araç',
+      'hasarlı araç alımı',
+      'hasarlı araba alan',
+      'hasarlı oto alan',
+      'ağır hasarlı araç alan',
     ],
+    canonical: 'https://www.yeniceotohasarli.com/hasarli-arac-alim',
+    ogUrl: 'https://www.yeniceotohasarli.com/hasarli-arac-alim',
 
     hero: {
       badge: '🔧 HASARLI ARAÇ ALIMI',
-      title: 'HASARLI ARACINIZ',
-      titleHighlight: 'ANINDA NAKDE',
+      title: 'Hasarlı Aracınız',
+      titleHighlight: 'Anında Nakde',
       subtitle: 'Mekanik, kaporta ya da motor hasarı olan tüm araçlar için profesyonel değerlendirme ve en yüksek fiyat.',
-      image: '/images/hasarli-arac.png',
+      image: '/images/cars/hasarli-arac-yan-darbe-yesil-suv.jpeg',
     },
 
     features: [
@@ -300,7 +305,7 @@ export const servicesData: Record<string, ServiceData> = {
     faqs: [
       {
         question: 'Ne tür hasarlı araçlar alıyorsunuz?',
-        answer: 'Motoru, şanzımanı, kaportası veya elektrik sistemi hasarlı; fren sistemi arızalı, süspansiyonu hasarlı, diferansiyeli hasarlı ve her türlü mekanik arızası olan araçları alıyoruz. Tek bir parçası bozuk bir araçtan çoklu ve kapsamlı hasara kadar her durumu değerlendiriyoruz. Aracın çalışıp çalışmaması da önemli değil; hareket edemeyen araçlarınızı ücretsiz çekiciyle dilediğiniz noktadan teslim alıyoruz. 7 yılı aşan deneyimimizle hasar türü ne olursa olsun size adil ve en yüksek fiyatı veriyoruz.',
+        answer: 'Motoru, şanzımanı, kaportası veya elektrik sistemi hasarlı; fren sistemi arızalı, süspansiyonu hasarlı, diferansiyeli hasarlı ve her türlü mekanik arızası olan araçları alıyoruz. Tek bir parçası bozuk bir araçtan çoklu ve kapsamlı hasara kadar her durumu değerlendiriyoruz. Aracın çalışıp çalışmaması da önemli değil; hareket edemeyen araçlarınızı ücretsiz çekiciyle dilediğiniz noktadan teslim alıyoruz. 5 yılı aşan deneyimimizle hasar türü ne olursa olsun size adil ve en yüksek fiyatı veriyoruz.',
       },
       {
         question: 'Motor arızalı araçları da alıyor musunuz?',
@@ -406,29 +411,31 @@ export const servicesData: Record<string, ServiceData> = {
     icon: '⚠️',
     color: 'fuchsia',
 
-    metaTitle: 'Pert Araç Alımı | Sigorta Pert Raporlu Araç Alan - Yenice Otomotiv',
-    metaDescription: 'Sigorta pert raporlu araçlara özel değerlendirme. 7+ yıl tecrübe, en yüksek fiyat ve hızlı işlem. Yasal süreç, ücretsiz çekici, anında ödeme.',
+    metaTitle: 'Pert Araç Alımı | Sigorta Pertli Araç Alan - Yenice Oto',
+    metaDescription: 'Sigorta pert raporlu araçlar için özel değerlendirme. 5+ yıl tecrübe, en yüksek fiyat, hızlı işlem, ücretsiz çekici, anında ödeme. Teklif alın.',
     keywords: [
       'pert araç alan',
-      'pert araç satmak',
-      'pert raporu',
-      'sigorta pert',
-      'kasko pert',
+      'pert araç alımı',
+      'pert kayıtlı araç alan',
+      'sigorta pertli araç',
+      'pert oto alan',
     ],
+    canonical: 'https://www.yeniceotohasarli.com/pert-arac-alim',
+    ogUrl: 'https://www.yeniceotohasarli.com/pert-arac-alim',
 
     hero: {
       badge: '⚠️ PERT ARAÇ ALIMI',
-      title: 'PERT ARACINIZ',
-      titleHighlight: 'DEĞERİNDE SATIN',
+      title: 'Pert Aracınız',
+      titleHighlight: 'Değerinde Satın',
       subtitle: 'Sigorta pert raporu düzenlenmiş araçlara özel değerlendirme. En yüksek fiyat ve güvenli işlem güvencesi.',
-      image: '/images/pert-arac.png',
+      image: '/images/cars/pert-arac-agir-hasarli-beyaz-sedan.jpeg',
     },
 
     features: [
       {
         icon: '📋',
         title: 'Pert Raporu Uzmanı',
-        description: 'Pert raporlu araçlarda 7+ yıllık deneyim.',
+        description: 'Pert raporlu araçlarda 5+ yıllık deneyim.',
       },
       {
         icon: '💰',
@@ -464,7 +471,7 @@ export const servicesData: Record<string, ServiceData> = {
       },
       {
         question: 'Pert raporlu araç satılabilir mi?',
-        answer: 'Evet, pert raporlu araçlar Türkiye\'de yasal olarak alınıp satılabilir. Pert raporu bir satış engeli yaratmaz; aksine araca özel bir statü kazandırır. Satış işlemi noterde yapılır ve pert bilgisi resmi kayıtlara işlenir. Alıcı bu durumu bilerek işleme girer. Yenice Otomotiv olarak pert araç alımındaki 7 yılı aşkın deneyimimizle tüm yasal süreçleri sizin adınıza yürütüyoruz. Pert raporunuz olsun ya da olmasın, sigorta sürecinin hangi aşamasında bulunursanız bulunun aracınızı değerlendiriyor ve en yüksek teklifi veriyoruz.',
+        answer: 'Evet, pert raporlu araçlar Türkiye\'de yasal olarak alınıp satılabilir. Pert raporu bir satış engeli yaratmaz; aksine araca özel bir statü kazandırır. Satış işlemi noterde yapılır ve pert bilgisi resmi kayıtlara işlenir. Alıcı bu durumu bilerek işleme girer. Yenice Otomotiv olarak pert araç alımındaki 5 yılı aşkın deneyimimizle tüm yasal süreçleri sizin adınıza yürütüyoruz. Pert raporunuz olsun ya da olmasın, sigorta sürecinin hangi aşamasında bulunursanız bulunun aracınızı değerlendiriyor ve en yüksek teklifi veriyoruz.',
       },
       {
         question: 'Pert aracın değeri ne kadar olur?',
@@ -542,7 +549,7 @@ export const servicesData: Record<string, ServiceData> = {
         ],
       },
       whyChooseUs: [
-        'Pert araç alımında 7+ yıllık deneyim',
+        'Pert araç alımında 5+ yıllık deneyim',
         'En yüksek pert araç fiyatları',
         'Tüm yasal işlemler bizim sorumluluğumuzda',
         'Hızlı değerlendirme ve ödeme',
@@ -565,22 +572,24 @@ export const servicesData: Record<string, ServiceData> = {
     icon: '♻️',
     color: 'lime',
 
-    metaTitle: 'Hurda Araç Alımı | Hurda Belgesi & En İyi Fiyat - Yenice Otomotiv',
-    metaDescription: 'Hurda belgeli araçları kilogram üzerinden en yüksek fiyata alıyoruz. Resmi belgeli işlem ve çevre dostu geri dönüşüm. Ücretsiz çekici, anında ödeme.',
+    metaTitle: 'Hurda Araç Alımı | Hurda Belgeli İşlem - Yenice Oto',
+    metaDescription: 'Hurda belgeli araçları en yüksek fiyata alıyoruz. Resmi belgeli işlem, çevreci geri dönüşüm, ücretsiz çekici, anında ödeme. Hemen arayın.',
     keywords: [
       'hurda araç alan',
-      'hurda araç satmak',
-      'hurda belgesi',
-      'hurda araç fiyatı',
-      'araç hurdaya çıkarma',
+      'hurda araç alımı',
+      'hurda belgeli araç',
+      'hurdaya araç satmak',
+      'hurda oto alan',
     ],
+    canonical: 'https://www.yeniceotohasarli.com/hurda-arac-alim',
+    ogUrl: 'https://www.yeniceotohasarli.com/hurda-arac-alim',
 
     hero: {
       badge: '♻️ HURDA ARAÇ ALIMI',
-      title: 'HURDA ARACINIZ',
-      titleHighlight: 'ÇEVRECİ ÇÖZÜM',
+      title: 'Hurda Aracınız',
+      titleHighlight: 'Çevreci Çözüm',
       subtitle: 'Ömrünü doldurmuş araçlar için resmi belgeli hurda işlemi. En yüksek kilo fiyatı ve çevre dostu geri dönüşüm.',
-      image: '/images/hurda-arac.png',
+      image: '/images/cars/hurda-arac-su-baskini-motor.jpeg',
     },
 
     features: [

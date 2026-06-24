@@ -3,11 +3,12 @@ import { siteConfig } from '@/config/site';
 import LegalLayout from '@/components/shared/LegalLayout';
 
 export const metadata: Metadata = {
-  title: 'Çerez Politikası',
+  title: 'Çerez Politikası | Yenice Oto',
   description: 'Yenice Otomotiv web sitesinde kullanılan çerezler ve bunların yönetimine ilişkin bilgilendirme.',
   alternates: {
-    canonical: '/cerez-politikasi',
+    canonical: 'https://www.yeniceotohasarli.com/cerez-politikasi',
   },
+  openGraph: { url: 'https://www.yeniceotohasarli.com/cerez-politikasi' },
 };
 
 export default function CookiePolicyPage() {

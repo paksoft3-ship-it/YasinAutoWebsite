@@ -8,9 +8,11 @@ import PageHero from '@/components/shared/PageHero';
 import CTABanner from '@/components/shared/CTABanner';
 
 export const metadata: Metadata = {
-  title: 'Blog & Bilgiler | Araç Satış Rehberi',
-  description: 'Kazalı, hasarlı, pert ve hurda araç satışına dair bilgilendirici yazılar, ipuçları ve rehberler.',
-  alternates: { canonical: '/blog' },
+  title: 'Blog & Rehber | Araç Satış Bilgileri - Yenice Oto',
+  description: 'Kazalı, hasarlı, pert ve hurda araç satışı hakkında rehberler, ipuçları ve sık sorulan sorular.',
+  keywords: ['hasarlı araç', 'kazalı araç satışı', 'pert araç', 'hurda araç', 'araç satış rehberi'],
+  alternates: { canonical: 'https://www.yeniceotohasarli.com/blog' },
+  openGraph: { url: 'https://www.yeniceotohasarli.com/blog' },
 };
 
 export default function BlogPage() {

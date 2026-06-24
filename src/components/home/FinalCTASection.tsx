@@ -66,7 +66,7 @@ export default function FinalCTASection() {
             <div className="relative hidden lg:block">
               <AssetImage
                 src={ctaImage}
-                alt="Yenice Otomotiv aracılığıyla aracını satan müşteri"
+                alt="Yan ve ön darbeli hasarlı gümüş station wagon - Yenice Otomotiv hasarlı araç alımı"
                 width={460}
                 height={300}
                 sizes="360px"

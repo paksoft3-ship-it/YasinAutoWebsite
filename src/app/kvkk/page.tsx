@@ -3,11 +3,12 @@ import { siteConfig } from '@/config/site';
 import LegalLayout from '@/components/shared/LegalLayout';
 
 export const metadata: Metadata = {
-  title: 'KVKK Aydınlatma Metni',
+  title: 'KVKK Aydınlatma Metni | Yenice Oto',
   description: 'Yenice Otomotiv Kişisel Verilerin Korunması Kanunu (KVKK) kapsamındaki aydınlatma metni.',
   alternates: {
-    canonical: '/kvkk',
+    canonical: 'https://www.yeniceotohasarli.com/kvkk',
   },
+  openGraph: { url: 'https://www.yeniceotohasarli.com/kvkk' },
 };
 
 export default function KVKKPage() {

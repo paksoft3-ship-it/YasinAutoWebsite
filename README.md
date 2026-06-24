@@ -35,12 +35,12 @@ Open `.env.local` and replace ALL placeholder values:
 
 ```bash
 # Site URL
-NEXT_PUBLIC_SITE_URL=https://premiumauto.com.tr
+NEXT_PUBLIC_SITE_URL=https://yeniceotohasarli.com
 
 # Contact (CRITICAL - These drive conversions!)
-NEXT_PUBLIC_PHONE=+905345809315
-NEXT_PUBLIC_WHATSAPP=905345809315
-NEXT_PUBLIC_EMAIL=info@premiumauto.com.tr
+NEXT_PUBLIC_PHONE=+905303444097
+NEXT_PUBLIC_WHATSAPP=905303444097
+NEXT_PUBLIC_EMAIL=soydasotomotiv29@gmail.com
 
 # Analytics IDs (Get from respective platforms)
 NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX
@@ -64,7 +64,7 @@ Open [http://localhost:3000](http://localhost:3000)
 ## 📁 Project Structure
 
 ```
-premium-auto/
+yenice-otomotiv/
 ├── src/
 │   ├── app/
 │   │   ├── [service]/page.tsx          # Dynamic service pages
@@ -145,7 +145,7 @@ premium-auto/
 
 ### 1. Google Tag Manager
 1. Create GTM account: https://tagmanager.google.com
-2. Create container for "premiumauto.com.tr"
+2. Create container for "yeniceotohasarli.com"
 3. Copy GTM ID (GTM-XXXXXXX)
 4. Add to `.env.local`
 
