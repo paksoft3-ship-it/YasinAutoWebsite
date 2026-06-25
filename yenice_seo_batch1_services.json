@@ -1,0 +1,65 @@
+{
+  "batch": "1_services",
+  "domain_canonical": "www",
+  "apply_notes": "Update src/data/services.ts by slug. metaTitle<-title, metaDescription<-desc, metaKeywords<-kw, hero.title<-h1. Set canonical+ogUrl to ABSOLUTE www URLs (currently relative). Also /hizmetler index: canonical->www. Replace '7+ yıl'->'5+ yıl' in any service record. Preserve Turkish.",
+  "pages": [
+    {
+      "route": "/kazali-arac-alim",
+      "data_source": "src/data/services.ts -> kazali-arac-alim",
+      "title": "Kazalı Araç Alımı | 30 Dakikada Teklif - Yenice Oto",
+      "title_len": 51,
+      "meta_description": "Kaza geçirmiş aracınızı 30 dakikada değerlendiriyoruz. En yüksek fiyat, ücretsiz çekici, aynı gün nakit ödeme. 5+ yıl tecrübe, hemen teklif alın.",
+      "desc_len": 145,
+      "meta_keywords": "kazalı araç alan, kazalı araç alımı, kazalı araba alan, kaza yapmış araç alan, kazalı oto alan",
+      "h1": "Kazalı Aracınız En Yüksek Fiyata",
+      "canonical": "https://www.yeniceotohasarli.com/kazali-arac-alim",
+      "og_url": "https://www.yeniceotohasarli.com/kazali-arac-alim"
+    },
+    {
+      "route": "/hasarli-arac-alim",
+      "data_source": "src/data/services.ts -> hasarli-arac-alim",
+      "title": "Hasarlı Araç Alımı | En Yüksek Fiyat - Yenice Oto",
+      "title_len": 49,
+      "meta_description": "Hasarlı aracınızı marka model fark etmeksizin alıyoruz. Ücretsiz ekspertiz, aynı gün nakit ödeme, ücretsiz çekici. Hemen ücretsiz teklif alın.",
+      "desc_len": 142,
+      "meta_keywords": "hasarlı araç alan, hasarlı araç alımı, hasarlı araba alan, hasarlı oto alan, ağır hasarlı araç alan",
+      "h1": "Hasarlı Aracınız Anında Nakde",
+      "canonical": "https://www.yeniceotohasarli.com/hasarli-arac-alim",
+      "og_url": "https://www.yeniceotohasarli.com/hasarli-arac-alim"
+    },
+    {
+      "route": "/pert-arac-alim",
+      "data_source": "src/data/services.ts -> pert-arac-alim",
+      "title": "Pert Araç Alımı | Sigorta Pertli Araç Alan - Yenice Oto",
+      "title_len": 55,
+      "meta_description": "Sigorta pert raporlu araçlar için özel değerlendirme. 5+ yıl tecrübe, en yüksek fiyat, hızlı işlem, ücretsiz çekici, anında ödeme. Teklif alın.",
+      "desc_len": 143,
+      "meta_keywords": "pert araç alan, pert araç alımı, pert kayıtlı araç alan, sigorta pertli araç, pert oto alan",
+      "h1": "Pert Aracınız Değerinde Satın",
+      "canonical": "https://www.yeniceotohasarli.com/pert-arac-alim",
+      "og_url": "https://www.yeniceotohasarli.com/pert-arac-alim"
+    },
+    {
+      "route": "/hurda-arac-alim",
+      "data_source": "src/data/services.ts -> hurda-arac-alim",
+      "title": "Hurda Araç Alımı | Hurda Belgeli İşlem - Yenice Oto",
+      "title_len": 51,
+      "meta_description": "Hurda belgeli araçları en yüksek fiyata alıyoruz. Resmi belgeli işlem, çevreci geri dönüşüm, ücretsiz çekici, anında ödeme. Hemen arayın.",
+      "desc_len": 137,
+      "meta_keywords": "hurda araç alan, hurda araç alımı, hurda belgeli araç, hurdaya araç satmak, hurda oto alan",
+      "h1": "Hurda Aracınız Çevreci Çözüm",
+      "canonical": "https://www.yeniceotohasarli.com/hurda-arac-alim",
+      "og_url": "https://www.yeniceotohasarli.com/hurda-arac-alim"
+    },
+    {
+      "route": "/hizmetler",
+      "data_source": "src/app/hizmetler",
+      "title": "Hizmetlerimiz | Kazalı, Hasarlı, Pert, Hurda Araç Alımı",
+      "meta_description": "Yenice Oto: kazalı, hasarlı, pert ve hurda araç alımı. En yüksek fiyat garantisi, ücretsiz çekici, anında ödeme. Tüm hizmetlerimizi inceleyin.",
+      "meta_keywords": "araç alım hizmetleri, hasarlı kazalı pert hurda araç alan",
+      "h1": "Araç Alım Hizmetlerimiz",
+      "canonical": "https://www.yeniceotohasarli.com/hizmetler",
+      "og_url": "https://www.yeniceotohasarli.com/hizmetler"
+    }
+  ]
+}

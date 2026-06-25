@@ -1,14 +1,14 @@
 // src/config/analytics.ts
 export const analyticsConfig = {
   gtm: {
-    // Updated with your NEW Yenice Otomotiv GTM ID
-    id: process.env.NEXT_PUBLIC_GTM_ID || 'GTM-5XKV2L3Z',
-    enabled: true,
+    // Yenice Otomotiv GTM container. Real ID lives in NEXT_PUBLIC_GTM_ID (.env.local).
+    id: process.env.NEXT_PUBLIC_GTM_ID || '',
+    enabled: !!process.env.NEXT_PUBLIC_GTM_ID,
   },
   ga: {
-    // Yenice Otomotiv GA4 ID
-    id: process.env.NEXT_PUBLIC_GA_ID || 'G-LMBNJ7LPV8',
-    enabled: true,
+    // GA4 fires via GTM — leave NEXT_PUBLIC_GA_ID blank to avoid double-counting.
+    id: process.env.NEXT_PUBLIC_GA_ID || '',
+    enabled: !!process.env.NEXT_PUBLIC_GA_ID,
   },
   googleAds: {
     // Set NEXT_PUBLIC_ADS_CONVERSION_ID (AW-XXXXXXXXX) to enable gtag conversions.

@@ -1,0 +1,98 @@
+{
+  "batch": "3_core",
+  "domain_canonical": "www",
+  "apply_notes": "Per-page metadata + canonical(www). GLOBAL STAT FIX across whole repo: every '7+ yıl'/'7 yıl'/'7+ Yıl'/'7 yılı aşan'->'5+ yıl'/'5 yıl'/'5+ Yıl'/'5 yılı aşan'; '2018 yılından'->'2021 yılından'; KEEP all '10.000+'/'10K+'; KEEP 'Türkiye'nin lideri' (user confirmed defensible). Fix README.md example phone +905345809315->+905303444097. Preserve Turkish.",
+  "global_stat_fix": {
+    "7+ yıl / 7 yıl / 7 yılı aşan": "5+ yıl / 5 yıl / 5 yılı aşan",
+    "2018 yılından": "2021 yılından",
+    "KEEP": "10.000+ and Türkiye'nin lideri",
+    "README phone": "+905345809315 -> +905303444097"
+  },
+  "pages": [
+    {
+      "route": "(root siteConfig)",
+      "data_source": "src/config/site.ts",
+      "title": "Kazalı, Hasarlı, Pert ve Hurda Araç Alımında Güvenilir Çözüm. 5+ Yıl Tecrübe, 10.000+ Mutlu Müşteri.",
+      "fix": "root description - 7+ -> 5+ propagates site-wide",
+      "canonical": "https://www.yeniceotohasarli.com/",
+      "og_url": "https://www.yeniceotohasarli.com/",
+      "site_description": null
+    },
+    {
+      "route": "/",
+      "data_source": "home",
+      "title": "Hasarlı, Kazalı, Pert ve Hurda Araç Alımı | Yenice Oto",
+      "fix": "home: stats 7+->5+, canonical->www",
+      "canonical": "https://www.yeniceotohasarli.com/",
+      "og_url": "https://www.yeniceotohasarli.com/",
+      "meta_description": "Yenice Oto ile kazalı, hasarlı, pert ve hurda aracınız için 30 dakikada teklif alın. Ücretsiz çekici, noterde güvenli devir, anında nakit ödeme.",
+      "desc_len": 144,
+      "h1": "Aracınız En Yüksek Fiyata"
+    },
+    {
+      "route": "/hakkimizda",
+      "data_source": "src/app/hakkimizda/page.tsx",
+      "title": "Hakkımızda | Türkiye'nin Güvenilir Araç Alım Merkezi",
+      "fix": "CRITICAL: 7+ -> 5+ (L12,19,30,80), 2018->2021 (L40), keep 10.000+ and Türkiye lideri",
+      "canonical": "https://www.yeniceotohasarli.com/hakkimizda",
+      "og_url": "https://www.yeniceotohasarli.com/hakkimizda",
+      "meta_description": "5+ yıl tecrübe, 10.000+ memnun müşteri. Yenice Oto olarak kazalı, hasarlı, pert ve hurda araç alımında Türkiye genelinde güvenilir hizmet.",
+      "desc_len": 138,
+      "h1": "Hakkımızda"
+    },
+    {
+      "route": "/iletisim",
+      "data_source": "src/app/iletisim",
+      "title": "İletişim | Yenice Oto - Bize Ulaşın",
+      "fix": "canonical->www",
+      "canonical": "https://www.yeniceotohasarli.com/iletisim",
+      "og_url": "https://www.yeniceotohasarli.com/iletisim",
+      "meta_description": "Yenice Oto ile iletişime geçin. Kazalı, hasarlı, pert, hurda araç alımı için hemen arayın veya WhatsApp'tan yazın. 7/24 destek.",
+      "desc_len": 127,
+      "h1": "İletişim"
+    },
+    {
+      "route": "/blog",
+      "data_source": "src/app/blog/page.tsx",
+      "title": "Blog & Rehber | Araç Satış Bilgileri - Yenice Oto",
+      "fix": "canonical->www",
+      "canonical": "https://www.yeniceotohasarli.com/blog",
+      "og_url": "https://www.yeniceotohasarli.com/blog",
+      "meta_description": "Kazalı, hasarlı, pert ve hurda araç satışı hakkında rehberler, ipuçları ve sık sorulan sorular.",
+      "desc_len": 95,
+      "h1": "Blog ve Rehberler"
+    },
+    {
+      "route": "/cerez-politikasi",
+      "data_source": "legal",
+      "title": "Çerez Politikası | Yenice Oto",
+      "canonical": "https://www.yeniceotohasarli.com/cerez-politikasi",
+      "og_url": "https://www.yeniceotohasarli.com/cerez-politikasi",
+      "fix": "canonical->www only"
+    },
+    {
+      "route": "/gizlilik-politikasi",
+      "data_source": "legal",
+      "title": "Gizlilik Politikası | Yenice Oto",
+      "canonical": "https://www.yeniceotohasarli.com/gizlilik-politikasi",
+      "og_url": "https://www.yeniceotohasarli.com/gizlilik-politikasi",
+      "fix": "canonical->www only"
+    },
+    {
+      "route": "/kullanim-sartlari",
+      "data_source": "legal",
+      "title": "Kullanım Şartları | Yenice Oto",
+      "canonical": "https://www.yeniceotohasarli.com/kullanim-sartlari",
+      "og_url": "https://www.yeniceotohasarli.com/kullanim-sartlari",
+      "fix": "canonical->www only"
+    },
+    {
+      "route": "/kvkk",
+      "data_source": "legal",
+      "title": "KVKK Aydınlatma Metni | Yenice Oto",
+      "canonical": "https://www.yeniceotohasarli.com/kvkk",
+      "og_url": "https://www.yeniceotohasarli.com/kvkk",
+      "fix": "canonical->www only"
+    }
+  ]
+}

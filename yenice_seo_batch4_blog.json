@@ -1,0 +1,124 @@
+{
+  "batch": "4_blog",
+  "domain_canonical": "www",
+  "apply_notes": "LIGHT. Keep titles/descriptions UNCHANGED. Only canonical+ogUrl->www, add metaKeywords. blog.ts by slug. Fix '7+ yıl'->'5+ yıl' in any post body (L52,168,329). Leave correct phone numbers as-is. Preserve Turkish.",
+  "pages": [
+    {
+      "route": "/blog",
+      "data_source": "src/data/blog.ts -> /blog",
+      "title_KEEP": "Blog & Bilgiler | Araç Satış Rehberi",
+      "meta_description_KEEP": "Kazalı, hasarlı, pert ve hurda araç satışına dair bilgilendirici yazılar, ipuçları ve rehberler.",
+      "meta_keywords_ADD": "hasarlı araç, kazalı araç satışı, pert araç, hurda araç, araç satış rehberi",
+      "canonical": "https://www.yeniceotohasarli.com/blog",
+      "og_url": "https://www.yeniceotohasarli.com/blog"
+    },
+    {
+      "route": "/blog/kazali-arac-satarken-nelere-dikkat-edilmeli",
+      "data_source": "src/data/blog.ts -> kazali-arac-satarken-nelere-dikkat-edilmeli",
+      "title_KEEP": "Kazalı Araç Satarken Dikkat Edilecekler | Yenice Otomotiv Blog",
+      "meta_description_KEEP": "Kazalı aracınızı en yüksek fiyata satabilmeniz için öğrenmeniz gereken bütün ayrıntılar. Profesyonel öneriler ve püf noktaları.",
+      "meta_keywords_ADD": "hasarlı araç, kazalı araç satışı, pert araç, hurda araç, araç satış rehberi",
+      "canonical": "https://www.yeniceotohasarli.com/blog/kazali-arac-satarken-nelere-dikkat-edilmeli",
+      "og_url": "https://www.yeniceotohasarli.com/blog/kazali-arac-satarken-nelere-dikkat-edilmeli"
+    },
+    {
+      "route": "/blog/pert-raporu-nedir",
+      "data_source": "src/data/blog.ts -> pert-raporu-nedir",
+      "title_KEEP": "Pert Raporu Ne Demek, Nasıl Edinilir? | Yenice Otomotiv",
+      "meta_description_KEEP": "Pert raporuna dair bütün ayrıntılar. Pert raporlu araç satışı ve alımı hakkında bilmeniz gereken her şey.",
+      "meta_keywords_ADD": "hasarlı araç, kazalı araç satışı, pert araç, hurda araç, araç satış rehberi",
+      "canonical": "https://www.yeniceotohasarli.com/blog/pert-raporu-nedir",
+      "og_url": "https://www.yeniceotohasarli.com/blog/pert-raporu-nedir"
+    },
+    {
+      "route": "/blog/hurda-arac-teslim-sureci",
+      "data_source": "src/data/blog.ts -> hurda-arac-teslim-sureci",
+      "title_KEEP": "Hurda Araç Teslim İşlemleri | Yenice Otomotiv Blog",
+      "meta_description_KEEP": "Hurda aracınızı teslim etme işlemleri hakkında ayrıntılı rehber. Ücretsiz çekici ve anında ödeme.",
+      "meta_keywords_ADD": "hasarlı araç, kazalı araç satışı, pert araç, hurda araç, araç satış rehberi",
+      "canonical": "https://www.yeniceotohasarli.com/blog/hurda-arac-teslim-sureci",
+      "og_url": "https://www.yeniceotohasarli.com/blog/hurda-arac-teslim-sureci"
+    },
+    {
+      "route": "/blog/hasarli-arac-ne-kadar-deger-kaybeder",
+      "data_source": "src/data/blog.ts -> hasarli-arac-ne-kadar-deger-kaybeder",
+      "title_KEEP": "Hasarlı Araçta Değer Kaybı Ne Boyutta Olur? | Yenice Otomotiv Blog",
+      "meta_description_KEEP": "Motor, kaporta ve şanzıman hasarının araç değerine yansıması. Hasarın türüne göre değer kaybı oranları ve satış tavsiyeleri.",
+      "meta_keywords_ADD": "hasarlı araç, kazalı araç satışı, pert araç, hurda araç, araç satış rehberi",
+      "canonical": "https://www.yeniceotohasarli.com/blog/hasarli-arac-ne-kadar-deger-kaybeder",
+      "og_url": "https://www.yeniceotohasarli.com/blog/hasarli-arac-ne-kadar-deger-kaybeder"
+    },
+    {
+      "route": "/blog/arac-ekspertizi-ne-kadar-surer",
+      "data_source": "src/data/blog.ts -> arac-ekspertizi-ne-kadar-surer",
+      "title_KEEP": "Araç Ekspertizi Ne Kadar Zaman Alır? | Yenice Otomotiv Blog",
+      "meta_description_KEEP": "Araç ekspertizinin aşamaları ve ne kadar sürdüğü hakkında ayrıntılı bilgi. Hasarlı araçlarda ekspertiz ve ücretsiz değerlendirme.",
+      "meta_keywords_ADD": "hasarlı araç, kazalı araç satışı, pert araç, hurda araç, araç satış rehberi",
+      "canonical": "https://www.yeniceotohasarli.com/blog/arac-ekspertizi-ne-kadar-surer",
+      "og_url": "https://www.yeniceotohasarli.com/blog/arac-ekspertizi-ne-kadar-surer"
+    },
+    {
+      "route": "/blog/kazali-arac-sigorta-sureci",
+      "data_source": "src/data/blog.ts -> kazali-arac-sigorta-sureci",
+      "title_KEEP": "Kazalı Araçta Sigorta İşlemleri Nasıl Yürür? | Yenice Otomotiv",
+      "meta_description_KEEP": "Kaza ardından sigorta başvurusu ve hasar tespiti sürecinin bütün adımları. Sigorta teklifi düşük çıkarsa nasıl hareket etmelisiniz?",
+      "meta_keywords_ADD": "hasarlı araç, kazalı araç satışı, pert araç, hurda araç, araç satış rehberi",
+      "canonical": "https://www.yeniceotohasarli.com/blog/kazali-arac-sigorta-sureci",
+      "og_url": "https://www.yeniceotohasarli.com/blog/kazali-arac-sigorta-sureci"
+    },
+    {
+      "route": "/blog/pert-arac-satin-almak-mantikli-mi",
+      "data_source": "src/data/blog.ts -> pert-arac-satin-almak-mantikli-mi",
+      "title_KEEP": "Pert Araç Almak Akıllıca mı? | Yenice Otomotiv Blog",
+      "meta_description_KEEP": "Pert araç alımının getirileri ve riskleri. Pert araç alırken göz önünde tutmanız gereken önemli ayrıntılar.",
+      "meta_keywords_ADD": "hasarlı araç, kazalı araç satışı, pert araç, hurda araç, araç satış rehberi",
+      "canonical": "https://www.yeniceotohasarli.com/blog/pert-arac-satin-almak-mantikli-mi",
+      "og_url": "https://www.yeniceotohasarli.com/blog/pert-arac-satin-almak-mantikli-mi"
+    },
+    {
+      "route": "/blog/aracinizi-en-yuksek-fiyata-satmanin-yollari",
+      "data_source": "src/data/blog.ts -> aracinizi-en-yuksek-fiyata-satmanin-yollari",
+      "title_KEEP": "Hasarlı Aracı En Yüksek Fiyata Satmanın 7 Yöntemi | Yenice Otomotiv",
+      "meta_description_KEEP": "Kazalı ve hasarlı aracınızı en yüksek fiyata satmanız için 7 kanıtlanmış yöntem. Profesyonel öneriler ve püf noktaları.",
+      "meta_keywords_ADD": "hasarlı araç, kazalı araç satışı, pert araç, hurda araç, araç satış rehberi",
+      "canonical": "https://www.yeniceotohasarli.com/blog/aracinizi-en-yuksek-fiyata-satmanin-yollari",
+      "og_url": "https://www.yeniceotohasarli.com/blog/aracinizi-en-yuksek-fiyata-satmanin-yollari"
+    },
+    {
+      "route": "/blog/hurda-arac-fiyatlari-nasil-belirlenir",
+      "data_source": "src/data/blog.ts -> hurda-arac-fiyatlari-nasil-belirlenir",
+      "title_KEEP": "Hurda Araç Fiyatları Nasıl Hesaplanır? | Yenice Otomotiv Blog",
+      "meta_description_KEEP": "Hurda araç fiyatına etki eden unsurlar ve güncel kilo fiyatları. Aracınız için en yüksek hurda teklifini alın.",
+      "meta_keywords_ADD": "hasarlı araç, kazalı araç satışı, pert araç, hurda araç, araç satış rehberi",
+      "canonical": "https://www.yeniceotohasarli.com/blog/hurda-arac-fiyatlari-nasil-belirlenir",
+      "og_url": "https://www.yeniceotohasarli.com/blog/hurda-arac-fiyatlari-nasil-belirlenir"
+    },
+    {
+      "route": "/blog/motor-ariza-sonrasi-ne-yapilmali",
+      "data_source": "src/data/blog.ts -> motor-ariza-sonrasi-ne-yapilmali",
+      "title_KEEP": "Motor Arızasının Ardından Nasıl Hareket Etmelisiniz? | Yenice Otomotiv Blog",
+      "meta_description_KEEP": "Motor arızalı araçta isabetli karar: tamir mi satış mı? Motor arıza çeşitleri ve satış stratejisi rehberi.",
+      "meta_keywords_ADD": "hasarlı araç, kazalı araç satışı, pert araç, hurda araç, araç satış rehberi",
+      "canonical": "https://www.yeniceotohasarli.com/blog/motor-ariza-sonrasi-ne-yapilmali",
+      "og_url": "https://www.yeniceotohasarli.com/blog/motor-ariza-sonrasi-ne-yapilmali"
+    },
+    {
+      "route": "/blog/noter-ile-arac-satisi-nasil-yapilir",
+      "data_source": "src/data/blog.ts -> noter-ile-arac-satisi-nasil-yapilir",
+      "title_KEEP": "Noterde Araç Satışı Nasıl Gerçekleştirilir? | Yenice Otomotiv Blog",
+      "meta_description_KEEP": "Hasarlı ve kazalı araçlarda noter süreci, gereken belgeler ve adımlar. Yenice Otomotiv ile zahmetsiz noter işlemi.",
+      "meta_keywords_ADD": "hasarlı araç, kazalı araç satışı, pert araç, hurda araç, araç satış rehberi",
+      "canonical": "https://www.yeniceotohasarli.com/blog/noter-ile-arac-satisi-nasil-yapilir",
+      "og_url": "https://www.yeniceotohasarli.com/blog/noter-ile-arac-satisi-nasil-yapilir"
+    },
+    {
+      "route": "/blog/ikinci-el-arac-deger-kaybi-nasil-onlenir",
+      "data_source": "src/data/blog.ts -> ikinci-el-arac-deger-kaybi-nasil-onlenir",
+      "title_KEEP": "İkinci El Araçlarda Değer Kaybının Önüne Nasıl Geçilir? | Yenice Otomotiv",
+      "meta_description_KEEP": "Araç değer kaybına yol açan unsurlar ve değer koruma stratejileri. Hasar sonrası en isabetli karar.",
+      "meta_keywords_ADD": "hasarlı araç, kazalı araç satışı, pert araç, hurda araç, araç satış rehberi",
+      "canonical": "https://www.yeniceotohasarli.com/blog/ikinci-el-arac-deger-kaybi-nasil-onlenir",
+      "og_url": "https://www.yeniceotohasarli.com/blog/ikinci-el-arac-deger-kaybi-nasil-onlenir"
+    }
+  ]
+}

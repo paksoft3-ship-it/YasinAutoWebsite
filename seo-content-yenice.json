@@ -1,0 +1,2309 @@
+{
+  "extraction_meta": {
+    "generated_for": "External SEO content rewrite",
+    "extraction_date": "2026-06-24",
+    "live_domain_per_request": "yeniceotohasarli.com",
+    "configured_domain_in_code": "https://yeniceotomotiv.com  (src/config/site.ts:5 -> siteConfig.url, default; overridable via env NEXT_PUBLIC_SITE_URL)",
+    "framework": "Next.js 16 (App Router, metadata API)",
+    "language": "tr (html lang=\"tr\", openGraph locale tr_TR)",
+    "title_template": "Root layout (src/app/layout.tsx:33) sets template '%s | Yenice Otomotiv'. Every page that exposes a string `title` gets ' | Yenice Otomotiv' appended in the rendered <title>. The 'title' field below is the RAW source value; 'title_rendered' is what ships in <title>.",
+    "default_title_if_unset": "Yenice Otomotiv | Kazalı, Hasarlı, Pert ve Hurda Araç Alan Firma - En Yüksek Fiyat",
+    "canonical_setup": {
+      "form": "RELATIVE paths (e.g. '/sehirler/istanbul'), resolved against metadataBase = siteConfig.url (src/app/layout.tsx:30).",
+      "www_vs_non_www": "NON-WWW. siteConfig.url default is 'https://yeniceotomotiv.com' (no www). No www->non-www redirect config found in repo.",
+      "absolute_or_relative": "Declared relative in code; Next emits them absolute against metadataBase at build time.",
+      "warnings": [
+        "DOMAIN MISMATCH: code default domain is yeniceotomotiv.com but the live site is yeniceotohasarli.com. Unless NEXT_PUBLIC_SITE_URL=https://yeniceotohasarli.com is set in the production env, every canonical, OG url, JSON-LD @id/url, sitemap.xml and robots sitemap line will point to the WRONG domain (yeniceotomotiv.com).",
+        "Legal-page bodies hardcode the literal string 'yeniceotomotiv.com' (src/app/gizlilik-politikasi, cerez-politikasi, kullanim-sartlari) regardless of env.",
+        "/iletisim has NO own canonical (src/app/iletisim/layout.tsx sets only title+description). It therefore inherits the root layout canonical '/', i.e. the contact page canonicalizes to the HOMEPAGE."
+      ]
+    },
+    "page_counts_note": "45 routable pages total (10 static + 4 service + 19 city + 12 blog). City data file holds 19 records (siteConfig.cities lists 22 names; 3 have no detail page)."
+  },
+  "templates": {
+    "service_detail": {
+      "route_pattern": "/{slug}   (e.g. /kazali-arac-alim)",
+      "renderer": "src/app/[service]/page.tsx",
+      "data_source": "src/data/services.ts -> record by id",
+      "title_pattern": "{record.metaTitle}{TITLE_SUFFIX}",
+      "meta_description_pattern": "{record.metaDescription}",
+      "og_title_pattern": "{record.metaTitle} (set explicitly in generateMetadata.openGraph)",
+      "og_description_pattern": "{record.metaDescription}",
+      "canonical_pattern": "/{record.slug}  (relative)",
+      "h1_pattern": "{record.hero.title} {record.hero.titleHighlight}  (PageHero concatenates title + green highlight span)",
+      "h2_pattern_fixed_section_headers": [
+        "{record.shortTitle} Alımında Neden Biz?",
+        "Hangi Araçları Alıyoruz?",
+        "{record.content.pricing.title}",
+        "Bunları Yapmayın",
+        "Gerçek Deneyimler",
+        "Merak Edilenler",
+        "Diğer Hizmetlerimiz",
+        "(plus componentized sections: QuoteFormSection '30 dakikada en iyi teklifi alın', ProcessSection '4 Adımda Pratik Satış', WhyChooseUsSection 'Neden Bizi Seçmelisiniz?')"
+      ],
+      "h3_pattern": "record.features[].title  +  record.content.relatedServices[].title"
+    },
+    "city_detail": {
+      "route_pattern": "/sehirler/{slug}   (e.g. /sehirler/istanbul)",
+      "renderer": "src/app/sehirler/[city]/page.tsx",
+      "data_source": "src/data/cities.ts -> record by id",
+      "title_pattern": "{record.metaTitle}{TITLE_SUFFIX}",
+      "meta_description_pattern": "{record.metaDescription}",
+      "og_title_pattern": "{record.metaTitle}",
+      "og_description_pattern": "{record.metaDescription}",
+      "canonical_pattern": "/sehirler/{record.slug}  (relative)",
+      "h1_pattern": "{record.hero.title} {record.hero.titleHighlight}",
+      "h2_pattern_fixed_section_headers": [
+        "{name}'da Hizmetlerimiz",
+        "İlçeye Göre Hizmet  (only if record.districtDetails present)",
+        "{name}'da Neden Biz?",
+        "{name}'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış  (ProcessSection)",
+        "{name} İçin Sık Sorulanlar"
+      ],
+      "h3_pattern": "available service titles + record.districtDetails[].title + record.features[].title"
+    },
+    "blog_detail": {
+      "route_pattern": "/blog/{slug}",
+      "renderer": "src/app/blog/[slug]/page.tsx",
+      "data_source": "src/data/blog.ts -> record by id",
+      "title_pattern": "{record.metaTitle}{TITLE_SUFFIX}",
+      "meta_description_pattern": "{record.metaDescription}",
+      "meta_keywords_pattern": "{record.tags}",
+      "og_note": "No per-post openGraph override -> inherits ROOT layout openGraph (generic site OG title/description/image).",
+      "canonical_pattern": "/blog/{record.slug}  (relative)",
+      "h1_pattern": "{record.title}  (no highlight)",
+      "h2_pattern": "all <h2> inside record.content HTML + one fixed lead-gen card h2 'Aracınızın net fiyat aralığını bugün öğrenin'",
+      "h3_pattern": "all <h3> inside record.content HTML",
+      "subtitle_pattern": "{record.excerpt}"
+    },
+    "duplicate_brand_warning": "Service, city and blog metaTitles ALREADY contain 'Yenice Otomotiv' (or '| Yenice Otomotiv'), and the root title template appends ' | Yenice Otomotiv' again -> rendered <title> double-brands, e.g. '... - Yenice Otomotiv | Yenice Otomotiv'. The editor should drop the trailing brand from metaTitle values OR the template."
+  },
+  "pages": [
+    {
+      "route": "/",
+      "source_file": "src/app/page.tsx (metadata) + src/components/home/*.tsx (headings)",
+      "data_source": "src/data/homeContent.ts (benefits/process/reasons/testimonials/faqs) + src/config/site.ts (stats/services)",
+      "page_type": "home",
+      "title": "Hasarlı, Kazalı, Pert ve Hurda Araç Alan Firma",
+      "title_rendered": "Hasarlı, Kazalı, Pert ve Hurda Araç Alan Firma | Yenice Otomotiv",
+      "meta_description": "Yenice Otomotiv ile kazalı, hasarlı, pert ve hurda aracınız için dakikalar içinde teklif alın. Ücretsiz çekici, noterde güvenli devir ve anında ödeme ayrıcalıklarıyla tanışın.",
+      "meta_keywords": [
+        "kazalı araç alan",
+        "hasarlı araç alan",
+        "pert araç alan",
+        "hurda araç alan",
+        "kazalı araç satmak",
+        "hasarlı araç satmak",
+        "pert araç satmak",
+        "hurda araç satmak",
+        "araç alım",
+        "en yüksek fiyat",
+        "anında ödeme",
+        "yenice otomotiv"
+      ],
+      "og_title": "Hasarlı, Kazalı, Pert ve Hurda Araç Alan Firma | Yenice Otomotiv",
+      "og_description": "Kazalı, hasarlı, pert ve hurda araçlarınıza 30 dakikada teklif. Ücretsiz çekici, noterde güvenli devir ve anında ödeme.",
+      "canonical": "/  (relative -> homepage)",
+      "h1": "Aracınızı Gerçek Değeriyle Paraya Çevirin",
+      "h2": [
+        "Güvenilir İşlem, Hızlı Ödeme",
+        "Hangi Araçları Satın Alırız?",
+        "4 Adımda Pratik Satış",
+        "30 dakikada en iyi teklifi alın",
+        "Neden Bizi Seçmelisiniz?",
+        "Gerçek Deneyimler, Gerçek Memnuniyet",
+        "Sıkça Sorulanlar",
+        "Bugün Bize Ulaşın, Ödemenizi Yarın Alın!"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Türkiye'nin Öncü Araç Alım Noktası",
+        "Kazalı • Hasarlı • Pert • Hurda",
+        "Aracınızın fotoğraflarını iletin, 30 dakika içinde en yüksek fiyat teklifini öğrenin. Noterde güvenli devir işlemi ve anında ödeme.",
+        "Aracınızı satarken tüm adımları en baştan açıklıyoruz: teklif, ücretsiz çekici, noter ve ödeme. Sürpriz çıkmaz, gizli masraf olmaz.",
+        "Kazalı, hasarlı, pert ya da hurda — aracınız hangi durumda olursa olsun en yüksek teklifi veriyoruz."
+      ]
+    },
+    {
+      "route": "/hizmetler",
+      "source_file": "src/app/hizmetler/page.tsx",
+      "data_source": "static (in-file) + VehicleServicesSection (src/data/homeContent.ts serviceImages, src/config/site.ts services)",
+      "page_type": "service",
+      "title": "Hizmetlerimiz | Kazalı, Hasarlı, Pert, Hurda Araç Alan Firma",
+      "title_rendered": "Hizmetlerimiz | Kazalı, Hasarlı, Pert, Hurda Araç Alan Firma | Yenice Otomotiv",
+      "meta_description": "Yenice Otomotiv olarak kazalı araç alımı, hasarlı araç alımı, pert araç alımı ve hurda araç alımı alanında hizmet veriyoruz. En yüksek fiyat garantisi.",
+      "meta_keywords": [
+        "araç alım hizmetleri",
+        "kazalı araç",
+        "hasarlı araç",
+        "pert araç",
+        "hurda araç",
+        "araç satış"
+      ],
+      "og_title": null,
+      "og_description": null,
+      "canonical": "/hizmetler",
+      "h1": "Araç Alım Hizmetlerimiz",
+      "h2": [
+        "Hangi Araçları Satın Alırız?",
+        "Neden Bizi Seçmelisiniz?",
+        "4 Adımda Pratik Satış"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Kazalı, hasarlı, pert ve hurda her tür aracınızı en yüksek fiyatla satın alıyoruz. Ücretsiz ekspertiz ve anında ödeme.",
+        "Vehicle types listed on page: Otomobiller, SUV / Jeep, Ticari Araçlar, Minibüsler, Kamyonetler, Motorsikletler, Lüks Araçlar, Klasik Araçlar, Elektrikli Araçlar, Hibrit Araçlar, Hasarlı Araçlar, Pert Araçlar"
+      ]
+    },
+    {
+      "route": "/hakkimizda",
+      "source_file": "src/app/hakkimizda/page.tsx",
+      "data_source": "static (in-file)",
+      "page_type": "about",
+      "title": "Hakkımızda | Türkiye'nin En Güvenilir Araç Alan Merkezi",
+      "title_rendered": "Hakkımızda | Türkiye'nin En Güvenilir Araç Alan Merkezi | Yenice Otomotiv",
+      "meta_description": "7+ yıl deneyim, 10.000+ memnun müşteri. Yenice Otomotiv olarak kazalı, hasarlı, pert ve hurda araç alımında Türkiye'nin önde gelen firmasıyız.",
+      "meta_keywords": null,
+      "og_title": null,
+      "og_description": null,
+      "canonical": "/hakkimizda",
+      "h1": "Türkiye'nin En Güvenilir Adresi",
+      "h2": [
+        "Bizim Hikayemiz",
+        "Temel Değerlerimiz",
+        "Neden Bizi Seçmelisiniz?",
+        "Bizimle Çalışın, En Yüksek Fiyatı Alın"
+      ],
+      "h3": [
+        "Güven",
+        "Hız",
+        "Profesyonellik"
+      ],
+      "body_snippets": [
+        "7+ yıldır kazalı, hasarlı, pert ve hurda araç alımında öncülük eden firma. 10.000+ memnun müşteriyle Türkiye'nin lideriyiz.",
+        "Yenice Otomotiv, 2018 yılından itibaren Türkiye'nin her köşesinde kazalı, hasarlı, pert ve hurda araç alım-satım hizmeti sunmaktadır. 7 yılı aşan deneyimimiz ve 10.000'i geçen memnun müşterimizle sektörün önde gelen firmalarından biriyiz.",
+        "Müşteri memnuniyetini her şeyin önünde tutan anlayışımız, şeffaf fiyatlandırma ilkemiz ve profesyonel kadromuzla Türkiye'nin en güvenilir araç alım merkezi olmayı başardık.",
+        "Başta İstanbul, Ankara ve İzmir olmak üzere Türkiye'nin 81 ilinde hizmet veriyoruz. Uzman kadromuz, 7/24 müşteri hizmetleri, ücretsiz çekici hizmetimiz ve aynı gün ödeme garantimizle yanınızda."
+      ]
+    },
+    {
+      "route": "/iletisim",
+      "source_file": "src/app/iletisim/page.tsx (body) + src/app/iletisim/layout.tsx (metadata)",
+      "data_source": "static (in-file) + src/config/site.ts (phone/email/whatsapp)",
+      "page_type": "contact",
+      "title": "İletişim - Yenice Otomotiv | Bize Ulaşın",
+      "title_rendered": "İletişim - Yenice Otomotiv | Bize Ulaşın | Yenice Otomotiv",
+      "meta_description": "Yenice Otomotiv ile hemen iletişime geçin. Kazalı, hasarlı, pert ve hurda araç alımı için bizi arayın. 7/24 müşteri hizmetleri.",
+      "meta_keywords": null,
+      "og_title": null,
+      "og_description": null,
+      "canonical": "MISSING -> inherits root '/' (BUG: contact page canonicalizes to homepage)",
+      "h1": "Bize Ulaşın",
+      "h2": [
+        "Bize Mesaj Gönderin",
+        "Her Zaman Yanınızdayız"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "7/24 müşteri hizmetlerimizle her an yanınızdayız. Hemen arayın, anında teklifinizi alın!",
+        "Hafta sonları ve resmi tatillerde de hizmetinizdeyiz!"
+      ]
+    },
+    {
+      "route": "/blog",
+      "source_file": "src/app/blog/page.tsx",
+      "data_source": "src/data/blog.ts (getAllPosts / getCategories)",
+      "page_type": "blog",
+      "title": "Blog & Bilgiler | Araç Satış Rehberi",
+      "title_rendered": "Blog & Bilgiler | Araç Satış Rehberi | Yenice Otomotiv",
+      "meta_description": "Kazalı, hasarlı, pert ve hurda araç satışına dair bilgilendirici yazılar, ipuçları ve rehberler.",
+      "meta_keywords": null,
+      "og_title": null,
+      "og_description": null,
+      "canonical": "/blog",
+      "h1": "Araç Alım Rehberi",
+      "h2": [],
+      "h3": [
+        "(blog post card titles - see /blog/* entries)"
+      ],
+      "body_snippets": [
+        "Kazalı, hasarlı, pert ve hurda araç satışına dair bilmeniz gereken her şey burada. Uzman içeriklerimizle doğru kararı verin."
+      ]
+    },
+    {
+      "route": "/sehirler",
+      "source_file": "src/app/sehirler/page.tsx",
+      "data_source": "src/data/cities.ts (getAllCities)",
+      "page_type": "city",
+      "title": "Hizmet Verdiğimiz Şehirler | Türkiye Geneli Araç Alan Firma",
+      "title_rendered": "Hizmet Verdiğimiz Şehirler | Türkiye Geneli Araç Alan Firma | Yenice Otomotiv",
+      "meta_description": "Yenice Otomotiv olarak Türkiye'nin 81 ilinde kazalı, hasarlı, pert ve hurda araç alımı yapıyoruz. Size en yakın şehri belirleyin.",
+      "meta_keywords": [
+        "türkiye araç alım",
+        "şehirler",
+        "il il araç alım",
+        "türkiye geneli hizmet"
+      ],
+      "og_title": null,
+      "og_description": null,
+      "canonical": "/sehirler",
+      "h1": "Türkiye Geneli Araç Alım Hizmeti",
+      "h2": [
+        "Başlıca Şehirler"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "81 ilde kazalı, hasarlı, pert ve hurda araç alımı. Size en yakın şehri belirleyin, anında teklifinizi alın.",
+        "Coverage strip: Her ile ücretsiz çekici · 24 saat içinde ekspertiz · En yüksek fiyat garantisi · Tüm evrak işlemleri bizden"
+      ]
+    },
+    {
+      "route": "/cerez-politikasi",
+      "source_file": "src/app/cerez-politikasi/page.tsx",
+      "data_source": "static (in-file); rendered via src/components/shared/LegalLayout.tsx",
+      "page_type": "other",
+      "title": "Çerez Politikası",
+      "title_rendered": "Çerez Politikası | Yenice Otomotiv",
+      "meta_description": "Yenice Otomotiv web sitesinde kullanılan çerezler ve bunların yönetimine ilişkin bilgilendirme.",
+      "meta_keywords": null,
+      "og_title": null,
+      "og_description": null,
+      "canonical": "/cerez-politikasi",
+      "h1": "Çerez Politikası",
+      "h2": [
+        "(numbered legal section headings within LegalLayout body)"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Legal/boilerplate content. Note: bodies of cerez/gizlilik/kullanim hardcode the literal domain 'yeniceotomotiv.com'."
+      ]
+    },
+    {
+      "route": "/gizlilik-politikasi",
+      "source_file": "src/app/gizlilik-politikasi/page.tsx",
+      "data_source": "static (in-file); rendered via src/components/shared/LegalLayout.tsx",
+      "page_type": "other",
+      "title": "Gizlilik Politikası",
+      "title_rendered": "Gizlilik Politikası | Yenice Otomotiv",
+      "meta_description": "Yenice Otomotiv gizlilik politikası ve kişisel verilerin işlenmesine ilişkin bilgilendirme.",
+      "meta_keywords": null,
+      "og_title": null,
+      "og_description": null,
+      "canonical": "/gizlilik-politikasi",
+      "h1": "Gizlilik Politikası",
+      "h2": [
+        "(numbered legal section headings within LegalLayout body)"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Legal/boilerplate content. Note: bodies of cerez/gizlilik/kullanim hardcode the literal domain 'yeniceotomotiv.com'."
+      ]
+    },
+    {
+      "route": "/kullanim-sartlari",
+      "source_file": "src/app/kullanim-sartlari/page.tsx",
+      "data_source": "static (in-file); rendered via src/components/shared/LegalLayout.tsx",
+      "page_type": "other",
+      "title": "Kullanım Şartları",
+      "title_rendered": "Kullanım Şartları | Yenice Otomotiv",
+      "meta_description": "Yenice Otomotiv web sitesinin kullanım şartları ve koşullarına ilişkin bilgilendirme.",
+      "meta_keywords": null,
+      "og_title": null,
+      "og_description": null,
+      "canonical": "/kullanim-sartlari",
+      "h1": "Kullanım Şartları",
+      "h2": [
+        "(numbered legal section headings within LegalLayout body)"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Legal/boilerplate content. Note: bodies of cerez/gizlilik/kullanim hardcode the literal domain 'yeniceotomotiv.com'."
+      ]
+    },
+    {
+      "route": "/kvkk",
+      "source_file": "src/app/kvkk/page.tsx",
+      "data_source": "static (in-file); rendered via src/components/shared/LegalLayout.tsx",
+      "page_type": "other",
+      "title": "KVKK Aydınlatma Metni",
+      "title_rendered": "KVKK Aydınlatma Metni | Yenice Otomotiv",
+      "meta_description": "Yenice Otomotiv Kişisel Verilerin Korunması Kanunu (KVKK) kapsamındaki aydınlatma metni.",
+      "meta_keywords": null,
+      "og_title": null,
+      "og_description": null,
+      "canonical": "/kvkk",
+      "h1": "KVKK Aydınlatma Metni",
+      "h2": [
+        "(numbered legal section headings within LegalLayout body)"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Legal/boilerplate content. Note: bodies of cerez/gizlilik/kullanim hardcode the literal domain 'yeniceotomotiv.com'."
+      ]
+    },
+    {
+      "route": "/kazali-arac-alim",
+      "source_file": "src/data/services.ts -> kazali  (rendered by src/app/[service]/page.tsx)",
+      "data_source": "src/data/services.ts -> kazali",
+      "page_type": "service",
+      "title": "Kazalı Araç Alımı | 30 Dakikada Fiyat - Yenice Otomotiv",
+      "title_rendered": "Kazalı Araç Alımı | 30 Dakikada Fiyat - Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Kaza yapmış araçlarınıza 30 dakikada değer biçiyoruz. En yüksek fiyat güvencesi, ücretsiz çekici ve noter işlemleri dahil. Anında ödeme, 24 saat hizmet.",
+      "meta_keywords": [
+        "kazalı araç alan",
+        "kazalı araç satmak",
+        "kazalı araç alım",
+        "kazalı oto alan",
+        "kaza geçirmiş araç",
+        "kazalı araç satan yerler"
+      ],
+      "og_title": "Kazalı Araç Alımı | 30 Dakikada Fiyat - Yenice Otomotiv",
+      "og_description": "Kaza yapmış araçlarınıza 30 dakikada değer biçiyoruz. En yüksek fiyat güvencesi, ücretsiz çekici ve noter işlemleri dahil. Anında ödeme, 24 saat hizmet.",
+      "canonical": "/kazali-arac-alim",
+      "h1": "KAZALI ARACINIZ EN YÜKSEK FİYATA",
+      "h2": [
+        "Kazalı Araç Alımında Neden Biz?",
+        "Hangi Araçları Alıyoruz?",
+        "30 dakikada en iyi teklifi alın",
+        "4 Adımda Pratik Satış",
+        "Kazalı Araç Fiyatlandırması",
+        "Bunları Yapmayın",
+        "Gerçek Deneyimler",
+        "Neden Bizi Seçmelisiniz?",
+        "Merak Edilenler",
+        "Diğer Hizmetlerimiz"
+      ],
+      "h3": [
+        "30 Dakikada Teklif",
+        "En Yüksek Fiyat",
+        "Ücretsiz Çekici",
+        "Tüm Evraklar Bizden",
+        "Anında Ödeme",
+        "Tecrübeli Ekip"
+      ],
+      "body_snippets": [
+        "Kaza geçirmiş her marka araç için hemen değer biçiyoruz. 30 dakikada teklif, ücretsiz çekici, anında ödeme.",
+        "Aracınızın fotoğraflarını iletin, 30 dakika içinde en yüksek teklife ulaşın.",
+        "Piyasayı tarayarak kazalı aracınıza verilebilecek en iyi fiyatı garanti ediyoruz.",
+        "Kazalı aracınızı bulunduğu noktadan hiçbir ücret almadan teslim alıyoruz.",
+        "Noter ve tescil işlemlerinin tamamını biz üstleniyoruz.",
+        "İşlem sonuçlanır sonuçlanmaz nakit ya da EFT ile ödemenizi yapıyoruz.",
+        "7+ yıllık kazalı araç alım satım deneyimi.",
+        "Önden darbe almış araçlar",
+        "Yandan darbe almış araçlar",
+        "Arkadan darbe almış araçlar",
+        "Devrilmiş araçlar",
+        "Motoru hasar görmüş araçlar",
+        "Şanzımanı hasarlı araçlar",
+        "Kaportası hasarlı araçlar",
+        "Hava yastığı açılmış araçlar",
+        "Fiyatı belirlerken göz önünde bulundurduğumuz etkenler:",
+        "Aracın markası ve modeli",
+        "Üretim yılı ve kilometresi",
+        "Hasarın türü ve büyüklüğü",
+        "Tamir edilebilir parçaların değeri",
+        "Piyasadaki talep",
+        "Yedek parça değeri",
+        "Ekonomik Sınıf Otomobil (Fiat, Hyundai, Renault): 30.000 - 150.000 ₺",
+        "Orta Sınıf (Toyota, Honda, VW): 80.000 - 300.000 ₺",
+        "Üst Sınıf (BMW, Mercedes, Audi): 150.000 - 600.000 ₺",
+        "SUV & Crossover: 100.000 - 500.000 ₺",
+        "Ticari Araç (Minibüs, Kamyonet): 50.000 - 250.000 ₺",
+        "Yalnızca tek bir alıcıdan teklif almak — En az 2-3 alıcıdan teklif isteyin. Yenice Otomotiv olarak piyasanın en yüksek teklifini verdiğimizi garanti ediyoruz, yine de karşılaştırma yapmanız son derece yerinde bir tercih.",
+        "Kaza anının fotoğrafını çekmemek — Kazanın hemen ardından bol bol fotoğraf çekin. Hasarlı bölgeleri, plakayı ve aracın genel halini belgeleyen kareler değerlendirmeyi hızlandırır ve daha adil fiyat almanızı sağlar.",
+        "Sigortaya başvurmadan aracı satmak — Önce sigorta şirketinizle iletişime geçin ve kasko/zorunlu trafik sigortası kapsamınızı öğrenin. Sigorta tazminatını aldıktan sonra satış yapmanız sizin için daha kazançlı olabilir.",
+        "Aracı tamire verdikten sonra satmaya kalkışmak — Kazalı aracı onartıp satmak çoğunlukla ekonomik değildir. Tamir gideri düşüldüğünde elinizde çok az kazanç kalabilir. Doğrudan Yenice Otomotiv'a satarak tamir masrafından kurtulun.",
+        "Mehmet K. (İstanbul, Kazalı Volkswagen Golf): Araç kaza yaptıktan sonra nasıl bir yol izleyeceğimi şaşırdım. Sigorta şirketi düşük teklif verdi, galericiler ise aracı görmeye bile yanaşmadı. — Yenice Otomotiv'ı aradım, 25 dakika içinde teklif geldi; aynı gün aracımı teslim ettim ve param hesabıma geçti.",
+        "Ayşe D. (Ankara, Ön Hasar Honda Civic): Ön tampon ve kaput tamamen göçmüştü. Aldığım tamir teklifi oldukça yüksekti. Aracı satmayı düşündüm ama alacağım fiyattan endişeliydim. — Yenice Otomotiv'ın sunduğu fiyat beklentimi aştı. Ücretsiz çekici geldi, evrakları onlar hallettiler, 3 saatte her şey tamamlandı."
+      ],
+      "faqs": [
+        {
+          "question": "Kazalı araç alımı süreci nasıl ilerliyor?",
+          "answer": "Kazalı araç alım sürecimiz 4 aşamadan oluşur. Önce telefonla ya da WhatsApp üzerinden bize ulaşıp aracınızla ilgili temel bilgileri aktarıyorsunuz. İkinci aşamada birkaç fotoğraf paylaşıyorsunuz; ön, arka, yan ve hasarlı bölgeleri açıkça gösteren kareler yeterli oluyor. Üçüncü aşamada uzman ekibimiz 30 dakika içinde size en yüksek fiyat teklifini iletiyor. Teklifi onaylamanız durumunda dördüncü aşamada ücretsiz çekiciyle aracınızı dilediğiniz adresten alıyor, noter işlemlerini sonuçlandırıyor ve anında ödemeyi gerçekleştiriyoruz. İşlemin tamamı genellikle aynı gün içinde biter; sizi bekletmiyoruz."
+        },
+        {
+          "question": "Ne tür kazalı araçlar alıyorsunuz?",
+          "answer": "Hasarın türüne veya büyüklüğüne bakmaksızın her kazalı aracı alıyoruz. Önden, yandan, arkadan darbe almış, devrilmiş ve takla atmış araçların hepsi alım kapsamımıza giriyor. Motor, şanzıman, diferansiyel ya da kaporta hasarı bulunan, hava yastığı açılmış ve şasi hasarı olan araçları da değerlendiriyoruz. Sürülemeyen, hareket edemeyen veya yangın görmüş araçlar için de ücretsiz çekiciyle yerinden alım yapıyoruz. 7+ yıllık deneyimimizle daha önce karşılaşmadığımız hasar neredeyse kalmadı."
+        },
+        {
+          "question": "Kazalı araca ne kadar ödeme yapıyorsunuz?",
+          "answer": "Kazalı araç fiyatı pek çok etkene göre şekillenir: aracın markası, modeli, üretim yılı, kilometresi, hasarın türü ve büyüklüğü, tamir edilebilir parçaların değeri ve o günkü piyasa talebi bunların başında gelir. Kural olarak kazalı araçlar sağlam piyasa değerinin %50-80'i aralığında fiyatlanır; ancak bu oran hasarın ağırlığına göre değişebilir. Piyasayı araştırarak rakiplerimizin üzerinde teklif vermeyi taahhüt ediyoruz. Size dürüst ve şeffaf bir fiyat sunuyoruz; gizli kesinti ya da beklenmedik düşüşle karşılaşmazsınız."
+        },
+        {
+          "question": "Trafik kazası raporu şart mı?",
+          "answer": "Kaza raporu satış işlemini kolaylaştırır ve bazı durumlarda daha yüksek fiyat almanıza yardımcı olabilir; fakat zorunlu değildir. Trafik kazası tutanağı, alkol raporu veya bilirkişi raporu olmasa bile aracınızı yerinde inceleyip size teklif sunabiliriz. Raporunuz varsa mutlaka iletin, çünkü belgeli hasar bilgisi işlemi hızlandırır. Rapor yoksa ekibimiz yerinde inceleyerek bağımsız bir değerlendirme yapar. Tüm evrak süreçlerinde de size yol gösteriyoruz."
+        },
+        {
+          "question": "Ağır hasarlı araçları da alıyor musunuz?",
+          "answer": "Evet, hasarı ne kadar büyük olursa olsun tüm kazalı araçları alıyoruz. Tamamen ezilmiş, motor bloğu çökmüş, şasi hasarlı veya yangın görmüş araçlar dahil her durumdaki aracı değerlendiriyoruz. Ağır hasarlı araçlarda dahi kullanılabilir parçalar, metal değeri ve sigorta tazminatları fiyatı belirlemede etkili olur. Ayrıca sürülemeyen ya da hareket edemeyen araçlar için tüm Türkiye'ye ücretsiz çekici hizmeti veriyoruz. \"Aracım çok hasarlı, almazlar\" diye düşünüp vazgeçmeyin; bizi arayın ve gerçek teklifi öğrenin."
+        }
+      ],
+      "image": "/images/cars/kazali-arac-on-darbe-beyaz-bmw.jpeg"
+    },
+    {
+      "route": "/hasarli-arac-alim",
+      "source_file": "src/data/services.ts -> hasarli  (rendered by src/app/[service]/page.tsx)",
+      "data_source": "src/data/services.ts -> hasarli",
+      "page_type": "service",
+      "title": "Hasarlı Araç Alımı | Mekanik & Kaporta Hasarlı Araç Alan - Yenice Otomotiv",
+      "title_rendered": "Hasarlı Araç Alımı | Mekanik & Kaporta Hasarlı Araç Alan - Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Motoru, şanzımanı veya kaportası hasarlı araçları alıyoruz. Ayrıntılı ekspertiz, adil fiyat ve ücretsiz çekici. Evrak işlemleri bizden, anında ödeme güvencesi.",
+      "meta_keywords": [
+        "hasarlı araç alan",
+        "hasarlı araç satmak",
+        "mekanik hasarlı araç",
+        "kaporta hasarlı araç",
+        "motor hasarlı araç"
+      ],
+      "og_title": "Hasarlı Araç Alımı | Mekanik & Kaporta Hasarlı Araç Alan - Yenice Otomotiv",
+      "og_description": "Motoru, şanzımanı veya kaportası hasarlı araçları alıyoruz. Ayrıntılı ekspertiz, adil fiyat ve ücretsiz çekici. Evrak işlemleri bizden, anında ödeme güvencesi.",
+      "canonical": "/hasarli-arac-alim",
+      "h1": "HASARLI ARACINIZ ANINDA NAKDE",
+      "h2": [
+        "Hasarlı Araç Alımında Neden Biz?",
+        "Hangi Araçları Alıyoruz?",
+        "30 dakikada en iyi teklifi alın",
+        "4 Adımda Pratik Satış",
+        "Hasarlı Araç Değerlendirmesi",
+        "Bunları Yapmayın",
+        "Gerçek Deneyimler",
+        "Neden Bizi Seçmelisiniz?",
+        "Merak Edilenler",
+        "Diğer Hizmetlerimiz"
+      ],
+      "h3": [
+        "Detaylı Ekspertiz",
+        "Adil Fiyat",
+        "Tüm Hasar Türleri",
+        "Ücretsiz Taşıma",
+        "Kolay İşlem",
+        "Hızlı Ödeme"
+      ],
+      "body_snippets": [
+        "Mekanik, kaporta ya da motor hasarı olan tüm araçlar için profesyonel değerlendirme ve en yüksek fiyat.",
+        "Uzman ekibimiz aracınızı ince ayrıntısına kadar değerlendirir.",
+        "Hasarın durumuna göre en adil fiyatı veriyoruz.",
+        "Motor, şanzıman, kaporta; her tür hasarı kabul ediyoruz.",
+        "Hasarlı aracınızı ücret almadan çekiyoruz.",
+        "Tüm evrak ve işlemleri biz yürütüyoruz.",
+        "Anında nakit ya da EFT ile ödeme.",
+        "Motoru hasarlı araçlar",
+        "Şanzımanı hasarlı araçlar",
+        "Kaportası hasarlı araçlar",
+        "Elektrik sistemi arızalı araçlar",
+        "Fren sistemi arızalı araçlar",
+        "Süspansiyonu hasarlı araçlar",
+        "Diferansiyeli hasarlı araçlar",
+        "Çalışmayan araçlar",
+        "Değerlendirme yaparken göz önünde tuttuğumuz noktalar:",
+        "Hasarın türü (motor, şanzıman, kaporta)",
+        "Tamir edilebilir olup olmadığı",
+        "Yedek parça değeri",
+        "Aracın yaşı ve kilometresi",
+        "Piyasadaki talep",
+        "Kullanılabilir parça sayısı",
+        "Kaportası Hasarlı Araç: Piyasa değerinin %60-80'i",
+        "Motoru Hasarlı Araç: Piyasa değerinin %40-65'i",
+        "Şanzımanı Hasarlı Araç: Piyasa değerinin %45-70'i",
+        "Elektriği Arızalı Araç: Piyasa değerinin %50-75'i",
+        "Çalışmayan Araç: Hasar türüne göre özel değerlendirme",
+        "Mekanik arızayı kendi imkanlarınızla tamir ettirmeye çalışmak — Hasarlı araç tamiri çoğu zaman aracın piyasa değerini geçer. Tamire vermeden önce Yenice Otomotiv'tan ücretsiz değerlendirme alın; tamir giderini satış fiyatıyla kıyaslayın.",
+        "Hasarı saklamaya çalışmak — Alıcılar hasarı eninde sonunda fark eder ve bu güveni zedeler. Yenice Otomotiv olarak her tür hasarı kabul ediyoruz; bilgiyi dürüstçe paylaşmanız süreci hızlandırır.",
+        "Aracı uzun süre bekletmek — Hasarlı araçlar bekledikçe değerinden kaybeder; pas, nem ve eklenen arızalar fiyatı aşağı çeker. En kısa sürede değerlendirme yaptırmanız daha yüksek fiyat almanızı sağlar.",
+        "Kadir S. (İzmir, Motor Hasarlı Ford Focus): Motor tamamen yanmıştı, tamir teklifi aracın değerini aşıyordu. Kimse ilgilenmek istemedi. — Yenice Otomotiv motor hasarına karşın beklentimin üzerinde fiyat verdi. Çekici geldi, evraklar halloldu, param aynı gün elime geçti.",
+        "Fatma Y. (Bursa, Şanzıman Hasarlı Renault Megane): Otomatik vites arızası nedeniyle araç hareket etmiyordu. Serviste 3 ay bekledi, tamir masrafı oldukça yüksekti. — Yenice Otomotiv'ı aradım, fotoğraf attım. 20 dakikada teklif geldi, ertesi gün aracım alındı ve param hesabıma yattı."
+      ],
+      "faqs": [
+        {
+          "question": "Ne tür hasarlı araçlar alıyorsunuz?",
+          "answer": "Motoru, şanzımanı, kaportası veya elektrik sistemi hasarlı; fren sistemi arızalı, süspansiyonu hasarlı, diferansiyeli hasarlı ve her türlü mekanik arızası olan araçları alıyoruz. Tek bir parçası bozuk bir araçtan çoklu ve kapsamlı hasara kadar her durumu değerlendiriyoruz. Aracın çalışıp çalışmaması da önemli değil; hareket edemeyen araçlarınızı ücretsiz çekiciyle dilediğiniz noktadan teslim alıyoruz. 7 yılı aşan deneyimimizle hasar türü ne olursa olsun size adil ve en yüksek fiyatı veriyoruz."
+        },
+        {
+          "question": "Motor arızalı araçları da alıyor musunuz?",
+          "answer": "Evet, motoru arızalı ya da hasarlı tüm araçları alıyoruz. Motor hasarı; silindir kapağı çatlağı, motor bloğu çatlağı, turbo arızası, yakıt pompası sorunu veya komple motor değişimi gerektiren bir durum olabilir — hepsini değerlendiriyoruz. Motor hasarının büyüklüğü fiyatı etkiler; ancak aracın geri kalan parçalarının durumu, marka ve model değeri de hesaba dahil edilir. Çalışmayan ve çekici gerektiren araçlarınızı bulunduğu yerden ücretsiz alıyoruz. Motoru hasarlı araçlar için de piyasanın en yüksek teklifini vermeyi taahhüt ediyoruz."
+        },
+        {
+          "question": "Hasarlı araç fiyatı neye göre belirleniyor?",
+          "answer": "Hasarlı araç fiyatı; aracın genel durumu, hasarın türü ve büyüklüğü, tamir maliyeti, yedek parça değeri, aracın yaşı ve kilometresi ile o anki piyasa talebine göre belirlenir. Örneğin kaportası hasarlı ama motoru sağlam bir araç, motoru hasarlı bir araca kıyasla daha yüksek değer taşıyabilir. Değerlendirmemizde bu etkenlerin tamamını göz önünde bulunduruyoruz. Bunun yanında değiştirilebilir parçalar, hurda metal değeri ve orijinal aksam fiyatları da hesaba katılır. Size şeffaf ve gerekçeli bir fiyat veriyoruz; pazarlık ya da beklenmedik düşüşle karşılaşmazsınız."
+        },
+        {
+          "question": "Araç çalışmasa da alıyor musunuz?",
+          "answer": "Evet, kesinlikle alıyoruz. Çalışmayan, hareket edemeyen, kendi gücüyle sürülemeyen araçlar tam da bizim uzmanlık alanımız. Aracınız garajda, sokakta ya da serviste olabilir — fark etmez. Tüm Türkiye'ye ücretsiz çekici hizmetimizle aracınızı bulunduğunuz noktadan teslim alıyoruz. Çekici için bir gün önceden randevu almanız yeterli; çoğu zaman aynı gün hizmet verebiliyoruz. Araç çalışmıyor diye kaygılanmayın; bu durum ne değerlendirmemizi ne de ödeme yapma kararlılığımızı etkiler."
+        },
+        {
+          "question": "Ekspertiz için ücret alıyor musunuz?",
+          "answer": "Hayır, ekspertiz hizmetimiz baştan sona ücretsizdir. Uzman ekibimiz aracınızı yerinde inceleyip ayrıntılı bir değerlendirme yapar; bunun karşılığında herhangi bir ücret istemiyoruz. Araç teslim edilmeden önce size tüm değerlendirme sonuçlarını ve gerekçeli fiyat teklifini iletiyoruz. Teklifi beğenmediğiniz takdirde hiçbir yükümlülüğünüz olmaz. Ücretsiz ekspertiz hizmetimiz Türkiye genelinde geçerlidir ve randevuyla kısa sürede ayarlanabilir."
+        }
+      ],
+      "image": "/images/cars/hasarli-arac-yan-darbe-yesil-suv.jpeg"
+    },
+    {
+      "route": "/pert-arac-alim",
+      "source_file": "src/data/services.ts -> pert  (rendered by src/app/[service]/page.tsx)",
+      "data_source": "src/data/services.ts -> pert",
+      "page_type": "service",
+      "title": "Pert Araç Alımı | Sigorta Pert Raporlu Araç Alan - Yenice Otomotiv",
+      "title_rendered": "Pert Araç Alımı | Sigorta Pert Raporlu Araç Alan - Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Sigorta pert raporlu araçlara özel değerlendirme. 7+ yıl tecrübe, en yüksek fiyat ve hızlı işlem. Yasal süreç, ücretsiz çekici, anında ödeme.",
+      "meta_keywords": [
+        "pert araç alan",
+        "pert araç satmak",
+        "pert raporu",
+        "sigorta pert",
+        "kasko pert"
+      ],
+      "og_title": "Pert Araç Alımı | Sigorta Pert Raporlu Araç Alan - Yenice Otomotiv",
+      "og_description": "Sigorta pert raporlu araçlara özel değerlendirme. 7+ yıl tecrübe, en yüksek fiyat ve hızlı işlem. Yasal süreç, ücretsiz çekici, anında ödeme.",
+      "canonical": "/pert-arac-alim",
+      "h1": "PERT ARACINIZ DEĞERİNDE SATIN",
+      "h2": [
+        "Pert Araç Alımında Neden Biz?",
+        "Hangi Araçları Alıyoruz?",
+        "30 dakikada en iyi teklifi alın",
+        "4 Adımda Pratik Satış",
+        "Pert Araç Fiyatlandırması",
+        "Bunları Yapmayın",
+        "Gerçek Deneyimler",
+        "Neden Bizi Seçmelisiniz?",
+        "Merak Edilenler",
+        "Diğer Hizmetlerimiz"
+      ],
+      "h3": [
+        "Pert Raporu Uzmanı",
+        "Özel Değerlendirme",
+        "Yasal Süreç",
+        "Ücretsiz Çekici",
+        "Hızlı İşlem",
+        "Anında Ödeme"
+      ],
+      "body_snippets": [
+        "Sigorta pert raporu düzenlenmiş araçlara özel değerlendirme. En yüksek fiyat ve güvenli işlem güvencesi.",
+        "Pert raporlu araçlarda 7+ yıllık deneyim.",
+        "Pert araçlara özel bir fiyatlandırma sistemimiz mevcut.",
+        "Tüm yasal işlemleri ve evrakları biz hallediyoruz.",
+        "Pert aracınızı ücret almadan çekiyoruz.",
+        "Pert işlemleri 24 saat içinde sonuçlanır.",
+        "Noter işleminin ardından ödemenizi hemen alırsınız.",
+        "Kasko pert raporlu araçlar",
+        "Trafik sigortası pert raporlu araçlar",
+        "Tam hasar pert araçlar",
+        "Kısmi hasar pert araçlar",
+        "Yangın hasarı pert araçlar",
+        "Su basması pert araçlar",
+        "Her tür pert araç",
+        "Pert araç değerini belirleyen etkenler:",
+        "Aracın piyasa değeri",
+        "Pert raporundaki hasar oranı",
+        "Kullanılabilir parça değeri",
+        "Aracın markası ve modeli",
+        "Üretim yılı",
+        "Sigorta ödeme durumu",
+        "Küçük Sınıf (Polo, Clio, Corsa): Piyasa değerinin %25-50'si",
+        "Orta Sınıf (Corolla, Focus, Golf): Piyasa değerinin %30-55'i",
+        "Üst Sınıf (BMW, Mercedes, Audi): Piyasa değerinin %35-60'ı",
+        "Hafif Hasarlı Pert: Piyasa değerinin %45-65'i",
+        "Yangın/Su Hasarlı Pert: Özel değerlendirme gerektirir",
+        "Sigorta şirketinin teklifini sorgulamadan onaylamak — Sigorta tazminatı her zaman en yüksek tutar olmayabilir. Önce Yenice Otomotiv'tan bağımsız bir değerlendirme alın; bazen aracı kendiniz satmak sigorta tazminatından daha kazançlı çıkabilir.",
+        "Pert belgesini almadan satışa kalkışmak — Pert belgesi olmadan yapılan satışlar ileride hukuki sorunlara yol açabilir. Sigorta şirketinizden resmi pert raporunu mutlaka temin edin.",
+        "Pert aracı düşük fiyata elden çıkarmak — Birçok araç sahibi pert raporlu araçların değersiz olduğunu sanarak çok düşük fiyatlara satıyor. Yenice Otomotiv'ı arayın; aracınızın gerçek piyasa değerini öğrenin.",
+        "Ali R. (Ankara, Sigorta Pert Toyota Corolla): Sigorta şirketi pert kararı verip düşük bir tazminat önerdi. Aracı kendim satmayı düşündüm ama nereden başlayacağımı kestiremedim. — Yenice Otomotiv ile görüştüm. Tüm yasal süreci onlar üstlendi ve sigorta teklifinden %35 daha fazla para aldım.",
+        "Selin K. (İzmir, Kasko Pert Audi A3): Lüks bir araç olduğundan pert sonrası nasıl hareket edeceğimi bilemedim. Birçok alıcı gerçek değerinin çok altında teklif verdi. — Yenice Otomotiv yedek parça değerini de göz önünde bulundurarak oldukça yüksek bir teklif yaptı. Son derece memnun kaldım."
+      ],
+      "faqs": [
+        {
+          "question": "Pert araç ne demektir?",
+          "answer": "Pert araç, sigorta şirketinin ekonomik olarak onarılamaz şeklinde değerlendirdiği ve hakkında \"pert raporu\" düzenlediği araçtır. Türk sigorta mevzuatına göre bir aracın tamir maliyeti rayiç değerinin belirli bir oranını (genellikle %60-70'ini) geçtiğinde sigorta şirketi pert kararı alabilir. Pert kararı çıkan araç için sigorta şirketi sahibine tazminat öder ve aracı teslim alır; ya da sahibi aracı elinde tutarak sigorta tazminatının bir bölümünü alır. Pert raporlu araç alınıp satılabilir; bunun önünde yasal bir engel yoktur. Yenice Otomotiv olarak pert araçlara özel değerlendirme yapıyor ve en yüksek fiyatı veriyoruz."
+        },
+        {
+          "question": "Pert raporlu araç satılabilir mi?",
+          "answer": "Evet, pert raporlu araçlar Türkiye'de yasal olarak alınıp satılabilir. Pert raporu bir satış engeli yaratmaz; aksine araca özel bir statü kazandırır. Satış işlemi noterde yapılır ve pert bilgisi resmi kayıtlara işlenir. Alıcı bu durumu bilerek işleme girer. Yenice Otomotiv olarak pert araç alımındaki 7 yılı aşkın deneyimimizle tüm yasal süreçleri sizin adınıza yürütüyoruz. Pert raporunuz olsun ya da olmasın, sigorta sürecinin hangi aşamasında bulunursanız bulunun aracınızı değerlendiriyor ve en yüksek teklifi veriyoruz."
+        },
+        {
+          "question": "Pert aracın değeri ne kadar olur?",
+          "answer": "Pert aracın piyasa değeri pek çok etkene bağlıdır: aracın markası, modeli, üretim yılı, orijinal piyasa değeri, hasarın büyüklüğü, kullanılabilir parçaların durumu ve sigorta ödeme tutarı bunların başında gelir. Genel olarak pert araçlar sağlam piyasa değerinin %25-55'i aralığında fiyatlanır. Ancak hasar küçükse ve parçaların büyük bölümü kullanılabilir durumdaysa bu oran %50-65'e kadar yükselebilir. Lüks ya da az bulunan araçlarda yedek parça değeri yüksek olduğundan fiyat oranı da artabilir. Bizi arayıp ücretsiz değerlendirme yaptırın; alacağınız teklifin sizi şaşırtacağını göreceksiniz."
+        },
+        {
+          "question": "Pert işlemi ne kadar zaman alır?",
+          "answer": "Pert aracın alım satım işlemi çoğunlukla 24-48 saat içinde tamamlanır. İlk aşamada fotoğraf üzerinden değerlendirme yapıp teklifimizi 30-60 dakikada iletiyoruz. Teklifi onaylamanız halinde aynı gün ya da ertesi gün ücretsiz çekiciyle aracı teslim alıyoruz. Evraklar hazırsa (araç ruhsatı, pert raporu, kimlik) noter işlemi 1-2 saat içinde biter. Noterin ardından ödeme anında yapılır. Evraklarınız eksikse tamamlanması için size yol gösteriyoruz. Tüm süreci olabildiğince hızlı tutmak bizim önceliğimiz."
+        },
+        {
+          "question": "Hangi belgeler gerekiyor?",
+          "answer": "Pert araç satışı için gereken belgeler: araç ruhsatının aslı, sigorta şirketinden alınan pert raporu, kimlik belgesi (nüfus cüzdanı veya pasaport), sigorta poliçesi ve varsa araç muayene belgesi. Sigorta şirketi aracı teslim aldıysa ek bir devir belgesi gerekebilir; böyle bir durumda sizi bilgilendiriyor ve süreci yönetiyoruz. Evrak eksikse nasıl tamamlanacağı konusunda ücretsiz rehberlik veriyoruz. Tüm bürokratik işlemleri sizin adınıza takip ediyor, noter ve tescil işlemlerini hallediyoruz."
+        }
+      ],
+      "image": "/images/cars/pert-arac-agir-hasarli-beyaz-sedan.jpeg"
+    },
+    {
+      "route": "/hurda-arac-alim",
+      "source_file": "src/data/services.ts -> hurda  (rendered by src/app/[service]/page.tsx)",
+      "data_source": "src/data/services.ts -> hurda",
+      "page_type": "service",
+      "title": "Hurda Araç Alımı | Hurda Belgesi & En İyi Fiyat - Yenice Otomotiv",
+      "title_rendered": "Hurda Araç Alımı | Hurda Belgesi & En İyi Fiyat - Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Hurda belgeli araçları kilogram üzerinden en yüksek fiyata alıyoruz. Resmi belgeli işlem ve çevre dostu geri dönüşüm. Ücretsiz çekici, anında ödeme.",
+      "meta_keywords": [
+        "hurda araç alan",
+        "hurda araç satmak",
+        "hurda belgesi",
+        "hurda araç fiyatı",
+        "araç hurdaya çıkarma"
+      ],
+      "og_title": "Hurda Araç Alımı | Hurda Belgesi & En İyi Fiyat - Yenice Otomotiv",
+      "og_description": "Hurda belgeli araçları kilogram üzerinden en yüksek fiyata alıyoruz. Resmi belgeli işlem ve çevre dostu geri dönüşüm. Ücretsiz çekici, anında ödeme.",
+      "canonical": "/hurda-arac-alim",
+      "h1": "HURDA ARACINIZ ÇEVRECİ ÇÖZÜM",
+      "h2": [
+        "Hurda Araç Alımında Neden Biz?",
+        "Hangi Araçları Alıyoruz?",
+        "30 dakikada en iyi teklifi alın",
+        "4 Adımda Pratik Satış",
+        "Hurda Araç Değerlemesi",
+        "Bunları Yapmayın",
+        "Gerçek Deneyimler",
+        "Neden Bizi Seçmelisiniz?",
+        "Merak Edilenler",
+        "Diğer Hizmetlerimiz"
+      ],
+      "h3": [
+        "Resmi Belgeli",
+        "Çevre Dostu",
+        "Kilo Bazlı",
+        "Ücretsiz Çekici",
+        "Hurda Belgesi",
+        "Anında Ödeme"
+      ],
+      "body_snippets": [
+        "Ömrünü doldurmuş araçlar için resmi belgeli hurda işlemi. En yüksek kilo fiyatı ve çevre dostu geri dönüşüm.",
+        "Yasal izinli ve belgeli hurda araç işletmesi hizmeti.",
+        "Çevreye saygılı geri dönüşüm süreçleri.",
+        "En yüksek kilo fiyatıyla alım yapıyoruz.",
+        "Hurda aracınızı ücret almadan çekiyoruz.",
+        "Hurda belgesine dair tüm işlemler bizden.",
+        "Tartımın ardından ödemenizi hemen yapıyoruz.",
+        "Ömrünü doldurmuş araçlar",
+        "Ağır hasarlı araçlar",
+        "Çalışmayan araçlar",
+        "Hurda belgesi çıkarılacak araçlar",
+        "MTV borcu bulunan araçlar",
+        "Tüm marka ve modeller",
+        "Hurda fiyatını belirleyen etkenler:",
+        "Aracın ağırlığı (kilo)",
+        "Günlük hurda demir fiyatı",
+        "Kullanılabilir parça değeri",
+        "Alüminyum ve metal oranı",
+        "Aracın genel durumu",
+        "Küçük Otomobil (700-900 kg): Güncel kilo fiyatı × ağırlık",
+        "Orta Sınıf Otomobil (900-1200 kg): Güncel kilo fiyatı × ağırlık",
+        "SUV / Crossover (1200-1800 kg): Güncel kilo fiyatı × ağırlık",
+        "Hafif Ticari (1500-2500 kg): Güncel kilo fiyatı × ağırlık",
+        "Değerli Parçalı Araç: Kilo fiyatı + parça değeri",
+        "Aracı sokakta ya da boş bir arazide bırakmak — Araç hurda olsa bile hukuki sorumluluk sahibinin üzerindedir. Ceza ve harç ödemekten kurtulmak için resmi hurda işlemini yaptırın.",
+        "Lisansı olmayan hurda alıcılarıyla çalışmak — Resmi belgesi bulunmayan hurda alıcıları başınıza yasal sorun açabilir. Yenice Otomotiv resmi izinli ve belgeli bir hurda işletmesidir.",
+        "Hurda fiyatını sorgulamadan onaylamak — Hurda fiyatı tartıma ve piyasa fiyatına göre belirlenir. Değerli metal parçalar ise ayrıca değer taşır. Yenice Otomotiv şeffaf bir tartım ve fiyatlandırma yapar.",
+        "Hasan M. (Konya, 2005 Model Tofaş): 18 yıllık araç artık muayeneden geçemiyordu, üstüne MTV borcu da birikmişti. Nasıl bir yol izleyeceğimi bilemedim. — Yenice Otomotiv geldi, aracı tartarak değerlendirdi, hurda belgesini hallettiler ve param aynı gün elime geçti. Mükemmel bir hizmet.",
+        "Zeynep A. (Gaziantep, Kazalı ve Hareketsiz Opel Vectra): Araç hem kazalıydı hem de motoru arızalıydı. Kimse ilgilenmeye yanaşmadı. — Yenice Otomotiv her durumu değerlendiriyor. Ücretsiz çekici geldi, kilo başına en yüksek fiyatı verdiler."
+      ],
+      "faqs": [
+        {
+          "question": "Hurda araç işlemi nasıl yürür?",
+          "answer": "Hurda araç işlemi birkaç kolay adımdan ibarettir. Önce telefonla ya da WhatsApp üzerinden bize ulaşıp aracınızın markası, modeli ve durumu hakkında bilgi veriyorsunuz. Ardından ücretsiz çekici hizmetimizle aracınız teslim alınıyor. Teslim noktasında araç tartılıyor, kilo üzerinden fiyat hesaplanıyor ve size sunuluyor. Anlaşma sağlanırsa hurda belgesi düzenleniyor; bu belgeyle araç trafik tescilinden siliniyor ve MTV gibi vergi yükümlülükleri sona eriyor. Son adımda nakit veya EFT ile anında ödeme yapılıyor. İşlemin tamamı çoğunlukla aynı gün içinde biter."
+        },
+        {
+          "question": "Hurda aracın kilosu kaç para?",
+          "answer": "Hurda araç kilo fiyatı, günlük hurda demir piyasa fiyatlarına göre değişkenlik gösterir. Piyasa koşullarına bağlı olarak kilogram başına ortalama 8-18 TL aralığında bir fiyat oluşur; ancak bu rakam piyasaya göre farklılaşabilir. Güncel hurda fiyatını öğrenmek için bizi arayın, anında bilgilendiriyoruz. Ortalama bir otomobil 800-1.200 kg arasındadır; SUV ve hafif ticari araçlar 1.200-1.800 kg'a kadar ulaşabilir. Bunun yanı sıra alüminyum parçalar ve motor bloğu gibi değerli metaller ayrıca hesaba katılarak toplam fiyatı yükseltebilir."
+        },
+        {
+          "question": "Hangi araçlar hurdaya çıkarılabilir?",
+          "answer": "Ömrünü doldurmuş ya da artık ekonomik olarak kullanılamayacak durumdaki tüm araçlar hurdaya ayrılabilir. Bu kapsama; ağır hasarlı ve onarımı ekonomik olmayan araçlar, motor veya şanzıman arızası yüzünden çalışmayan araçlar, sigorta pert raporu çıkmış araçlar, Araç Muayene İstasyonundan (TÜVTÜRK) sürekli ret alan araçlar ve MTV borcu birikmiş araçlar girer. Araç çalışır durumda olsa bile sahibi hurda yapmayı seçebilir; bu konuda herhangi bir zorunluluk yoktur."
+        },
+        {
+          "question": "Hurda belgesi neye yarar?",
+          "answer": "Hurda belgesi birçok önemli avantaj sunar. En büyük faydası, aracın trafik tescilinin silinmesiyle birlikte yıllık Motorlu Taşıtlar Vergisi (MTV) ve diğer vergi yükümlülüklerinin tamamen ortadan kalkmasıdır. Ayrıca araç muayenesi yaptırma, trafik sigortasını yenileme ve plaka yenileme yükümlülükleri de sona erer. Bunun yanında hurda belgesi, bazı teşvik programları çerçevesinde yeni araç alımında indirim ya da destek sağlayabilir. Yasal açıdan araç artık kayıt dışı kabul edilir ve tüm sorumluluklar biter."
+        },
+        {
+          "question": "Hurda işlemi ne kadar zaman alır?",
+          "answer": "Hurda araç işlemi oldukça hızlıdır ve genellikle aynı gün tamamlanır. Çekici geldiğinde araç teslim alınır, tartım ve değerlendirme 30-60 dakika içinde yapılır. Hurda belgesinin düzenlenmesi de çoğunlukla aynı gün biter; ancak Trafik Tescil Müdürlüğü işlemleri bulunduğunuz şehre ve yoğunluğa göre 1-2 gün sürebilir. Noterde tescil silme işlemi yapılır yapılmaz ödeme gerçekleştirilir. Evraklarınız hazır ve eksiksizse tüm süreç sabah başlayıp öğleden önce tamamlanabilir."
+        }
+      ],
+      "image": "/images/cars/hurda-arac-su-baskini-motor.jpeg"
+    },
+    {
+      "route": "/sehirler/istanbul",
+      "source_file": "src/data/cities.ts -> istanbul  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> istanbul",
+      "page_type": "city",
+      "title": "İstanbul Araç Alımı | 2 Saatte Teklif - Yenice Otomotiv",
+      "title_rendered": "İstanbul Araç Alımı | 2 Saatte Teklif - Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "İstanbul genelinde kazalı, hasarlı, pert ve hurda araç alımı. 40+ ilçede hizmet, 2 saat içinde teklif. Ücretsiz çekici, anında ödeme, 10K+ memnun müşteri.",
+      "meta_keywords": [
+        "istanbul kazalı araç alan",
+        "istanbul hasarlı araç alan",
+        "istanbul pert araç alan",
+        "istanbul hurda araç alan",
+        "anadolu yakası araç alım",
+        "avrupa yakası araç alım",
+        "kadıköy araç alım",
+        "beyoğlu araç alım",
+        "üsküdar araç alım"
+      ],
+      "og_title": "İstanbul Araç Alımı | 2 Saatte Teklif - Yenice Otomotiv",
+      "og_description": "İstanbul genelinde kazalı, hasarlı, pert ve hurda araç alımı. 40+ ilçede hizmet, 2 saat içinde teklif. Ücretsiz çekici, anında ödeme, 10K+ memnun müşteri.",
+      "canonical": "/sehirler/istanbul",
+      "h1": "İSTANBUL'DA ARACINIZ EN YÜKSEK FİYATA",
+      "h2": [
+        "İstanbul'da Hizmetlerimiz",
+        "İstanbul'da Neden Biz?",
+        "İstanbul'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "İstanbul İçin Sık Sorulanlar"
+      ],
+      "h3": [
+        "Her İlçeye Hizmet",
+        "2 Saat İçinde Teklif",
+        "Lokal Ofisler",
+        "İstanbul'un En Yüksek Fiyatı",
+        "Ücretsiz Çekici",
+        "Noter İşlemleri"
+      ],
+      "body_snippets": [
+        "Hem Anadolu hem Avrupa Yakası'nda kazalı, hasarlı, pert ve hurda araç alımı yapıyoruz. 2 saat içinde ücretsiz ekspertiz ve teklif sizinle.",
+        "39 ilçenin tamamında ücretsiz çekici ve ekspertiz desteği.",
+        "İstanbul trafiği ne olursa olsun değerlendirmemiz hızlı ilerler.",
+        "Anadolu ve Avrupa yakasındaki ofislerimizle hemen yanı başınızdayız.",
+        "Güncel piyasayı tarayarak size en iyi teklifi sunuyoruz.",
+        "Bütün ilçelerden aracınızı ücretsiz çekiyoruz.",
+        "İstanbul genelindeki tüm noterlerle iş birliği içindeyiz."
+      ],
+      "faqs": [
+        {
+          "question": "İstanbul'un hangi ilçelerine hizmet veriyorsunuz?",
+          "answer": "İstanbul'un 39 ilçesinin tamamına ulaşıyoruz. İster Anadolu yakası ister Avrupa yakası olsun, her bölgede ücretsiz çekici ve ekspertiz hizmetimiz mevcut."
+        },
+        {
+          "question": "İstanbul trafiğinde ne kadar sürede gelirsiniz?",
+          "answer": "İstanbul trafiğini de hesaba katarak ekspertiz ekibimiz adresinize ortalama 2-3 saat içinde varır. Acil durumlarda size öncelik veriyoruz."
+        },
+        {
+          "question": "Boğaz köprüsü geçişi için ücret alıyor musunuz?",
+          "answer": "Hayır, köprü geçiş ücretleri dahil olmak üzere çekici hizmetimizin tamamı ücretsizdir."
+        },
+        {
+          "question": "İstanbul'da hangi noterlerde işlem yapıyorsunuz?",
+          "answer": "İstanbul'daki tüm noterlerle çalışabiliyoruz. İşlemlerinizi size en yakın noterde tamamlayabilirsiniz."
+        },
+        {
+          "question": "İstanbul'da kaç ofissiniz var?",
+          "answer": "Anadolu yakası ofisimiz Kadıköy'de, Avrupa yakası ofisimiz ise Beylikdüzü'nde yer alıyor. Her iki ofisten de İstanbul'un tamamına hizmet sunuyoruz."
+        }
+      ],
+      "servicesDetail": {}
+    },
+    {
+      "route": "/sehirler/ankara",
+      "source_file": "src/data/cities.ts -> ankara  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> ankara",
+      "page_type": "city",
+      "title": "Ankara Hasarlı Kazalı Pert Hurda Araç Alan | 30 DK Teklif | Yenice Otomotiv",
+      "title_rendered": "Ankara Hasarlı Kazalı Pert Hurda Araç Alan | 30 DK Teklif | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Ankara genelinde hasarlı/kazalı/pert/hurda araç alımı. 30 dk teklif, ücretsiz çekici, hızlı noter işlemi, anında ödeme. Çankaya-Keçiören-Etimesgut dahil tüm ilçeler.",
+      "meta_keywords": [
+        "ankara hasarlı araç alan",
+        "ankara kazalı araç alan",
+        "ankara pert araç alan",
+        "ankara hurda araç alan",
+        "ankara araç alım satım",
+        "ankara hasarlı araç firmaları",
+        "ankara pert araç yerleri",
+        "çankaya hasarlı araç",
+        "keçiören hasarlı araç",
+        "etimesgut hasarlı araç"
+      ],
+      "og_title": "Ankara Hasarlı Kazalı Pert Hurda Araç Alan | 30 DK Teklif | Yenice Otomotiv",
+      "og_description": "Ankara genelinde hasarlı/kazalı/pert/hurda araç alımı. 30 dk teklif, ücretsiz çekici, hızlı noter işlemi, anında ödeme. Çankaya-Keçiören-Etimesgut dahil tüm ilçeler.",
+      "canonical": "/sehirler/ankara",
+      "h1": "Ankara Hasarlı, Kazalı, Pert & Hurda Araç Alan",
+      "h2": [
+        "Ankara'da Hizmetlerimiz",
+        "İlçeye Göre Hizmet",
+        "Ankara'da Neden Biz?",
+        "Ankara'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "Ankara İçin Sık Sorulanlar"
+      ],
+      "h3": [
+        "Ankara Kazalı Araç Alan",
+        "Ankara Hasarlı Araç Alan",
+        "Ankara Pert Araç Alan",
+        "Ankara Hurda Araç Alan",
+        "Çankaya hasarlı araç alan",
+        "Keçiören hasarlı araç alan",
+        "Etimesgut hasarlı araç alan",
+        "30 dk Teklif",
+        "Ücretsiz Çekici",
+        "Noterde Anında Ödeme"
+      ],
+      "body_snippets": [
+        "Hasarlı araç alım satım işlemleri Ankara genelinde hızla ilerler. Fotoğrafınızı iletin, 30 dk içinde teklifinizi alın. Ücretsiz çekici + noter + anında ödeme.",
+        "Merkez ofisimize yakın bölgelerde 1 saat içinde ekspertiz.",
+        "Ücretsiz çekici ile aracınızı adresinizden alıyoruz.",
+        "Noter ve ödeme aynı gün tamamlanır.",
+        "Ankara'nın en hızlı değerlendirmesi bizde.",
+        "Ankara genelinde çekme işlemi ücretsiz.",
+        "Güvenli ve hızlı şekilde para transferi."
+      ],
+      "faqs": [
+        {
+          "question": "Hasarlı araç alım satım Ankara için hangi evraklar lazım?",
+          "answer": "Ruhsat, kimlik ve varsa hasar geçmişi belgeleri yeterli oluyor. Noter satışında ruhsat sahibinin bizzat hazır bulunması gerekir."
+        },
+        {
+          "question": "Hasarlı araç alan firmalar Ankara fiyatı neye göre belirler?",
+          "answer": "Fiyatlandırma; aracın marka/modeli, hasar durumu, değişen parçalar ve güncel piyasa değeri dikkate alınarak şeffaf biçimde yapılır."
+        },
+        {
+          "question": "Hasarlı araç alan yerler Ankara içinde aynı gün gelir misiniz?",
+          "answer": "Evet, Ankara içindeki tüm ilçelere aynı gün, çoğunlukla 1-2 saat içinde ulaşıyoruz."
+        },
+        {
+          "question": "Keçiören/Etimesgut'ta çekici ücretsiz mi?",
+          "answer": "Evet; Keçiören, Etimesgut ve Ankara'nın bütün ilçelerinde çekici hizmetimiz tamamen ücretsizdir."
+        },
+        {
+          "question": "Sincan, Polatlı gibi uzak ilçelere de geliyor musunuz?",
+          "answer": "Evet, Ankara'nın tüm ilçelerine ücretsiz çekici hizmeti sunuyoruz. Mesafe fiyata yansımaz."
+        }
+      ],
+      "servicesDetail": {
+        "kazali": {
+          "title": "Ankara Kazalı Araç Alan",
+          "description": "Kazalı araç alan Ankara hizmetinde önce fotoğrafa göre ön fiyat, ekspertizin ardından net teklif veriyoruz. Kazalı araç alan yerler Ankara diyenlere Çankaya-Keçiören-Etimesgut aynı gün hizmet."
+        },
+        "hasarli": {
+          "title": "Ankara Hasarlı Araç Alan",
+          "description": "Ankara hasarlı araç alan ekibimiz, ister kaporta ister mekanik olsun aracınızı yerinde inceler. Hasarlı araç alan firmalar Ankara içinde şeffaf fiyat + ücretsiz çekici + noter süreci sunar."
+        },
+        "pert": {
+          "title": "Ankara Pert Araç Alan",
+          "description": "Pert araç alan Ankara hizmetinde pert raporunuza göre özel değerlendirme yapar, yasal süreci sizin yerinize yürütürüz."
+        },
+        "hurda": {
+          "title": "Ankara Hurda Araç Alan",
+          "description": "Hurda araç alan Ankara ekibimiz, hurda belgeli araçlarınızda ücretsiz çekici ve hızlı işlem sağlar."
+        }
+      }
+    },
+    {
+      "route": "/sehirler/izmir",
+      "source_file": "src/data/cities.ts -> izmir  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> izmir",
+      "page_type": "city",
+      "title": "İzmir Kazalı, Hasarlı, Pert, Hurda Araç Alımı | Yenice Otomotiv",
+      "title_rendered": "İzmir Kazalı, Hasarlı, Pert, Hurda Araç Alımı | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "İzmir genelinde kazalı, hasarlı, pert ve hurda araç alımı. Konak, Karşıyaka, Bornova dahil tüm ilçelere hizmet. Anında değerlendirme.",
+      "meta_keywords": [
+        "izmir kazalı araç alan",
+        "izmir hasarlı araç alan",
+        "izmir pert araç alan",
+        "izmir hurda araç alan",
+        "konak araç alım",
+        "karşıyaka araç alım",
+        "bornova araç alım",
+        "buca araç alım"
+      ],
+      "og_title": "İzmir Kazalı, Hasarlı, Pert, Hurda Araç Alımı | Yenice Otomotiv",
+      "og_description": "İzmir genelinde kazalı, hasarlı, pert ve hurda araç alımı. Konak, Karşıyaka, Bornova dahil tüm ilçelere hizmet. Anında değerlendirme.",
+      "canonical": "/sehirler/izmir",
+      "h1": "İZMİR'DE ARACINIZ EN YÜKSEK FİYATA",
+      "h2": [
+        "İzmir'da Hizmetlerimiz",
+        "İzmir'da Neden Biz?",
+        "İzmir'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "İzmir İçin Sık Sorulanlar"
+      ],
+      "h3": [
+        "Sahil Şeridi Hizmeti",
+        "Hızlı Ekspertiz",
+        "Ege'nin En İyi Fiyatı",
+        "Ücretsiz Çekici",
+        "Konak Noter",
+        "İki Yakada Ofis"
+      ],
+      "body_snippets": [
+        "İzmir'in bütün ilçelerinde kazalı, hasarlı, pert ve hurda araç alımı yapıyoruz. Sahil şeridinden Kemalpaşa'ya dek her noktada yanınızdayız.",
+        "Karşıyaka'dan Çeşme'ye kadar tüm sahil hattında hizmet.",
+        "1 saat içinde uzman ekibimizden değerlendirme.",
+        "İzmir'in en yüksek araç alım fiyatlarını sunuyoruz.",
+        "İzmir genelinde taşıma tamamen ücretsiz.",
+        "İşlemler Alsancak noterlerinde tamamlanır.",
+        "Konak ve Karşıyaka'da iki ofisimiz mevcut."
+      ],
+      "faqs": [
+        {
+          "question": "İzmir'in hangi ilçelerine hizmet veriyorsunuz?",
+          "answer": "İzmir'in 30 ilçesinin tamamına ulaşıyoruz. Konak, Karşıyaka, Bornova gibi merkez ilçelerin yanında Çeşme, Urla, Menemen gibi dış ilçelere de ücretsiz hizmet götürüyoruz."
+        },
+        {
+          "question": "İzmir'de ne kadar sürede gelirsiniz?",
+          "answer": "Merkez ilçelerde (Konak, Karşıyaka, Bornova, Buca) 1 saat içinde, dış ilçelerde ise 2-3 saat içinde adresinize ulaşıyoruz."
+        },
+        {
+          "question": "Çeşme, Urla gibi uzak ilçelere de geliyor musunuz?",
+          "answer": "Evet, İzmir'in bütün ilçelerine ücretsiz çekici hizmetimiz var. Mesafe ne olursa olsun hizmet veriyoruz."
+        },
+        {
+          "question": "İzmir'de hangi noterlerde işlem yapıyorsunuz?",
+          "answer": "Çoğunlukla Alsancak ve Konak çevresindeki noterlerle çalışıyoruz. İsterseniz size yakın bir noterde de işlem yapabiliriz."
+        }
+      ],
+      "servicesDetail": {}
+    },
+    {
+      "route": "/sehirler/bursa",
+      "source_file": "src/data/cities.ts -> bursa  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> bursa",
+      "page_type": "city",
+      "title": "Bursa Kazalı, Hasarlı, Pert, Hurda Araç Alımı | Yenice Otomotiv",
+      "title_rendered": "Bursa Kazalı, Hasarlı, Pert, Hurda Araç Alımı | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Bursa genelinde kazalı, hasarlı, pert ve hurda araç alımı. Osmangazi, Nilüfer, Yıldırım dahil tüm ilçelere hizmet. 1 saatte nakit ödeme.",
+      "meta_keywords": [
+        "bursa kazalı araç alan",
+        "bursa hasarlı araç alan",
+        "bursa pert araç alan",
+        "bursa hurda araç alan",
+        "osmangazi araç alım",
+        "nilüfer araç alım",
+        "yıldırım araç alım",
+        "mudanya araç alım"
+      ],
+      "og_title": "Bursa Kazalı, Hasarlı, Pert, Hurda Araç Alımı | Yenice Otomotiv",
+      "og_description": "Bursa genelinde kazalı, hasarlı, pert ve hurda araç alımı. Osmangazi, Nilüfer, Yıldırım dahil tüm ilçelere hizmet. 1 saatte nakit ödeme.",
+      "canonical": "/sehirler/bursa",
+      "h1": "BURSA'DA ARACINIZ EN YÜKSEK FİYATA",
+      "h2": [
+        "Bursa'da Hizmetlerimiz",
+        "Bursa'da Neden Biz?",
+        "Bursa'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "Bursa İçin Sık Sorulanlar"
+      ],
+      "h3": [
+        "Tüm Bursa'ya Hizmet",
+        "Hızlı Ekspertiz",
+        "Bursa'nın En İyi Fiyatı",
+        "Ücretsiz Çekici",
+        "Hızlı Noter",
+        "Yerel Ofisler"
+      ],
+      "body_snippets": [
+        "Bursa'nın bütün ilçelerinde kazalı, hasarlı, pert ve hurda araç alımı yapıyoruz. Yerinde ekspertiz ve anında ödeme imkanı.",
+        "Merkez ve çevre ilçelerin hepsine ulaşıyoruz.",
+        "Uzman ekibimiz 1 saat içinde yanınızda olur.",
+        "Piyasa değerinin üzerinde teklifler veriyoruz.",
+        "Bursa genelinde araç çekimi ücretsizdir.",
+        "Bütün noterlerde devir işlemi anında yapılır.",
+        "Nilüfer ve Osmangazi'de ofislerimiz bulunuyor."
+      ],
+      "faqs": [
+        {
+          "question": "Bursa'nın hangi ilçelerine geliyorsunuz?",
+          "answer": "Bursa'nın 17 ilçesinin tamamına hizmet götürüyoruz. Merkez ilçelerin yanı sıra İnegöl, Gemlik gibi dış ilçeler de buna dahil."
+        },
+        {
+          "question": "Bursa'da ödeme nasıl oluyor?",
+          "answer": "Noter satışıyla eş zamanlı olarak nakit tutarı banka hesabınıza aktarıyoruz."
+        }
+      ],
+      "servicesDetail": {}
+    },
+    {
+      "route": "/sehirler/antalya",
+      "source_file": "src/data/cities.ts -> antalya  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> antalya",
+      "page_type": "city",
+      "title": "Antalya Kazalı, Hasarlı, Pert, Hurda Araç Alımı | Yenice Otomotiv",
+      "title_rendered": "Antalya Kazalı, Hasarlı, Pert, Hurda Araç Alımı | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Antalya genelinde kazalı, hasarlı, pert ve hurda araç alımı. Muratpaşa, Kepez, Konyaaltı, Alanya dahil tüm ilçelere hizmet.",
+      "meta_keywords": [
+        "antalya kazalı araç alan",
+        "antalya hasarlı araç alan",
+        "antalya pert araç alan",
+        "antalya hurda araç alan",
+        "muratpaşa araç alım",
+        "kepez araç alım",
+        "konyaaltı araç alım",
+        "alanya araç alım"
+      ],
+      "og_title": "Antalya Kazalı, Hasarlı, Pert, Hurda Araç Alımı | Yenice Otomotiv",
+      "og_description": "Antalya genelinde kazalı, hasarlı, pert ve hurda araç alımı. Muratpaşa, Kepez, Konyaaltı, Alanya dahil tüm ilçelere hizmet.",
+      "canonical": "/sehirler/antalya",
+      "h1": "ANTALYA'DA ARACINIZ EN YÜKSEK FİYATA",
+      "h2": [
+        "Antalya'da Hizmetlerimiz",
+        "Antalya'da Neden Biz?",
+        "Antalya'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "Antalya İçin Sık Sorulanlar"
+      ],
+      "h3": [
+        "Tüm Antalya'ya Hizmet",
+        "Hızlı Değerleme",
+        "Antalya'nın En İyi Fiyatı",
+        "Ücretsiz Çekici",
+        "Kolay Devir",
+        "Merkezi Ofisler"
+      ],
+      "body_snippets": [
+        "Antalya ve ilçelerinde kazalı, hasarlı, pert ve hurda araç alımı yapıyoruz. Turizm sezonu olsun olmasın 7/24 hizmetinizdeyiz.",
+        "Kaş'tan Gazipaşa'ya kadar her noktaya ulaşıyoruz.",
+        "Uzman ekibimizle fiyat teklifini hızla hazırlıyoruz.",
+        "Bölgenin en yüksek fiyatını garanti ediyoruz.",
+        "Bütün ilçelerden aracınızı ücretsiz alıyoruz.",
+        "Noter işlemlerini sizin yerinize biz hallediyoruz.",
+        "Muratpaşa ve Alanya'da şubelerimiz var."
+      ],
+      "faqs": [
+        {
+          "question": "Antalya'nın turistik ilçelerine geliyor musunuz?",
+          "answer": "Evet, Kemer, Alanya, Kaş başta olmak üzere tüm turistik ilçelere hizmet götürüyoruz."
+        },
+        {
+          "question": "Antalya dışına da hizmetiniz var mı?",
+          "answer": "Evet, Burdur ve Isparta gibi çevre illere de hizmet veriyoruz."
+        }
+      ],
+      "servicesDetail": {}
+    },
+    {
+      "route": "/sehirler/adana",
+      "source_file": "src/data/cities.ts -> adana  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> adana",
+      "page_type": "city",
+      "title": "Adana Kazalı, Hasarlı, Pert, Hurda Araç Alımı | Yenice Otomotiv",
+      "title_rendered": "Adana Kazalı, Hasarlı, Pert, Hurda Araç Alımı | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Adana genelinde kazalı, hasarlı, pert ve hurda araç alımı. Seyhan, Yüreğir, Çukurova dahil tüm ilçelere hizmet. Anında nakit.",
+      "meta_keywords": [
+        "adana kazalı araç alan",
+        "adana hasarlı araç alan",
+        "adana pert araç alan",
+        "adana hurda araç alan",
+        "seyhan araç alım",
+        "yüreğir araç alım",
+        "çukurova araç alım",
+        "sarıçam araç alım"
+      ],
+      "og_title": "Adana Kazalı, Hasarlı, Pert, Hurda Araç Alımı | Yenice Otomotiv",
+      "og_description": "Adana genelinde kazalı, hasarlı, pert ve hurda araç alımı. Seyhan, Yüreğir, Çukurova dahil tüm ilçelere hizmet. Anında nakit.",
+      "canonical": "/sehirler/adana",
+      "h1": "ADANA'DA ARACINIZ EN YÜKSEK FİYATA",
+      "h2": [
+        "Adana'da Hizmetlerimiz",
+        "Adana'da Neden Biz?",
+        "Adana'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "Adana İçin Sık Sorulanlar"
+      ],
+      "h3": [
+        "Tüm Adana'ya Hizmet",
+        "Hızlı İşlem",
+        "Adana'nın En İyi Fiyatı",
+        "Ücretsiz Çekici",
+        "Güvenilir Devir",
+        "Merkezi Konum"
+      ],
+      "body_snippets": [
+        "Adana ve çevresinde kazalı, hasarlı, pert ve hurda araç alımı yapıyoruz. 1 saat içinde adresinize geliyoruz.",
+        "Merkez ve taşra ilçelerinin hepsine ulaşıyoruz.",
+        "Ekspertiz ve teklifi 1 saat içinde tamamlıyoruz.",
+        "Bölge piyasasının üstünde rakamlar sunuyoruz.",
+        "Adana içinde çekici hizmetimiz ücretsizdir.",
+        "Satış işlemi noter huzurunda güvenle yapılır.",
+        "Seyhan ofisimizle hizmetinizdeyiz."
+      ],
+      "faqs": [
+        {
+          "question": "Adana'nın hangi ilçelerine hizmet veriyorsunuz?",
+          "answer": "Adana'nın 15 ilçesinin hepsine hizmet götürüyoruz."
+        },
+        {
+          "question": "Adana'da ekspertiz ücretli mi?",
+          "answer": "Hayır, ekspertiz hizmetimizden hiçbir ücret almıyoruz."
+        }
+      ],
+      "servicesDetail": {}
+    },
+    {
+      "route": "/sehirler/konya",
+      "source_file": "src/data/cities.ts -> konya  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> konya",
+      "page_type": "city",
+      "title": "Konya Kazalı, Hasarlı, Pert, Hurda Araç Alımı | Yenice Otomotiv",
+      "title_rendered": "Konya Kazalı, Hasarlı, Pert, Hurda Araç Alımı | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Konya genelinde kazalı, hasarlı, pert ve hurda araç alımı. Selçuklu, Meram, Karatay dahil tüm ilçelere hizmet.",
+      "meta_keywords": [
+        "konya kazalı araç",
+        "konya hasarlı araç",
+        "konya pert araç",
+        "selçuklu araç alım"
+      ],
+      "og_title": "Konya Kazalı, Hasarlı, Pert, Hurda Araç Alımı | Yenice Otomotiv",
+      "og_description": "Konya genelinde kazalı, hasarlı, pert ve hurda araç alımı. Selçuklu, Meram, Karatay dahil tüm ilçelere hizmet.",
+      "canonical": "/sehirler/konya",
+      "h1": "KONYA'DA ARACINIZ DEĞERİNDE ALINIR",
+      "h2": [
+        "Konya'da Hizmetlerimiz",
+        "Konya'da Neden Biz?",
+        "Konya'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "Konya İçin Sık Sorulanlar"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Konya ve ilçelerinde her tür hasarlı aracınızı alıyoruz."
+      ],
+      "faqs": [],
+      "servicesDetail": {}
+    },
+    {
+      "route": "/sehirler/gaziantep",
+      "source_file": "src/data/cities.ts -> gaziantep  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> gaziantep",
+      "page_type": "city",
+      "title": "Gaziantep Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "title_rendered": "Gaziantep Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Gaziantep genelinde kazalı, hasarlı, pert araç alımı. Şehitkamil, Şahinbey dahil tüm ilçeler.",
+      "meta_keywords": [
+        "gaziantep kazalı araç",
+        "gaziantep hasarlı araç",
+        "şehitkamil araç alım"
+      ],
+      "og_title": "Gaziantep Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "og_description": "Gaziantep genelinde kazalı, hasarlı, pert araç alımı. Şehitkamil, Şahinbey dahil tüm ilçeler.",
+      "canonical": "/sehirler/gaziantep",
+      "h1": "GAZİANTEP'TE ARACINIZ NAKİT ALINIR",
+      "h2": [
+        "Gaziantep'da Hizmetlerimiz",
+        "Gaziantep'da Neden Biz?",
+        "Gaziantep'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "Gaziantep İçin Sık Sorulanlar"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Gaziantep genelinde hasarlı araçlarınızı bulunduğu yerde satın alıyoruz."
+      ],
+      "faqs": [],
+      "servicesDetail": {}
+    },
+    {
+      "route": "/sehirler/mersin",
+      "source_file": "src/data/cities.ts -> mersin  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> mersin",
+      "page_type": "city",
+      "title": "Mersin Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "title_rendered": "Mersin Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Mersin genelinde kazalı, hasarlı, pert araç alımı. Yenişehir, Mezitli, Tarsus dahil tüm ilçeler.",
+      "meta_keywords": [
+        "mersin kazalı araç",
+        "mersin hasarlı araç",
+        "tarsus araç alım"
+      ],
+      "og_title": "Mersin Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "og_description": "Mersin genelinde kazalı, hasarlı, pert araç alımı. Yenişehir, Mezitli, Tarsus dahil tüm ilçeler.",
+      "canonical": "/sehirler/mersin",
+      "h1": "MERSİN'DE ARACINIZ DEĞERİNDE SATILSIN",
+      "h2": [
+        "Mersin'da Hizmetlerimiz",
+        "Mersin'da Neden Biz?",
+        "Mersin'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "Mersin İçin Sık Sorulanlar"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Mersin ve ilçelerinde hasarlı araç alım hizmeti sunuyoruz."
+      ],
+      "faqs": [],
+      "servicesDetail": {}
+    },
+    {
+      "route": "/sehirler/kayseri",
+      "source_file": "src/data/cities.ts -> kayseri  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> kayseri",
+      "page_type": "city",
+      "title": "Kayseri Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "title_rendered": "Kayseri Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Kayseri genelinde kazalı, hasarlı, pert araç alımı. Melikgazi, Kocasinan, Talas dahil.",
+      "meta_keywords": [
+        "kayseri kazalı araç",
+        "kayseri hasarlı araç",
+        "melikgazi araç alım"
+      ],
+      "og_title": "Kayseri Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "og_description": "Kayseri genelinde kazalı, hasarlı, pert araç alımı. Melikgazi, Kocasinan, Talas dahil.",
+      "canonical": "/sehirler/kayseri",
+      "h1": "KAYSERİ'DE ARACINIZ NAKİT ALINIR",
+      "h2": [
+        "Kayseri'da Hizmetlerimiz",
+        "Kayseri'da Neden Biz?",
+        "Kayseri'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "Kayseri İçin Sık Sorulanlar"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Kayseri ve çevresinde hasarlı araçlarınıza değer biçiyoruz."
+      ],
+      "faqs": [],
+      "servicesDetail": {}
+    },
+    {
+      "route": "/sehirler/eskisehir",
+      "source_file": "src/data/cities.ts -> eskisehir  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> eskisehir",
+      "page_type": "city",
+      "title": "Eskişehir Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "title_rendered": "Eskişehir Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Eskişehir genelinde kazalı, hasarlı, pert araç alımı. Odunpazarı, Tepebaşı dahil.",
+      "meta_keywords": [
+        "eskişehir kazalı araç",
+        "eskişehir hasarlı araç",
+        "odunpazarı araç alım"
+      ],
+      "og_title": "Eskişehir Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "og_description": "Eskişehir genelinde kazalı, hasarlı, pert araç alımı. Odunpazarı, Tepebaşı dahil.",
+      "canonical": "/sehirler/eskisehir",
+      "h1": "ESKİŞEHİR'DE ARACINIZ DEĞERİNDE ALINIR",
+      "h2": [
+        "Eskişehir'da Hizmetlerimiz",
+        "Eskişehir'da Neden Biz?",
+        "Eskişehir'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "Eskişehir İçin Sık Sorulanlar"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Eskişehir genelinde hasarlı araç alım hizmeti veriyoruz."
+      ],
+      "faqs": [],
+      "servicesDetail": {}
+    },
+    {
+      "route": "/sehirler/diyarbakir",
+      "source_file": "src/data/cities.ts -> diyarbakir  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> diyarbakir",
+      "page_type": "city",
+      "title": "Diyarbakır Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "title_rendered": "Diyarbakır Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Diyarbakır genelinde kazalı, hasarlı, pert araç alımı. Bağlar, Kayapınar, Yenişehir dahil.",
+      "meta_keywords": [
+        "diyarbakır kazalı araç",
+        "diyarbakır hasarlı araç",
+        "bağlar araç alım"
+      ],
+      "og_title": "Diyarbakır Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "og_description": "Diyarbakır genelinde kazalı, hasarlı, pert araç alımı. Bağlar, Kayapınar, Yenişehir dahil.",
+      "canonical": "/sehirler/diyarbakir",
+      "h1": "DİYARBAKIR'DA ARACINIZ NAKİT ALINIR",
+      "h2": [
+        "Diyarbakır'da Hizmetlerimiz",
+        "Diyarbakır'da Neden Biz?",
+        "Diyarbakır'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "Diyarbakır İçin Sık Sorulanlar"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Diyarbakır ve ilçelerinde hasarlı araç alımı yapıyoruz."
+      ],
+      "faqs": [],
+      "servicesDetail": {}
+    },
+    {
+      "route": "/sehirler/samsun",
+      "source_file": "src/data/cities.ts -> samsun  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> samsun",
+      "page_type": "city",
+      "title": "Samsun Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "title_rendered": "Samsun Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Samsun genelinde kazalı, hasarlı, pert araç alımı. İlkadım, Atakum, Canik dahil.",
+      "meta_keywords": [
+        "samsun kazalı araç",
+        "samsun hasarlı araç",
+        "atakum araç alım"
+      ],
+      "og_title": "Samsun Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "og_description": "Samsun genelinde kazalı, hasarlı, pert araç alımı. İlkadım, Atakum, Canik dahil.",
+      "canonical": "/sehirler/samsun",
+      "h1": "SAMSUN'DA ARACINIZ DEĞERİNDE SATILSIN",
+      "h2": [
+        "Samsun'da Hizmetlerimiz",
+        "Samsun'da Neden Biz?",
+        "Samsun'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "Samsun İçin Sık Sorulanlar"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Samsun ve Karadeniz bölgesinde hasarlı araç alımı yapıyoruz."
+      ],
+      "faqs": [],
+      "servicesDetail": {}
+    },
+    {
+      "route": "/sehirler/denizli",
+      "source_file": "src/data/cities.ts -> denizli  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> denizli",
+      "page_type": "city",
+      "title": "Denizli Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "title_rendered": "Denizli Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Denizli genelinde kazalı, hasarlı, pert araç alımı. Pamukkale, Merkezefendi dahil.",
+      "meta_keywords": [
+        "denizli kazalı araç",
+        "denizli hasarlı araç",
+        "pamukkale araç alım"
+      ],
+      "og_title": "Denizli Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "og_description": "Denizli genelinde kazalı, hasarlı, pert araç alımı. Pamukkale, Merkezefendi dahil.",
+      "canonical": "/sehirler/denizli",
+      "h1": "DENİZLİ'DE ARACINIZ NAKİT ALINIR",
+      "h2": [
+        "Denizli'da Hizmetlerimiz",
+        "Denizli'da Neden Biz?",
+        "Denizli'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "Denizli İçin Sık Sorulanlar"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Denizli ve çevresinde hasarlı araçlarınızı satın alıyoruz."
+      ],
+      "faqs": [],
+      "servicesDetail": {}
+    },
+    {
+      "route": "/sehirler/sanliurfa",
+      "source_file": "src/data/cities.ts -> sanliurfa  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> sanliurfa",
+      "page_type": "city",
+      "title": "Şanlıurfa Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "title_rendered": "Şanlıurfa Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Şanlıurfa genelinde kazalı, hasarlı, pert araç alımı. Haliliye, Eyyübiye, Karaköprü dahil.",
+      "meta_keywords": [
+        "şanlıurfa kazalı araç",
+        "urfa hasarlı araç",
+        "haliliye araç alım"
+      ],
+      "og_title": "Şanlıurfa Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "og_description": "Şanlıurfa genelinde kazalı, hasarlı, pert araç alımı. Haliliye, Eyyübiye, Karaköprü dahil.",
+      "canonical": "/sehirler/sanliurfa",
+      "h1": "ŞANLIURFA'DA ARACINIZ DEĞERİNDE ALINIR",
+      "h2": [
+        "Şanlıurfa'da Hizmetlerimiz",
+        "Şanlıurfa'da Neden Biz?",
+        "Şanlıurfa'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "Şanlıurfa İçin Sık Sorulanlar"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Şanlıurfa ve ilçelerinde hasarlı araç alım hizmeti sunuyoruz."
+      ],
+      "faqs": [],
+      "servicesDetail": {}
+    },
+    {
+      "route": "/sehirler/malatya",
+      "source_file": "src/data/cities.ts -> malatya  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> malatya",
+      "page_type": "city",
+      "title": "Malatya Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "title_rendered": "Malatya Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Malatya genelinde kazalı, hasarlı, pert araç alımı. Battalgazi, Yeşilyurt dahil.",
+      "meta_keywords": [
+        "malatya kazalı araç",
+        "malatya hasarlı araç",
+        "battalgazi araç alım"
+      ],
+      "og_title": "Malatya Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "og_description": "Malatya genelinde kazalı, hasarlı, pert araç alımı. Battalgazi, Yeşilyurt dahil.",
+      "canonical": "/sehirler/malatya",
+      "h1": "MALATYA'DA ARACINIZ NAKİT ALINIR",
+      "h2": [
+        "Malatya'da Hizmetlerimiz",
+        "Malatya'da Neden Biz?",
+        "Malatya'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "Malatya İçin Sık Sorulanlar"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Malatya genelinde hasarlı araç alımı yapıyoruz."
+      ],
+      "faqs": [],
+      "servicesDetail": {}
+    },
+    {
+      "route": "/sehirler/kahramanmaras",
+      "source_file": "src/data/cities.ts -> kahramanmaras  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> kahramanmaras",
+      "page_type": "city",
+      "title": "Kahramanmaraş Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "title_rendered": "Kahramanmaraş Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Kahramanmaraş genelinde kazalı, hasarlı, pert araç alımı. Onikişubat, Dulkadiroğlu dahil.",
+      "meta_keywords": [
+        "kahramanmaraş kazalı araç",
+        "maraş hasarlı araç",
+        "onikişubat araç alım"
+      ],
+      "og_title": "Kahramanmaraş Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "og_description": "Kahramanmaraş genelinde kazalı, hasarlı, pert araç alımı. Onikişubat, Dulkadiroğlu dahil.",
+      "canonical": "/sehirler/kahramanmaras",
+      "h1": "MARAŞ'TA ARACINIZ DEĞERİNDE SATILSIN",
+      "h2": [
+        "Kahramanmaraş'da Hizmetlerimiz",
+        "Kahramanmaraş'da Neden Biz?",
+        "Kahramanmaraş'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "Kahramanmaraş İçin Sık Sorulanlar"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Kahramanmaraş ve ilçelerinde hasarlı araç alımı yapıyoruz."
+      ],
+      "faqs": [],
+      "servicesDetail": {}
+    },
+    {
+      "route": "/sehirler/erzurum",
+      "source_file": "src/data/cities.ts -> erzurum  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> erzurum",
+      "page_type": "city",
+      "title": "Erzurum Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "title_rendered": "Erzurum Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Erzurum genelinde kazalı, hasarlı, pert araç alımı. Yakutiye, Palandöken, Aziziye dahil.",
+      "meta_keywords": [
+        "erzurum kazalı araç",
+        "erzurum hasarlı araç",
+        "yakutiye araç alım"
+      ],
+      "og_title": "Erzurum Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "og_description": "Erzurum genelinde kazalı, hasarlı, pert araç alımı. Yakutiye, Palandöken, Aziziye dahil.",
+      "canonical": "/sehirler/erzurum",
+      "h1": "ERZURUM'DA ARACINIZ NAKİT ALINIR",
+      "h2": [
+        "Erzurum'da Hizmetlerimiz",
+        "Erzurum'da Neden Biz?",
+        "Erzurum'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "Erzurum İçin Sık Sorulanlar"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Erzurum ve çevresinde hasarlı araçlarınızı satın alıyoruz."
+      ],
+      "faqs": [],
+      "servicesDetail": {}
+    },
+    {
+      "route": "/sehirler/van",
+      "source_file": "src/data/cities.ts -> van  (rendered by src/app/sehirler/[city]/page.tsx)",
+      "data_source": "src/data/cities.ts -> van",
+      "page_type": "city",
+      "title": "Van Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "title_rendered": "Van Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Van genelinde kazalı, hasarlı, pert araç alımı. İpekyolu, Tuşba, Edremit dahil.",
+      "meta_keywords": [
+        "van kazalı araç",
+        "van hasarlı araç",
+        "ipekyolu araç alım"
+      ],
+      "og_title": "Van Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv",
+      "og_description": "Van genelinde kazalı, hasarlı, pert araç alımı. İpekyolu, Tuşba, Edremit dahil.",
+      "canonical": "/sehirler/van",
+      "h1": "VAN'DA ARACINIZ DEĞERİNDE ALINIR",
+      "h2": [
+        "Van'da Hizmetlerimiz",
+        "Van'da Neden Biz?",
+        "Van'dan Yorumlar",
+        "Hizmet Verdiğimiz İlçeler",
+        "4 Adımda Pratik Satış",
+        "Van İçin Sık Sorulanlar"
+      ],
+      "h3": [],
+      "body_snippets": [
+        "Van ve ilçelerinde hasarlı araç alım hizmeti sunuyoruz."
+      ],
+      "faqs": [],
+      "servicesDetail": {}
+    },
+    {
+      "route": "/blog/kazali-arac-satarken-nelere-dikkat-edilmeli",
+      "source_file": "src/data/blog.ts -> 1  (rendered by src/app/blog/[slug]/page.tsx)",
+      "data_source": "src/data/blog.ts -> 1",
+      "page_type": "blog",
+      "title": "Kazalı Araç Satarken Dikkat Edilecekler | Yenice Otomotiv Blog",
+      "title_rendered": "Kazalı Araç Satarken Dikkat Edilecekler | Yenice Otomotiv Blog | Yenice Otomotiv",
+      "meta_description": "Kazalı aracınızı en yüksek fiyata satabilmeniz için öğrenmeniz gereken bütün ayrıntılar. Profesyonel öneriler ve püf noktaları.",
+      "meta_keywords": [
+        "kazalı araç",
+        "araç satış",
+        "ipuçları"
+      ],
+      "og_title": "INHERITED from root layout (no per-post override)",
+      "og_description": "INHERITED from root layout (no per-post override)",
+      "canonical": "/blog/kazali-arac-satarken-nelere-dikkat-edilmeli",
+      "h1": "Kazalı Araç Satışında Nelere Dikkat Etmek Gerekir?",
+      "h2": [
+        "Kazalı Araç Satışında Mutlaka Bilinmesi Gerekenler",
+        "En Yüksek Fiyatı Nasıl Yakalarsınız?",
+        "Kazalı Araç Satışında Sık Düşülen Yanlışlar",
+        "Aracınızın net fiyat aralığını bugün öğrenin (lead-gen card, fixed template text)"
+      ],
+      "h3": [
+        "1. Aracın Hasarını Gerçekçi Biçimde Değerlendirin",
+        "2. Trafik Kazası Raporunu Edinin",
+        "3. Ayrıntılı Fotoğraf Kaydı Tutun",
+        "4. Sigorta İşlemlerini Tamamlayın",
+        "5. Birden Çok Alıcıdan Teklif Toplayın",
+        "6. Gereken Belgeleri Hazır Edin"
+      ],
+      "body_snippets": [
+        "Kazalı bir aracı elden çıkarmak ilk bakışta yorucu bir süreç sanılabilir; ne var ki doğru adımları takip ettiğinizde en yüksek fiyatı elde edebilirsiniz. Bu yazıda kazalı araç satışında göz önünde bulundurmanız gereken bütün noktaları tek tek inceliyoruz.",
+        "Atılacak ilk adım, aracınızdaki hasarı önyargısız bir bakışla ölçmektir. Geniş çaplı hasarlar fiyatı belirgin biçimde aşağı çeker; buna karşın küçük hasarlarda da hakkaniyetli bir bedel elde etmeniz mümkündür. Hasarın çeşidini (kaporta, motor, şanzıman, hava yastığı) doğru saptamak, hem alıcıya dürüst bilgi sunmanızı hem de makul bir fiyat beklentisi kurmanızı kolaylaştırır.",
+        "Kaza raporu, alıcıların güven duymasını sağlar ve satışı hızlandırır. Olay yerine trafik polisi çağrıldıysa tutanağı almayı ihmal etmeyin. Belgelenmiş ve alkolsüz bir kaza, aracın değerinin korunmasına katkı sunar."
+      ],
+      "excerpt": "Kazalı aracınızı elden çıkarmadan önce öğrenmeniz gereken bütün ayrıntılar ve en yüksek fiyat elde etme teknikleri.",
+      "category": "Rehber",
+      "author": "Yenice Otomotiv Ekibi",
+      "publishedAt": "2025-01-05"
+    },
+    {
+      "route": "/blog/pert-raporu-nedir",
+      "source_file": "src/data/blog.ts -> 2  (rendered by src/app/blog/[slug]/page.tsx)",
+      "data_source": "src/data/blog.ts -> 2",
+      "page_type": "blog",
+      "title": "Pert Raporu Ne Demek, Nasıl Edinilir? | Yenice Otomotiv",
+      "title_rendered": "Pert Raporu Ne Demek, Nasıl Edinilir? | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Pert raporuna dair bütün ayrıntılar. Pert raporlu araç satışı ve alımı hakkında bilmeniz gereken her şey.",
+      "meta_keywords": [
+        "pert raporu",
+        "sigorta",
+        "yasal süreç"
+      ],
+      "og_title": "INHERITED from root layout (no per-post override)",
+      "og_description": "INHERITED from root layout (no per-post override)",
+      "canonical": "/blog/pert-raporu-nedir",
+      "h1": "Pert Raporu Ne Demektir? Nasıl Edinilir?",
+      "h2": [
+        "Pert Raporu Ne Demektir?",
+        "Pert Araç Sahibi Nasıl Hareket Etmeli?",
+        "Aracınızın net fiyat aralığını bugün öğrenin (lead-gen card, fixed template text)"
+      ],
+      "h3": [
+        "Pert Raporu Hangi Durumda Düzenlenir?",
+        "Pert Raporu Çeşitleri",
+        "Pert Raporlu Araç Satılabilir mi?",
+        "Gereken Belgeler"
+      ],
+      "body_snippets": [
+        "Pert raporu, sigorta şirketinin bir aracı ekonomik açıdan onarılamaz kabul etmesiyle düzenlenen resmi bir belgedir. \"Pert\" sözcüğü Türkçede \"kullanılamaz duruma gelmiş\" anlamı taşır ve araç sigortacılığında kendine özgü bir karşılığı vardır.",
+        "Sigorta mevzuatı uyarınca bir aracın onarım masrafı, aracın rayiç (piyasa) değerinin belli bir oranını — çoğunlukla %60-70'ini — geçtiğinde sigorta şirketi pert kararına gidebilir. Bu karar, sigorta şirketinin koşullarına, aracın yaşına ve hasarın boyutuna göre farklılık gösterebilir."
+      ],
+      "excerpt": "Pert raporuyla ilgili aklınıza takılan her konu ve pert raporlu araç satışının işleyişi.",
+      "category": "Bilgi",
+      "author": "Hukuk Ekibi",
+      "publishedAt": "2025-01-03"
+    },
+    {
+      "route": "/blog/hurda-arac-teslim-sureci",
+      "source_file": "src/data/blog.ts -> 3  (rendered by src/app/blog/[slug]/page.tsx)",
+      "data_source": "src/data/blog.ts -> 3",
+      "page_type": "blog",
+      "title": "Hurda Araç Teslim İşlemleri | Yenice Otomotiv Blog",
+      "title_rendered": "Hurda Araç Teslim İşlemleri | Yenice Otomotiv Blog | Yenice Otomotiv",
+      "meta_description": "Hurda aracınızı teslim etme işlemleri hakkında ayrıntılı rehber. Ücretsiz çekici ve anında ödeme.",
+      "meta_keywords": [
+        "hurda araç",
+        "hurda belgesi",
+        "süreç"
+      ],
+      "og_title": "INHERITED from root layout (no per-post override)",
+      "og_description": "INHERITED from root layout (no per-post override)",
+      "canonical": "/blog/hurda-arac-teslim-sureci",
+      "h1": "Hurda Araç Teslim İşlemleri Nasıl Yürür?",
+      "h2": [
+        "Hurda Araç Teslimi Sırasında Atmanız Gereken Adımlar",
+        "Hurda Belgesi Neye Yarar?",
+        "Aracınızın net fiyat aralığını bugün öğrenin (lead-gen card, fixed template text)"
+      ],
+      "h3": [
+        "Adım 1: Bizi Arayın ya da WhatsApp'tan Yazın",
+        "Adım 2: Ücretsiz Çekici Hizmeti",
+        "Adım 3: Tartım ve Değerlendirme",
+        "Adım 4: Hurda Belgesi İşlemleri",
+        "Adım 5: Anında Ödeme"
+      ],
+      "body_snippets": [
+        "Hurda aracınızı teslim etmek sandığınızdan çok daha basit! Yenice Otomotiv ile bütün süreci aynı gün içinde sonuçlandırabilirsiniz.",
+        "İlk adım gayet kolay: +90 530 344 40 97 numaralı hattan bizi arayın veya WhatsApp aracılığıyla mesaj atın. Aracınızın markasını, modelini, yılını ve genel durumunu bizimle paylaşın. Fotoğraf iletmeniz değerlendirmeyi daha da hızlandırır.",
+        "Anlaşmaya vardıktan sonra Türkiye'nin her yerine ücretsiz çekici yolluyoruz. Aracın çalışmaması bir engel değildir; çekici hizmetimiz her durumda geçerlidir. Randevu saatini size en uygun şekilde ayarlıyoruz."
+      ],
+      "excerpt": "Hurda aracınızı nasıl teslim edersiniz? Aşama aşama süreç ve dikkat edilecek noktalar.",
+      "category": "Rehber",
+      "author": "Yenice Otomotiv Ekibi",
+      "publishedAt": "2025-01-01"
+    },
+    {
+      "route": "/blog/hasarli-arac-ne-kadar-deger-kaybeder",
+      "source_file": "src/data/blog.ts -> 4  (rendered by src/app/blog/[slug]/page.tsx)",
+      "data_source": "src/data/blog.ts -> 4",
+      "page_type": "blog",
+      "title": "Hasarlı Araçta Değer Kaybı Ne Boyutta Olur? | Yenice Otomotiv Blog",
+      "title_rendered": "Hasarlı Araçta Değer Kaybı Ne Boyutta Olur? | Yenice Otomotiv Blog | Yenice Otomotiv",
+      "meta_description": "Motor, kaporta ve şanzıman hasarının araç değerine yansıması. Hasarın türüne göre değer kaybı oranları ve satış tavsiyeleri.",
+      "meta_keywords": [
+        "hasarlı araç",
+        "değer kaybı",
+        "araç fiyatı"
+      ],
+      "og_title": "INHERITED from root layout (no per-post override)",
+      "og_description": "INHERITED from root layout (no per-post override)",
+      "canonical": "/blog/hasarli-arac-ne-kadar-deger-kaybeder",
+      "h1": "Hasarlı Araçta Değer Kaybı Ne Boyutta Olur?",
+      "h2": [
+        "Hasarın Türüne Bağlı Olarak Araç Değer Kaybı",
+        "Hasarlı Araç Satışında En Akıllıca Strateji",
+        "Nasıl Hareket Etmelisiniz?",
+        "Aracınızın net fiyat aralığını bugün öğrenin (lead-gen card, fixed template text)"
+      ],
+      "h3": [
+        "Kaporta Hasarı",
+        "Motor Hasarı",
+        "Şanzıman Hasarı",
+        "Elektrik Sistemi Hasarı"
+      ],
+      "body_snippets": [
+        "Bir araçta oluşan hasar, aracın piyasa değerini dolaysız biçimde etkiler. Ne var ki bu etki; hasarın türüne, büyüklüğüne ve aracın diğer niteliklerine göre ciddi farklar gösterir. Bu yazıda en sık rastlanan hasar türlerinin araç değerine etkisini ele alıyoruz.",
+        "Kaporta hasarı, aracın mekanik performansını bozmadığından genellikle en düşük değer kaybına yol açar. Hafif boyama ya da göçük onarımı gerektiren hasarlarda değer kaybı %10-20 dolayındadır. Fakat geniş çaplı kaporta değişimi (kapı, kanat, bagaj) gereken durumlarda bu oran %20-35'e tırmanabilir. Şasi hasarına evrilen kaporta hasarları ise değeri %40-60 oranında aşağı çekebilir.",
+        "Motor hasarı, en büyük değer kaybına neden olan hasar türlerinden biridir. Baş contası yanması, silindir bloğu çatlağı veya turbo arızası gibi sorunlar aracın değerini %30-50 oranında düşürebilir. Komple motor değişimi gerektiğinde değer kaybı %40-60'a varabilir. Yine de motor hasarlı araçlarda kullanılabilir durumdaki diğer parçalar (elektrik sistemi, iç döşeme, aksesuar) değerin korunmasına katkıda bulunur."
+      ],
+      "excerpt": "Motor, kaporta ve şanzıman hasarının araç değerine yansıması ve en doğru satış stratejisi.",
+      "category": "Bilgi",
+      "author": "Yenice Otomotiv Uzman Ekibi",
+      "publishedAt": "2025-01-10"
+    },
+    {
+      "route": "/blog/arac-ekspertizi-ne-kadar-surer",
+      "source_file": "src/data/blog.ts -> 5  (rendered by src/app/blog/[slug]/page.tsx)",
+      "data_source": "src/data/blog.ts -> 5",
+      "page_type": "blog",
+      "title": "Araç Ekspertizi Ne Kadar Zaman Alır? | Yenice Otomotiv Blog",
+      "title_rendered": "Araç Ekspertizi Ne Kadar Zaman Alır? | Yenice Otomotiv Blog | Yenice Otomotiv",
+      "meta_description": "Araç ekspertizinin aşamaları ve ne kadar sürdüğü hakkında ayrıntılı bilgi. Hasarlı araçlarda ekspertiz ve ücretsiz değerlendirme.",
+      "meta_keywords": [
+        "araç ekspertizi",
+        "ekspertiz süresi",
+        "hasar tespiti"
+      ],
+      "og_title": "INHERITED from root layout (no per-post override)",
+      "og_description": "INHERITED from root layout (no per-post override)",
+      "canonical": "/blog/arac-ekspertizi-ne-kadar-surer",
+      "h1": "Araç Ekspertizi Ne Kadar Zaman Alır ve Nasıl Uygulanır?",
+      "h2": [
+        "Araç Ekspertizi Ne Anlama Gelir?",
+        "Ekspertizden Sonra Nasıl İlerlemelisiniz?",
+        "Aracınızın net fiyat aralığını bugün öğrenin (lead-gen card, fixed template text)"
+      ],
+      "h3": [
+        "Standart Bir Araç Ekspertizi Ne Kadar Zaman Alır?",
+        "Ekspertizin Aşamaları",
+        "Hasarlı Araçlarda Ekspertiz"
+      ],
+      "body_snippets": [
+        "Araç ekspertizi, bir motorlu taşıtın teknik durumunun, hasar geçmişinin ve piyasa değerinin uzmanlarca incelendiği bir işlemdir. Ekspertiz; araç alım-satımında, sigorta değerlendirmelerinde ve hasar tespitinde belirleyici bir rol üstlenir.",
+        "Standart bir araç ekspertizi 30 dakika ile 2 saat arasında tamamlanır. Süre; aracın türüne, hasarın büyüklüğüne, kullanılan donanıma ve ekspertizin kapsamına göre değişiklik gösterir. Dijital sistemlerle çalışan modern ekspertiz merkezlerinde bu süre kayda değer biçimde kısalır."
+      ],
+      "excerpt": "Profesyonel araç ekspertizinin aşamaları, ne kadar sürdüğü ve hasarlı araçlarda ekspertizin nasıl işlediği hakkında ayrıntılı bilgi.",
+      "category": "Rehber",
+      "author": "Teknik Ekip",
+      "publishedAt": "2025-01-15"
+    },
+    {
+      "route": "/blog/kazali-arac-sigorta-sureci",
+      "source_file": "src/data/blog.ts -> 6  (rendered by src/app/blog/[slug]/page.tsx)",
+      "data_source": "src/data/blog.ts -> 6",
+      "page_type": "blog",
+      "title": "Kazalı Araçta Sigorta İşlemleri Nasıl Yürür? | Yenice Otomotiv",
+      "title_rendered": "Kazalı Araçta Sigorta İşlemleri Nasıl Yürür? | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Kaza ardından sigorta başvurusu ve hasar tespiti sürecinin bütün adımları. Sigorta teklifi düşük çıkarsa nasıl hareket etmelisiniz?",
+      "meta_keywords": [
+        "sigorta süreci",
+        "kaza sonrası",
+        "kasko"
+      ],
+      "og_title": "INHERITED from root layout (no per-post override)",
+      "og_description": "INHERITED from root layout (no per-post override)",
+      "canonical": "/blog/kazali-arac-sigorta-sureci",
+      "h1": "Kazalı Araçta Sigorta İşlemleri Nasıl Yürür?",
+      "h2": [
+        "Kazadan Sonraki İlk 24 Saat",
+        "Sigorta Teklifi Düşük Çıkarsa Nasıl Hareket Etmelisiniz?",
+        "Kaza Sonrası Araç Satışı",
+        "Aracınızın net fiyat aralığını bugün öğrenin (lead-gen card, fixed template text)"
+      ],
+      "h3": [
+        "Vakit Kaybetmeden Yapmanız Gerekenler",
+        "Sigorta Hasar Başvurusu",
+        "Hasar Tespiti ve Pert Kararı"
+      ],
+      "body_snippets": [
+        "Trafik kazasının ardından ilk 24 saat büyük önem taşır. Bu süreçte doğru adımları atmanız, hem sigorta işlemlerinizi hem de araç satış sürecinizi belirgin biçimde etkiler.",
+        "Kasko sigortanız varsa başvurunuzu kendi sigorta şirketinize yaparsınız. Yalnızca zorunlu trafik sigortanız bulunuyorsa karşı tarafın sigortasına başvurmanız gerekir. Başvuruyu takiben sigorta şirketi bir eksper atar ve hasar tespitini gerçekleştirir.",
+        "Sigorta şirketinin eksperi hasarı inceler ve onarım masrafını hesaplar. Onarım masrafı aracın rayiç değerinin %60-70'ini geçerse pert kararı çıkabilir. Bu durumda sigorta şirketi size bir tazminat teklifi sunar."
+      ],
+      "excerpt": "Kaza ardından sigorta başvurusu, hasar tespiti ve tazminat alma sürecine dair kapsamlı bir rehber.",
+      "category": "Rehber",
+      "author": "Yenice Otomotiv Ekibi",
+      "publishedAt": "2025-01-18"
+    },
+    {
+      "route": "/blog/pert-arac-satin-almak-mantikli-mi",
+      "source_file": "src/data/blog.ts -> 7  (rendered by src/app/blog/[slug]/page.tsx)",
+      "data_source": "src/data/blog.ts -> 7",
+      "page_type": "blog",
+      "title": "Pert Araç Almak Akıllıca mı? | Yenice Otomotiv Blog",
+      "title_rendered": "Pert Araç Almak Akıllıca mı? | Yenice Otomotiv Blog | Yenice Otomotiv",
+      "meta_description": "Pert araç alımının getirileri ve riskleri. Pert araç alırken göz önünde tutmanız gereken önemli ayrıntılar.",
+      "meta_keywords": [
+        "pert araç",
+        "araç satın alma",
+        "ikinci el"
+      ],
+      "og_title": "INHERITED from root layout (no per-post override)",
+      "og_description": "INHERITED from root layout (no per-post override)",
+      "canonical": "/blog/pert-arac-satin-almak-mantikli-mi",
+      "h1": "Pert Araç Almak Akıllıca mı?",
+      "h2": [
+        "Pert Araç Nedir ve Neden Tercih Edilir?",
+        "Yenice Otomotiv'tan Pert Araç Alabilir misiniz?",
+        "Aracınızın net fiyat aralığını bugün öğrenin (lead-gen card, fixed template text)"
+      ],
+      "h3": [
+        "Pert Araç Almanın Getirileri",
+        "Pert Araç Almanın Riskleri",
+        "Pert Araç Almadan Önce Denetlenmesi Gerekenler"
+      ],
+      "body_snippets": [
+        "Pert araç, sigorta şirketince ekonomik onarım eşiğini geçtiği değerlendirilen araçtır. Bu araçlar piyasa değerinin epey altında satışa çıkar; bu da yedek parça üreticileri, oto tamircileri ve bilinçli alıcılar için çekici fırsatlar doğurur.",
+        "Şasi numarasını mutlaka sorgulatın. Pert raporunu ve sigorta belgelerini gözden geçirin. Bağımsız bir eksperin görüşüne başvurun. Onarım masrafı için bir tahmin yaptırın ve gerçekçi bir bütçe oluşturun."
+      ],
+      "excerpt": "Pert araç alımının getirileri, barındırdığı riskler ve göz önünde tutulması gereken önemli ayrıntılar.",
+      "category": "Bilgi",
+      "author": "Yenice Otomotiv Uzman Ekibi",
+      "publishedAt": "2025-01-20"
+    },
+    {
+      "route": "/blog/aracinizi-en-yuksek-fiyata-satmanin-yollari",
+      "source_file": "src/data/blog.ts -> 8  (rendered by src/app/blog/[slug]/page.tsx)",
+      "data_source": "src/data/blog.ts -> 8",
+      "page_type": "blog",
+      "title": "Hasarlı Aracı En Yüksek Fiyata Satmanın 7 Yöntemi | Yenice Otomotiv",
+      "title_rendered": "Hasarlı Aracı En Yüksek Fiyata Satmanın 7 Yöntemi | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Kazalı ve hasarlı aracınızı en yüksek fiyata satmanız için 7 kanıtlanmış yöntem. Profesyonel öneriler ve püf noktaları.",
+      "meta_keywords": [
+        "araç satış stratejisi",
+        "hasarlı araç",
+        "en yüksek fiyat"
+      ],
+      "og_title": "INHERITED from root layout (no per-post override)",
+      "og_description": "INHERITED from root layout (no per-post override)",
+      "canonical": "/blog/aracinizi-en-yuksek-fiyata-satmanin-yollari",
+      "h1": "Hasarlı Aracınızı En Yüksek Fiyata Satmanın 7 Yöntemi",
+      "h2": [
+        "Hasarlı Araç Satışında En Yüksek Bedel İçin 7 Yöntem",
+        "Yenice Otomotiv ile En Yüksek Fiyatı Güvenceye Alın",
+        "Aracınızın net fiyat aralığını bugün öğrenin (lead-gen card, fixed template text)"
+      ],
+      "h3": [
+        "1. Doğru Zamanlamayı Yakalayın",
+        "2. Ayrıntılı Fotoğraf Çekin",
+        "3. Bütün Belgeleri Hazır Edin",
+        "4. Birden Çok Alıcıdan Teklif Toplayın",
+        "5. Profesyonel Alıcılarla Çalışın",
+        "6. Onarttırmadan Satın",
+        "7. Sigorta Teklifini Sorgulamadan Onaylamayın"
+      ],
+      "body_snippets": [
+        "Hasarlı araç satışı, doğru yaklaşımla beklentinizin ötesinde bir gelir getirebilir. İşte uzmanların tavsiye ettiği ve etkinliği kanıtlanmış 7 yöntem:",
+        "Hasarlı araçlar bekledikçe ek hasarlar (pas, nem, pil boşalması) nedeniyle değer yitirir. Kaza veya arızadan sonra olabildiğince hızlı satışa çıkmak daha yüksek bir fiyat almanızı sağlar.",
+        "Hasarı net gösteren, iyi aydınlatılmış fotoğraflar alıcıların güvenini pekiştirir. 10-15 fotoğraf yeterlidir: her açıdan dış görünüm, hasarlı bölgenin yakın çekimi, motor kaputu altı ve iç mekan."
+      ],
+      "excerpt": "Kazalı, hasarlı ya da pert raporlu aracınızı piyasanın en yüksek fiyatına satmanız için kanıtlanmış yöntemler.",
+      "category": "Strateji",
+      "author": "Yenice Otomotiv Ekibi",
+      "publishedAt": "2025-01-25"
+    },
+    {
+      "route": "/blog/hurda-arac-fiyatlari-nasil-belirlenir",
+      "source_file": "src/data/blog.ts -> 9  (rendered by src/app/blog/[slug]/page.tsx)",
+      "data_source": "src/data/blog.ts -> 9",
+      "page_type": "blog",
+      "title": "Hurda Araç Fiyatları Nasıl Hesaplanır? | Yenice Otomotiv Blog",
+      "title_rendered": "Hurda Araç Fiyatları Nasıl Hesaplanır? | Yenice Otomotiv Blog | Yenice Otomotiv",
+      "meta_description": "Hurda araç fiyatına etki eden unsurlar ve güncel kilo fiyatları. Aracınız için en yüksek hurda teklifini alın.",
+      "meta_keywords": [
+        "hurda araç fiyatı",
+        "kilo fiyatı",
+        "hurda demir"
+      ],
+      "og_title": "INHERITED from root layout (no per-post override)",
+      "og_description": "INHERITED from root layout (no per-post override)",
+      "canonical": "/blog/hurda-arac-fiyatlari-nasil-belirlenir",
+      "h1": "Hurda Araç Fiyatları Nasıl Hesaplanır?",
+      "h2": [
+        "Hurda Araç Fiyatını Belirleyen Unsurlar",
+        "Örnek Bir Hurda Araç Fiyat Hesabı",
+        "Neden Yenice Otomotiv'ı Tercih Etmelisiniz?",
+        "Aracınızın net fiyat aralığını bugün öğrenin (lead-gen card, fixed template text)"
+      ],
+      "h3": [
+        "1. Günlük Hurda Demir Fiyatı",
+        "2. Araç Ağırlığı",
+        "3. Değerli Metal İçeriği",
+        "4. Kullanılabilir Parçalar"
+      ],
+      "body_snippets": [
+        "Hurda araç fiyatı; aracın ağırlığı, o günkü hurda demir fiyatı ve kullanılabilir parçaların değerinin bir araya gelmesiyle oluşur. Bu unsurları kavrayarak aracınız için en iyi fiyatı elde edebilirsiniz.",
+        "Hurda araç fiyatlamasının çekirdeğini bu oluşturur. Hurda demir fiyatı her gün değişir ve çelik piyasasına bağlıdır. Piyasa koşullarına göre kilogram başına 8-18 TL aralığında seyreder. Yenice Otomotiv, her gün güncel piyasa fiyatlarını izleyerek size en iyi teklifi getirir.",
+        "Ortalama araç ağırlıkları şöyledir: - Küçük otomobil (Fiat Punto, Renault Clio): 900-1.100 kg - Orta sınıf (Toyota Corolla, VW Golf): 1.100-1.400 kg - Büyük sedan (BMW 5 Serisi): 1.400-1.700 kg - SUV (Volkswagen Tiguan): 1.500-1.900 kg - Hafif ticari araç: 1.500-2.500 kg"
+      ],
+      "excerpt": "Hurda araç fiyatına etki eden unsurlar, kilo fiyatları ve değerlendirme aşamaları hakkında kapsamlı bir rehber.",
+      "category": "Bilgi",
+      "author": "Yenice Otomotiv Uzman Ekibi",
+      "publishedAt": "2025-02-01"
+    },
+    {
+      "route": "/blog/motor-ariza-sonrasi-ne-yapilmali",
+      "source_file": "src/data/blog.ts -> 10  (rendered by src/app/blog/[slug]/page.tsx)",
+      "data_source": "src/data/blog.ts -> 10",
+      "page_type": "blog",
+      "title": "Motor Arızasının Ardından Nasıl Hareket Etmelisiniz? | Yenice Otomotiv Blog",
+      "title_rendered": "Motor Arızasının Ardından Nasıl Hareket Etmelisiniz? | Yenice Otomotiv Blog | Yenice Otomotiv",
+      "meta_description": "Motor arızalı araçta isabetli karar: tamir mi satış mı? Motor arıza çeşitleri ve satış stratejisi rehberi.",
+      "meta_keywords": [
+        "motor arızası",
+        "motor hasarı",
+        "tamir mi satış mı"
+      ],
+      "og_title": "INHERITED from root layout (no per-post override)",
+      "og_description": "INHERITED from root layout (no per-post override)",
+      "canonical": "/blog/motor-ariza-sonrasi-ne-yapilmali",
+      "h1": "Motor Arızasının Ardından Nasıl Hareket Etmelisiniz?",
+      "h2": [
+        "Motor Arızası: Onarmak mı, Satmak mı?",
+        "Motor Arızalı Araç Satışı",
+        "Aracınızın net fiyat aralığını bugün öğrenin (lead-gen card, fixed template text)"
+      ],
+      "h3": [
+        "Motor Arızası Çeşitleri",
+        "Onarmak mı, Satmak mı? Karar Ölçütleri",
+        "Karar Tablosu"
+      ],
+      "body_snippets": [
+        "Motor arızası, araç sahiplerini en güç kararlardan biriyle karşı karşıya bırakır: Masraflı bir tamirata girişmek mi, yoksa aracı satmak mı? Bu rehber karar verme sürecinizi kolaylaştıracak.",
+        "Bu sorunun yanıtı için önce onarım masrafını öğrenin. Sonra şu hesabı yapın: Onarımdan sonra aracın piyasa değeri - Onarım masrafı = Net kazanç. Bu sonuç eksiyse ya da oldukça düşükse satış daha mantıklıdır.",
+        "Onarım mantıklı: Araç genç olduğunda (0-5 yaş), onarım masrafı aracın değerinin %30'unun altında kaldığında, aracın duygusal bir değeri olduğunda."
+      ],
+      "excerpt": "Motor arızasıyla karşılaşan araç sahipleri için uygulamalı rehber: tamir mi, satış mı? Doğru karara nasıl varılır?",
+      "category": "Rehber",
+      "author": "Teknik Ekip",
+      "publishedAt": "2025-02-05"
+    },
+    {
+      "route": "/blog/noter-ile-arac-satisi-nasil-yapilir",
+      "source_file": "src/data/blog.ts -> 11  (rendered by src/app/blog/[slug]/page.tsx)",
+      "data_source": "src/data/blog.ts -> 11",
+      "page_type": "blog",
+      "title": "Noterde Araç Satışı Nasıl Gerçekleştirilir? | Yenice Otomotiv Blog",
+      "title_rendered": "Noterde Araç Satışı Nasıl Gerçekleştirilir? | Yenice Otomotiv Blog | Yenice Otomotiv",
+      "meta_description": "Hasarlı ve kazalı araçlarda noter süreci, gereken belgeler ve adımlar. Yenice Otomotiv ile zahmetsiz noter işlemi.",
+      "meta_keywords": [
+        "noter işlemleri",
+        "araç satışı",
+        "evraklar"
+      ],
+      "og_title": "INHERITED from root layout (no per-post override)",
+      "og_description": "INHERITED from root layout (no per-post override)",
+      "canonical": "/blog/noter-ile-arac-satisi-nasil-yapilir",
+      "h1": "Noterde Araç Satışı Nasıl Gerçekleştirilir? Adım Adım Rehber",
+      "h2": [
+        "Noterde Araç Satışının İşleyişi",
+        "Yenice Otomotiv ile Zahmetsiz Satış",
+        "Aracınızın net fiyat aralığını bugün öğrenin (lead-gen card, fixed template text)"
+      ],
+      "h3": [
+        "Gereken Belgeler",
+        "Noter Süreci Adım Adım",
+        "Toplam Maliyet Ne Tutar?"
+      ],
+      "body_snippets": [
+        "Türkiye'de araç satışı noter onayını gerektirir. Bu işlem, hem alıcıya hem satıcıya hukuki güvence sunar. Hasarlı, kazalı ya da pert raporlu araçlarda noter süreci de aynı biçimde yürür.",
+        "1. Noterden randevu alın (kimi noterler randevusuz da kabul eder). 2. Bütün belgelerinizle birlikte notere gidin. 3. Noter, araç ruhsatındaki bilgileri denetler. 4. Satış sözleşmesi hazırlanır ve taraflarca imzalanır. 5. Gerekli vergi ve harçlar ödenir. 6. Tapu sicil müdürlüğüne bildirimde bulunulur.",
+        "Araç satışının noter ücreti, aracın değerine ve harç oranlarına göre değişir. Sıradan bir işlemde noter harçları ve masraflar 500-2.000 TL arasında değişebilir. Yenice Otomotiv olarak noter işlem ücretlerini ve bürokratik adımları tümüyle biz karşılıyoruz; ekstra bir bedel ödemiyorsunuz."
+      ],
+      "excerpt": "Hasarlı ve kazalı araç satışında noter işlemleri, gereken belgeler ve sürecin işleyişi hakkında ayrıntılı bilgi.",
+      "category": "Rehber",
+      "author": "Hukuk Ekibi",
+      "publishedAt": "2025-02-10"
+    },
+    {
+      "route": "/blog/ikinci-el-arac-deger-kaybi-nasil-onlenir",
+      "source_file": "src/data/blog.ts -> 12  (rendered by src/app/blog/[slug]/page.tsx)",
+      "data_source": "src/data/blog.ts -> 12",
+      "page_type": "blog",
+      "title": "İkinci El Araçlarda Değer Kaybının Önüne Nasıl Geçilir? | Yenice Otomotiv",
+      "title_rendered": "İkinci El Araçlarda Değer Kaybının Önüne Nasıl Geçilir? | Yenice Otomotiv | Yenice Otomotiv",
+      "meta_description": "Araç değer kaybına yol açan unsurlar ve değer koruma stratejileri. Hasar sonrası en isabetli karar.",
+      "meta_keywords": [
+        "değer kaybı",
+        "araç değeri",
+        "ikinci el"
+      ],
+      "og_title": "INHERITED from root layout (no per-post override)",
+      "og_description": "INHERITED from root layout (no per-post override)",
+      "canonical": "/blog/ikinci-el-arac-deger-kaybi-nasil-onlenir",
+      "h1": "İkinci El Araçlarda Değer Kaybının Önüne Nasıl Geçilir?",
+      "h2": [
+        "Araç Değer Kaybına Yol Açan Unsurlar",
+        "Hasar Sonrası En Doğru Karar: Satmak",
+        "Aracınızın net fiyat aralığını bugün öğrenin (lead-gen card, fixed template text)"
+      ],
+      "h3": [
+        "En Hızlı Değer Kaybına Sebep Olan Durumlar",
+        "Değer Koruma Stratejileri",
+        "Kaza Sonrası Değer Kaybı Talebi"
+      ],
+      "body_snippets": [
+        "Her araç zaman içinde değer yitirir. Ne var ki hasar, bakımsızlık ve hatalı kullanım bu süreci ciddi biçimde hızlandırır. Değer kaybını en aza indirmek için bunları bilmeniz gerekir.",
+        "Bakımlarınızı düzenli yaptırın ve bütün servis kayıtlarını saklayın. Kazadan sonra onarımı orijinal parçalarla gerçekleştirin. Boya ve kaporta işlerini yetkili serviste yaptırın. Aracın bakım geçmişini belgeleyin.",
+        "Türkiye'de kaza sonrası oluşan araç değer kaybı için karşı tarafın sigortasından tazminat isteyebilirsiniz. \"Değer kaybı davası\" diye bilinen bu süreçte, mahkeme ya da sigorta tahkimi aracılığıyla kazadan kaynaklanan değer kaybı tazminatı alınabilir."
+      ],
+      "excerpt": "Aracınızın değerini koruma yöntemleri ve hasar sonrası değer kaybını en aza indirme stratejileri.",
+      "category": "Bilgi",
+      "author": "Yenice Otomotiv Uzman Ekibi",
+      "publishedAt": "2025-02-15"
+    }
+  ],
+  "site_audit": {
+    "correct_phone": "+90 530 344 40 97",
+    "phone_numbers": [
+      {
+        "file": "src/config/site.ts",
+        "line": 8,
+        "field": "siteConfig.phone (env default)",
+        "value": "+905303444097",
+        "matches_correct": true,
+        "note": "Canonical source; all tel: links derive from this. Overridable via NEXT_PUBLIC_PHONE."
+      },
+      {
+        "file": "src/config/site.ts",
+        "line": 9,
+        "field": "siteConfig.phoneDisplay",
+        "value": "+90 530 344 40 97",
+        "matches_correct": true,
+        "note": "Display value used in TopBar/Footer/Hero/CTA/Contact etc."
+      },
+      {
+        "file": "src/config/site.ts",
+        "line": 10,
+        "field": "siteConfig.phoneClean",
+        "value": "05303444097",
+        "matches_correct": true,
+        "note": "Used for tracking logic."
+      },
+      {
+        "file": "src/config/site.ts",
+        "line": 11,
+        "field": "siteConfig.whatsapp (env default)",
+        "value": "905303444097",
+        "matches_correct": true,
+        "note": "Canonical source for wa.me links. Overridable via NEXT_PUBLIC_WHATSAPP."
+      },
+      {
+        "file": "src/data/cities.ts",
+        "line": 238,
+        "field": "ankara.customPhone (literal)",
+        "value": "05303444097",
+        "matches_correct": true,
+        "note": "Hardcoded literal in Ankara city record."
+      },
+      {
+        "file": "src/data/blog.ts",
+        "line": 120,
+        "field": "post body (literal)",
+        "value": "+90 530 344 40 97",
+        "matches_correct": true
+      },
+      {
+        "file": "src/data/blog.ts",
+        "line": 329,
+        "field": "post body (literal)",
+        "value": "+90 530 344 40 97",
+        "matches_correct": true
+      },
+      {
+        "file": "src/data/blog.ts",
+        "line": 407,
+        "field": "post body (literal)",
+        "value": "+90 530 344 40 97",
+        "matches_correct": true
+      },
+      {
+        "file": "README.md",
+        "line": 41,
+        "field": "NEXT_PUBLIC_PHONE example",
+        "value": "+905345809315",
+        "matches_correct": false,
+        "FLAG": "DIFFERS from correct number. Docs/example only, not shipped — but misleading; update to +905303444097."
+      },
+      {
+        "file": "README.md",
+        "line": 42,
+        "field": "NEXT_PUBLIC_WHATSAPP example",
+        "value": "905345809315",
+        "matches_correct": false,
+        "FLAG": "DIFFERS from correct number. Docs/example only."
+      }
+    ],
+    "phone_dynamic_references": {
+      "note": "Every tel:/wa.me link and on-screen phone in components resolves to siteConfig.phone / siteConfig.phoneDisplay / siteConfig.whatsapp (centralized). No divergent hardcoded number among them. Key locations:",
+      "tel_links": [
+        "src/components/layout/TopBar.tsx:18",
+        "src/components/layout/Footer.tsx:55",
+        "src/components/layout/Footer.tsx:93",
+        "src/components/layout/FloatingButtons.tsx:20",
+        "src/components/layout/CallPopupModal.tsx:50",
+        "src/components/home/HeroSection.tsx:49",
+        "src/components/home/FinalCTASection.tsx:36",
+        "src/components/home/FinalCTASection.tsx:60",
+        "src/components/home/TrustBenefitsSection.tsx:26",
+        "src/components/home/QuoteFormSection.tsx:147",
+        "src/components/sections/CTASection.tsx:16",
+        "src/components/sections/CTASection.tsx:143",
+        "src/components/shared/PageHero.tsx:94",
+        "src/components/ui/CallButton.tsx:36",
+        "src/components/ui/ContactForm.tsx:107",
+        "src/app/iletisim/page.tsx:29",
+        "src/app/blog/[slug]/page.tsx:106"
+      ],
+      "whatsapp_links": [
+        "src/components/shared/PageHero.tsx:43",
+        "src/components/layout/FloatingButtons.tsx:27",
+        "src/components/layout/FloatingChatWidget.tsx:46",
+        "src/components/layout/CallPopupModal.tsx:57",
+        "src/components/ui/WhatsAppButton.tsx:37",
+        "src/components/home/QuoteFormSection.tsx (handler)",
+        "src/components/ui/ContactForm.tsx (handler)",
+        "src/components/ui/QuickContactForm.tsx (handler)",
+        "src/app/iletisim/page.tsx:42"
+      ],
+      "phoneDisplay_render": [
+        "src/components/layout/TopBar.tsx:22",
+        "src/components/layout/Footer.tsx:59",
+        "src/components/layout/Footer.tsx:94",
+        "src/components/layout/FloatingButtons.tsx:93",
+        "src/components/layout/CallPopupModal.tsx:92",
+        "src/components/home/FinalCTASection.tsx:61",
+        "src/components/home/QuoteFormSection.tsx:155",
+        "src/components/sections/CTASection.tsx:148",
+        "src/components/ui/ContactForm.tsx:110",
+        "src/app/iletisim/page.tsx:37",
+        "src/app/iletisim/page.tsx:52",
+        "src/app/cerez-politikasi/page.tsx:61",
+        "src/app/gizlilik-politikasi/page.tsx:74",
+        "src/app/kullanim-sartlari/page.tsx:63",
+        "src/app/kvkk/page.tsx:87",
+        "src/app/blog/[slug]/page.tsx:107"
+      ],
+      "schema_telephone": [
+        "src/components/analytics/JsonLd.tsx:47 (AutomotiveBusiness.telephone = siteConfig.phone)",
+        "src/components/analytics/JsonLd.tsx:98 (contactPoint.telephone)",
+        "src/components/analytics/JsonLd.tsx:118 (Organization contactPoint.telephone)",
+        "src/app/[service]/page.tsx:221 (Service provider.telephone)",
+        "src/app/sehirler/[city]/page.tsx:206 (city AutomotiveBusiness.telephone)"
+      ]
+    },
+    "stat_claims": [
+      {
+        "file": "src/config/site.ts",
+        "line": 4,
+        "claim": "7+ Yıl Tecrübe, 10.000+ Mutlu Müşteri",
+        "type": "experience+customers",
+        "context": "siteConfig.description (used as default meta description site-wide)"
+      },
+      {
+        "file": "src/config/site.ts",
+        "line": "94-95",
+        "claim": "7+ Yıl Tecrübe / 10.000+ mutlu müşteri",
+        "type": "experience+customers",
+        "context": "features[]"
+      },
+      {
+        "file": "src/config/site.ts",
+        "line": "130-131",
+        "claim": "7+ YIL TECRÜBE",
+        "type": "experience",
+        "context": "stats[] (homepage StatsStrip / PageHero showStats)"
+      },
+      {
+        "file": "src/config/site.ts",
+        "line": "135-136",
+        "claim": "10K+ MUTLU MÜŞTERİ",
+        "type": "customers",
+        "context": "stats[]"
+      },
+      {
+        "file": "src/config/site.ts",
+        "line": "140-141",
+        "claim": "24/7 CANLI DESTEK",
+        "type": "availability",
+        "context": "stats[]"
+      },
+      {
+        "file": "src/config/site.ts",
+        "line": "145-146",
+        "claim": "%100 GARANTİ",
+        "type": "guarantee",
+        "context": "stats[]"
+      },
+      {
+        "file": "src/data/homeContent.ts",
+        "line": 24,
+        "claim": "7+ yıllık birikimimizle",
+        "type": "experience",
+        "context": "benefits[] 'Alanında Uzman Ekip'"
+      },
+      {
+        "file": "src/data/homeContent.ts",
+        "line": 59,
+        "claim": "7+ Yıl Deneyim / 10.000+ memnun müşteri",
+        "type": "experience+customers",
+        "context": "reasons[]"
+      },
+      {
+        "file": "src/app/hakkimizda/page.tsx",
+        "line": 12,
+        "claim": "7+ yıl deneyim, 10.000+ memnun müşteri",
+        "type": "experience+customers",
+        "context": "metadata description"
+      },
+      {
+        "file": "src/app/hakkimizda/page.tsx",
+        "line": 19,
+        "claim": "7+ yıllık birikimimiz",
+        "type": "experience",
+        "context": "values[] 'Profesyonellik'"
+      },
+      {
+        "file": "src/app/hakkimizda/page.tsx",
+        "line": 30,
+        "claim": "7+ yıldır ... 10.000+ memnun müşteriyle Türkiye'nin lideriyiz",
+        "type": "experience+customers+market-claim",
+        "context": "PageHero subtitle"
+      },
+      {
+        "file": "src/app/hakkimizda/page.tsx",
+        "line": "40-42",
+        "claim": "2018 yılından itibaren ... 7 yılı aşan deneyim ... 10.000'i geçen memnun müşteri",
+        "type": "founding-year+experience+customers",
+        "context": "Story paragraph. FOUNDING YEAR = 2018 (the only founding-year statement in the codebase; not present in JSON-LD)."
+      },
+      {
+        "file": "src/app/hakkimizda/page.tsx",
+        "line": 80,
+        "claim": "7+ yıllık deneyimimizden yararlanın",
+        "type": "experience",
+        "context": "CTABanner subtitle"
+      },
+      {
+        "file": "src/data/services.ts",
+        "line": "multiple",
+        "claim": "7+ yıllık deneyim (kazali features + pert metaDescription + whyChooseUs)",
+        "type": "experience",
+        "context": "service records"
+      },
+      {
+        "file": "src/data/blog.ts",
+        "line": "52, 168, 329",
+        "claim": "7+ yıllık deneyim",
+        "type": "experience",
+        "context": "post bodies"
+      },
+      {
+        "file": "src/data/cities.ts",
+        "line": "istanbul.metaDescription",
+        "claim": "10K+ memnun müşteri",
+        "type": "customers",
+        "context": "İstanbul city meta description"
+      }
+    ],
+    "aggregate_rating_in_schema": [
+      {
+        "file": "src/components/analytics/JsonLd.tsx",
+        "line": "81-88",
+        "schema_type": "AutomotiveBusiness.aggregateRating",
+        "ratingValue": "4.9",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "10000",
+        "reviewCount": "10000",
+        "FLAG": "10,000 ratings/reviews asserted in schema but only 3 sample reviews exist (JsonLd.tsx:13-35, ratingValue '5' each). Review count is not substantiated by on-site reviews — Google rich-result / FTC risk."
+      },
+      {
+        "file": "src/app/sehirler/[city]/page.tsx",
+        "line": 209,
+        "schema_type": "per-city AutomotiveBusiness.aggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "10000",
+        "FLAG": "Same 4.9 / 10000 hardcoded on ALL 19 city pages (identical aggregateRating duplicated across pages)."
+      },
+      {
+        "file": "src/components/analytics/JsonLd.tsx",
+        "line": "16, 23, 30",
+        "schema_type": "Review.reviewRating",
+        "ratingValue": "5",
+        "note": "3 individual sample reviews (Ahmet Y., Zeynep K., Mehmet D.) mirroring homepage testimonials."
+      }
+    ],
+    "duplicate_content": {
+      "exact_duplicates": "No two pages share an identical title + meta_description + h1 (city name / slug differentiates each).",
+      "near_duplicate_patterns": [
+        "City pages use a shared metaTitle template '{City} Kazalı, Hasarlı, Pert Araç Alımı | Yenice Otomotiv' for 14 of 19 cities (Konya..Van), differing only by city name -> high template similarity / thin-content risk.",
+        "Hero titleHighlight repeats across cities: 'EN YÜKSEK FİYATA' (istanbul, izmir, bursa, antalya, adana), 'NAKİT ALINIR' (gaziantep, kayseri, diyarbakir, malatya, erzurum), 'DEĞERİNDE ALINIR' (konya, eskisehir, sanliurfa, van), 'DEĞERİNDE SATILSIN' (mersin, samsun, kahramanmaras).",
+        "5 city records (konya, gaziantep, mersin, kayseri, eskisehir, diyarbakir, samsun, denizli, sanliurfa, malatya, kahramanmaras, erzurum, van) have EMPTY features/faqs/servicesDetail -> very thin city pages (only hero + boilerplate sections).",
+        "Service & city meta titles double-brand once the root '%s | Yenice Otomotiv' template is applied (see templates.duplicate_brand_warning)."
+      ]
+    }
+  }
+}
