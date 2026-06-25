@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Phone, Send, Loader2 } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { trackFormSubmit } from '@/lib/analytics';
@@ -15,12 +15,17 @@ export default function ContactForm() {
   const [formData, setFormData] = useState({ name: '', phone: '', email: '', service: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  // Re-entrancy guard: a ref flips synchronously, so a fast double/triple-click
+  // can't push form_submit more than once before React re-renders the disabled button.
+  const inFlight = useRef(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (inFlight.current) return;
+    inFlight.current = true;
     setIsSubmitting(true);
     try {
       trackFormSubmit('contact_form');
@@ -43,6 +48,7 @@ export default function ContactForm() {
       setTimeout(() => setSubmitStatus('idle'), 5000);
     } finally {
       setIsSubmitting(false);
+      inFlight.current = false;
     }
   };
 

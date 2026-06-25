@@ -37,6 +37,9 @@ export default function QuoteFormSection() {
   const [previews, setPreviews] = useState<Preview[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  // Re-entrancy guard: flips synchronously so a fast double/triple-click can't
+  // push form_submit more than once before the disabled button re-renders.
+  const inFlight = useRef(false);
 
   const update = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -60,6 +63,8 @@ export default function QuoteFormSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (inFlight.current) return;
+    inFlight.current = true;
     setSubmitting(true);
     try {
       trackFormSubmit('quote_form');
@@ -85,6 +90,7 @@ export default function QuoteFormSection() {
       setPreviews([]);
     } finally {
       setSubmitting(false);
+      inFlight.current = false;
     }
   };
 

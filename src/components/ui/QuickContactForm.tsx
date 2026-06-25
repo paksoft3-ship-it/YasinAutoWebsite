@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { siteConfig } from '@/config/site';
 import { trackFormSubmit } from '@/lib/analytics';
 
@@ -20,6 +20,9 @@ export default function QuickContactForm({ variant = 'light', title = 'Hemen Tek
     contactMethod: 'phone',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // Re-entrancy guard: flips synchronously so a fast double/triple-click can't
+  // push form_submit more than once before the disabled button re-renders.
+  const inFlight = useRef(false);
 
   const isDark = variant === 'dark';
 
@@ -32,6 +35,8 @@ export default function QuickContactForm({ variant = 'light', title = 'Hemen Tek
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (inFlight.current) return;
+    inFlight.current = true;
     setIsSubmitting(true);
 
     try {
@@ -56,6 +61,7 @@ export default function QuickContactForm({ variant = 'light', title = 'Hemen Tek
       console.error('Form submission error:', error);
     } finally {
       setIsSubmitting(false);
+      inFlight.current = false;
     }
   };
 

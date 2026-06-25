@@ -1,24 +1,13 @@
 'use client';
 
-import { useEffect } from 'react';
 import Script from 'next/script';
 
 export default function GoogleTagManager() {
   const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
-  useEffect(() => {
-    if (GTM_ID && typeof window !== 'undefined') {
-      // Initialize dataLayer
-      window.dataLayer = window.dataLayer || [];
-      
-      window.dataLayer.push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js',
-      });
-
-      console.log('✅ GTM Initialized:', GTM_ID);
-    }
-  }, [GTM_ID]);
+  // NOTE: the inline <Script> below initializes dataLayer and pushes the
+  // gtm.start / gtm.js event. Do NOT also push it from a useEffect — that
+  // double-initializes GTM and pushes a duplicate gtm.js event.
 
   if (!GTM_ID) {
     console.warn('⚠️ GTM_ID not configured');
