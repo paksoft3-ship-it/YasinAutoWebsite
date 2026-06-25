@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Phone, Mail, Clock, ArrowRight } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { getAllCities } from '@/data/cities';
+import PhoneLink from '@/components/shared/PhoneLink';
 
 function FacebookIcon({ className }: { className?: string }) {
   return (
@@ -51,13 +52,13 @@ export default function Footer() {
             <p className="text-[19px] font-extrabold text-white">Aracınızı bugün paraya çevirin</p>
             <p className="text-[14px] text-white/60">Ücretsiz ekspertiz · 30 dakikada teklif · anında ödeme</p>
           </div>
-          <a
-            href={`tel:${siteConfig.phone}`}
+          <PhoneLink
+            location="footer-cta"
             className="inline-flex h-12 items-center gap-2 rounded-[11px] bg-gradient-to-br from-brand-green to-brand-green-dark px-6 text-[15px] font-bold text-white shadow-soft transition hover:brightness-[1.05]"
           >
             <Phone className="h-[18px] w-[18px]" aria-hidden="true" />
             {siteConfig.phoneDisplay}
-          </a>
+          </PhoneLink>
         </div>
       </div>
 
@@ -90,9 +91,9 @@ export default function Footer() {
           <FooterHeading>İletişim</FooterHeading>
           <ul className="space-y-3 text-[14px]">
             <li>
-              <a href={`tel:${siteConfig.phone}`} className="inline-flex items-center gap-2 hover:text-brand-green transition-colors">
+              <PhoneLink location="footer-contact" className="inline-flex items-center gap-2 hover:text-brand-green transition-colors">
                 <Phone className="h-4 w-4 text-brand-green" aria-hidden="true" /> {siteConfig.phoneDisplay}
-              </a>
+              </PhoneLink>
             </li>
             <li>
               <a href={`mailto:${siteConfig.email}`} className="inline-flex items-center gap-2 hover:text-brand-green transition-colors">
