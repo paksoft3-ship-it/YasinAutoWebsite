@@ -21,7 +21,17 @@ export default function TrustBenefitsSection() {
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
             Aracınızı satarken tüm adımları en baştan açıklıyoruz: teklif, ücretsiz çekici, noter ve
-            ödeme. Sürpriz çıkmaz, gizli masraf olmaz.
+            ödeme. Sürpriz çıkmaz, gizli masraf olmaz. Türkiye genelinde{' '}
+            <a
+              href="https://hasarliaracalan.com/"
+              target="_blank"
+              rel="noopener"
+              title="Hasarlı Araç Alan"
+              className="font-semibold text-brand-green-dark underline underline-offset-2"
+            >
+              hasarlı araç alan
+            </a>{' '}
+            çözüm ortağımızla birlikte aynı gün ödeme yapıyoruz.
           </p>
           <Button href={`tel:${siteConfig.phone}`} variant="primary" icon={Phone} className="mt-6">
             Hemen Arayın

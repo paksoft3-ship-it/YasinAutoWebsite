@@ -36,6 +36,27 @@ export default function ServicesPage() {
         showStats
       />
 
+      {/* SEO intro */}
+      <section className="section bg-surface-alt">
+        <Container className="max-w-4xl">
+          <p className="text-[15px] leading-relaxed text-ink-soft">
+            Kazadan hurdaya, hafif hasardan perte kadar her durumdaki aracınız için tek adres: Türkiye&apos;nin
+            dört bir yanında{' '}
+            <a
+              href="https://hasarliaracalan.com/"
+              target="_blank"
+              rel="noopener"
+              title="Hasarlı Araç Alan"
+              className="font-semibold text-brand-green-dark underline underline-offset-2"
+            >
+              hasarlı araç alan
+            </a>{' '}
+            uzman çözüm ortağımızla birlikte ücretsiz ekspertiz yapıyor, en yüksek fiyat teklifini sunup ödemenizi
+            aynı gün gerçekleştiriyoruz.
+          </p>
+        </Container>
+      </section>
+
       <VehicleServicesSection />
 
       <CTABanner

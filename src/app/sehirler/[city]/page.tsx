@@ -75,7 +75,19 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
       {city.intro && (
         <section className="section bg-surface-alt">
           <Container className="max-w-4xl">
-            <p className="text-[15px] leading-relaxed text-ink-soft">{city.intro}</p>
+            <p className="text-[15px] leading-relaxed text-ink-soft">
+              {city.intro} Ayrıca {city.name} ve çevresinde{' '}
+              <a
+                href="https://hasarliaracalan.com/"
+                target="_blank"
+                rel="noopener"
+                title="Hasarlı Araç Alan"
+                className="font-semibold text-brand-green-dark underline underline-offset-2"
+              >
+                hasarlı araç alan
+              </a>{' '}
+              çözüm ortağımız sayesinde her ilçede aynı gün ekspertiz ve ödeme imkânı sunuyoruz.
+            </p>
           </Container>
         </section>
       )}

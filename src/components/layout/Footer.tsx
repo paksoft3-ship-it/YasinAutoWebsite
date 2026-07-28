@@ -71,6 +71,18 @@ export default function Footer() {
             Kazalı, hasarlı, pert ve hurda araç alımında Türkiye genelinde hizmet sunan güvenilir adres.
             7/24 yanınızdayız.
           </p>
+          <p className="mt-3 text-[13.5px] text-white/55">
+            Çözüm ortağımız:{' '}
+            <a
+              href="https://hasarliaracalan.com/"
+              target="_blank"
+              rel="noopener"
+              title="Hasarlı Araç Alan - Hasarlı Araç Alım Satım"
+              className="font-semibold text-white/70 underline decoration-white/30 underline-offset-2 transition-colors hover:text-brand-green"
+            >
+              Hasarlı Araç Alan
+            </a>
+          </p>
           <div className="mt-5 flex gap-2.5">
             <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"
               className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 transition-colors hover:bg-brand-green hover:text-white">

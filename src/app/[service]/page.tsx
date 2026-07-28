@@ -55,6 +55,19 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
       <section className="section bg-surface">
         <Container>
           <SectionHeader eyebrow="Avantajlarımız" title={`${service.shortTitle} Alımında`} highlight="Neden Biz?" />
+          <p className="mx-auto -mt-6 mb-10 max-w-2xl text-center text-[15px] leading-relaxed text-ink-soft sm:-mt-8">
+            {service.shortTitle} satışında 81 ilde{' '}
+            <a
+              href="https://hasarliaracalan.com/"
+              target="_blank"
+              rel="noopener"
+              title="Hasarlı Araç Alan"
+              className="font-semibold text-brand-green-dark underline underline-offset-2"
+            >
+              hasarlı araç alan
+            </a>{' '}
+            uzman çözüm ortağımızla çalışıyor, ekspertizden noter devrine kadar tüm süreci aynı gün tamamlıyoruz.
+          </p>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {service.features.map((f, i) => (
               <div key={i} className="rounded-2xl border border-line bg-white p-5 shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-green/40">
