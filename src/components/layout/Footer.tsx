@@ -139,13 +139,13 @@ export default function Footer() {
             href="https://paksoft.com.tr"
             target="_blank"
             rel="noopener noreferrer"
-            className="group order-1 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-[13.5px] transition-colors hover:border-brand-green/40 hover:bg-white/10 sm:order-2"
+            className="group order-1 inline-flex items-center gap-2.5 rounded-full border-2 border-brand-green/60 bg-brand-green/10 px-6 py-2.5 text-[15px] shadow-lg shadow-brand-green/10 transition-colors hover:border-brand-green hover:bg-brand-green/20 sm:order-2"
           >
-            <span className="text-white/60">Geliştiren</span>
-            <svg viewBox="0 0 24 24" fill="currentColor" className="h-[17px] w-[17px] -rotate-12 text-brand-green" aria-hidden="true">
+            <span className="font-medium text-white/85">Geliştiren</span>
+            <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 -rotate-12 text-brand-green" aria-hidden="true">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.85 0 3.58-.5 5.08-1.38-.7.13-1.42.21-2.16.21-5.52 0-10-4.48-10-10S9.42 2.83 14.92 2.83c.74 0 1.46.08 2.16.21C15.58 2.5 13.85 2 12 2z" />
             </svg>
-            <span className="font-extrabold tracking-wide text-white group-hover:text-brand-green">PakSoft</span>
+            <span className="text-[17px] font-extrabold tracking-wide text-white group-hover:text-brand-green">PakSoft</span>
           </a>
 
           <nav className="order-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-2" aria-label="Yasal">
