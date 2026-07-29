@@ -2,7 +2,7 @@
 
 import { Phone, Star } from 'lucide-react';
 import { siteConfig } from '@/config/site';
-import { trackPhoneClick, trackWhatsAppClick, trackCTAClick } from '@/lib/analytics';
+import { trackPhoneClick, trackWhatsAppClick } from '@/lib/analytics';
 import { WhatsAppIcon } from '@/components/ui/Icons';
 import Button from '@/components/shared/Button';
 import Container from '@/components/shared/Container';
@@ -50,10 +50,7 @@ export default function HeroSection() {
               variant="primary"
               size="lg"
               icon={Phone}
-              onClick={() => {
-                trackPhoneClick('hero');
-                trackCTAClick('Hero Phone', 'hero');
-              }}
+              onClick={() => trackPhoneClick('hero')}
             >
               Hemen Arayın
             </Button>
@@ -63,10 +60,7 @@ export default function HeroSection() {
               variant="whatsapp"
               size="lg"
               icon={WhatsAppIcon}
-              onClick={() => {
-                trackWhatsAppClick('hero');
-                trackCTAClick('Hero WhatsApp', 'hero');
-              }}
+              onClick={() => trackWhatsAppClick('hero')}
             >
               WhatsApp
             </Button>

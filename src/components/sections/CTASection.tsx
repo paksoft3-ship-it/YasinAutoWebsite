@@ -1,7 +1,7 @@
 'use client';
 
 import { siteConfig } from '@/config/site';
-import { trackPhoneClick, trackWhatsAppClick, trackCTAClick } from '@/lib/analytics';
+import { trackPhoneClick, trackWhatsAppClick } from '@/lib/analytics';
 
 interface CTASectionProps {
   title: string;
@@ -12,13 +12,11 @@ interface CTASectionProps {
 export default function CTASection({ title, subtitle, variant = 'urgent' }: CTASectionProps) {
   const handlePhoneClick = (location: string) => {
     trackPhoneClick(location);
-    trackCTAClick(`CTA Section Phone - ${variant}`, location);
     window.location.href = `tel:${siteConfig.phone}`;
   };
 
   const handleWhatsAppClick = (location: string) => {
     trackWhatsAppClick(location);
-    trackCTAClick(`CTA Section WhatsApp - ${variant}`, location);
     window.open(
       `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
         'Merhaba Yenice Otomotiv, aracım için teklif almak istiyorum.'

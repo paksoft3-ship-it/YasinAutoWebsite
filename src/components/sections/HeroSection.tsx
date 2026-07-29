@@ -1,7 +1,7 @@
 'use client';
 
 import { siteConfig } from '@/config/site';
-import { trackPhoneClick, trackWhatsAppClick, trackCTAClick } from '@/lib/analytics';
+import { trackPhoneClick, trackWhatsAppClick } from '@/lib/analytics';
 import SocialProof from '@/components/ui/SocialProof';
 import { ModernIcon, PhoneIcon, WhatsAppIcon } from '@/components/ui/Icons';
 import ScrollIndicator from '@/components/ui/ScrollIndicator';
@@ -9,13 +9,11 @@ import ScrollIndicator from '@/components/ui/ScrollIndicator';
 export default function HeroSection() {
   const handlePhoneClick = () => {
     trackPhoneClick('hero-section');
-    trackCTAClick('Hero Phone CTA', 'hero');
     window.location.href = `tel:${siteConfig.phone}`;
   };
 
   const handleWhatsAppClick = () => {
     trackWhatsAppClick('hero-section');
-    trackCTAClick('Hero WhatsApp CTA', 'hero');
     window.open(
       `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
         'Merhaba Yenice Otomotiv, aracım için teklif almak istiyorum.'

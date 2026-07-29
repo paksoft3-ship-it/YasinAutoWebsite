@@ -2,7 +2,7 @@
 
 import { Phone } from 'lucide-react';
 import { siteConfig } from '@/config/site';
-import { trackPhoneClick, trackWhatsAppClick, trackCTAClick } from '@/lib/analytics';
+import { trackPhoneClick, trackWhatsAppClick } from '@/lib/analytics';
 import { WhatsAppIcon } from '@/components/ui/Icons';
 import Container from '@/components/shared/Container';
 import Button from '@/components/shared/Button';
@@ -37,10 +37,7 @@ export default function FinalCTASection() {
                   variant="primary"
                   size="lg"
                   icon={Phone}
-                  onClick={() => {
-                    trackPhoneClick('final-cta');
-                    trackCTAClick('Final CTA Phone', 'final-cta');
-                  }}
+                  onClick={() => trackPhoneClick('final-cta')}
                 >
                   Hemen Arayın
                 </Button>
@@ -50,14 +47,11 @@ export default function FinalCTASection() {
                   variant="whatsapp"
                   size="lg"
                   icon={WhatsAppIcon}
-                  onClick={() => {
-                    trackWhatsAppClick('final-cta');
-                    trackCTAClick('Final CTA WhatsApp', 'final-cta');
-                  }}
+                  onClick={() => trackWhatsAppClick('final-cta')}
                 >
                   WhatsApp
                 </Button>
-                <a href={`tel:${siteConfig.phone}`} className="text-[18px] font-extrabold text-ink hover:text-brand-green-dark sm:ml-2">
+                <a href={`tel:${siteConfig.phone}`} onClick={() => trackPhoneClick('final-cta-text')} className="text-[18px] font-extrabold text-ink hover:text-brand-green-dark sm:ml-2">
                   {siteConfig.phoneDisplay}
                 </a>
               </div>

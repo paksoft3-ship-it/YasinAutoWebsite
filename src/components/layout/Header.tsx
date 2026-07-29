@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import { ChevronDown, Phone, Menu } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { mainNav } from '@/data/navigation';
-import { trackPhoneClick, trackWhatsAppClick, trackCTAClick } from '@/lib/analytics';
+import { trackPhoneClick, trackWhatsAppClick } from '@/lib/analytics';
 import { WhatsAppIcon } from '@/components/ui/Icons';
 import Button from '@/components/shared/Button';
 import MobileNavigation from '@/components/layout/MobileNavigation';
@@ -88,10 +88,7 @@ export default function Header() {
             variant="whatsapp"
             size="sm"
             icon={WhatsAppIcon}
-            onClick={() => {
-              trackWhatsAppClick('header');
-              trackCTAClick('WhatsApp', 'header');
-            }}
+            onClick={() => trackWhatsAppClick('header')}
           >
             WhatsApp
           </Button>
@@ -100,10 +97,7 @@ export default function Header() {
             variant="primary"
             size="sm"
             icon={Phone}
-            onClick={() => {
-              trackPhoneClick('header');
-              trackCTAClick('Phone', 'header');
-            }}
+            onClick={() => trackPhoneClick('header')}
           >
             Hemen Arayın
           </Button>

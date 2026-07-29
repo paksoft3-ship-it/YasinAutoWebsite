@@ -22,11 +22,14 @@ const dateFmt = new Intl.DateTimeFormat("tr-TR", {
   timeZone: "Europe/Istanbul",
 });
 
-/** Distinct colors so the same IP is instantly recognizable across rows. */
-const IP_COLORS = [
-  "#0ea5e9", "#f59e0b", "#10b981", "#ef4444", "#8b5cf6",
-  "#ec4899", "#14b8a6", "#f97316", "#6366f1", "#84cc16",
-];
+/**
+ * 6 colors validated to be pairwise distinguishable (incl. for color-blind
+ * viewers) — assigned to the 6 busiest IPs, never cycled. More colors would
+ * inevitably produce look-alike tones, so every IP beyond the top 6 gets a
+ * neutral gray badge; the "IP #n" number is always the definitive identifier.
+ */
+const IP_COLORS = ["#2a78d6", "#e34948", "#008300", "#eda100", "#4a3aa7", "#1baf7a"];
+const IP_GRAY = "#9ca3af";
 
 type SP = { period?: string; from?: string; to?: string };
 
@@ -108,9 +111,14 @@ export default async function AdminClicksPage({
     lt(clickEvents.occurredAt, range.to),
   );
 
-  const [byName, agg, ipGroups, rows, visitAgg] = await Promise.all([
+  const [byName, agg, ipGroups, rows, visitAgg, personRows] = await Promise.all([
     db
-      .select({ name: clickEvents.name, c: sql<number>`count(*)::int` })
+      .select({
+        name: clickEvents.name,
+        c: sql<number>`count(*)::int`,
+        ips: sql<number>`count(distinct ${clickEvents.ipHash})::int`,
+        sessions: sql<number>`count(distinct ${clickEvents.sessionId})::int`,
+      })
       .from(clickEvents)
       .where(baseWhere)
       .groupBy(clickEvents.name),
@@ -118,11 +126,17 @@ export default async function AdminClicksPage({
       .select({
         total: sql<number>`count(*)::int`,
         uniqueIps: sql<number>`count(distinct ${clickEvents.ipHash})::int`,
+        contactIps: sql<number>`count(distinct ${clickEvents.ipHash}) filter (where ${clickEvents.name} in ('phone_click', 'whatsapp_click'))::int`,
       })
       .from(clickEvents)
       .where(baseWhere),
     db
-      .select({ ip: clickEvents.ipHash, c: sql<number>`count(*)::int` })
+      .select({
+        ip: clickEvents.ipHash,
+        c: sql<number>`count(*)::int`,
+        phone: sql<number>`count(*) filter (where ${clickEvents.name} = 'phone_click')::int`,
+        wa: sql<number>`count(*) filter (where ${clickEvents.name} = 'whatsapp_click')::int`,
+      })
       .from(clickEvents)
       .where(and(baseWhere, isNotNull(clickEvents.ipHash)))
       .groupBy(clickEvents.ipHash)
@@ -136,31 +150,78 @@ export default async function AdminClicksPage({
       })
       .from(clickEvents)
       .where(visitWhere),
+    // One row per person (IP) per button — first/last click time for matching
+    // against the real phone call log / WhatsApp chats
+    db
+      .select({
+        ip: clickEvents.ipHash,
+        name: clickEvents.name,
+        c: sql<number>`count(*)::int`,
+        first: sql<string>`min(${clickEvents.occurredAt})`,
+        last: sql<string>`max(${clickEvents.occurredAt})`,
+        firstLoc: sql<string | null>`(array_agg(${clickEvents.location} order by ${clickEvents.occurredAt}))[1]`,
+        firstPage: sql<string | null>`(array_agg(${clickEvents.pageUrl} order by ${clickEvents.occurredAt}))[1]`,
+      })
+      .from(clickEvents)
+      .where(and(baseWhere, isNotNull(clickEvents.ipHash)))
+      .groupBy(clickEvents.ipHash, clickEvents.name)
+      .orderBy(desc(sql`min(${clickEvents.occurredAt})`))
+      .limit(100),
   ]);
 
   const visits = Number(visitAgg[0]?.visits ?? 0);
   const visitVisitors = Number(visitAgg[0]?.visitors ?? 0);
   const visitIps = Number(visitAgg[0]?.ips ?? 0);
 
-  const counts: Record<string, number> = {};
-  for (const ev of EVENTS) counts[ev] = 0;
-  for (const r of byName) counts[r.name] = Number(r.c);
+  const counts: Record<string, { total: number; ips: number; sessions: number }> = {};
+  for (const ev of EVENTS) counts[ev] = { total: 0, ips: 0, sessions: 0 };
+  for (const r of byName)
+    counts[r.name] = { total: Number(r.c), ips: Number(r.ips), sessions: Number(r.sessions) };
 
   const total = Number(agg[0]?.total ?? 0);
   const uniqueIps = Number(agg[0]?.uniqueIps ?? 0);
+  const contactIps = Number(agg[0]?.contactIps ?? 0);
   const repeatIps = ipGroups.filter((g) => Number(g.c) > 1).length;
 
+  // Channel overlap: a person who clicked BOTH buttons counts once overall
+  const bothChannels = ipGroups.filter((g) => Number(g.phone) > 0 && Number(g.wa) > 0).length;
+  const onlyPhone = ipGroups.filter((g) => Number(g.phone) > 0 && Number(g.wa) === 0).length;
+  const onlyWa = ipGroups.filter((g) => Number(g.phone) === 0 && Number(g.wa) > 0).length;
+
   // Map each distinct IP hash to a stable label/color/count (busiest = #1).
-  const ipInfo = new Map<string, { label: string; color: string; count: number }>();
+  // Only the 6 busiest get a color — no cycling, so no two IPs ever share one.
+  const ipInfo = new Map<string, { label: string; color: string | null; count: number }>();
   ipGroups.forEach((g, i) => {
     if (!g.ip) return;
-    ipInfo.set(g.ip, { label: `IP #${i + 1}`, color: IP_COLORS[i % IP_COLORS.length], count: Number(g.c) });
+    ipInfo.set(g.ip, { label: `IP #${i + 1}`, color: i < IP_COLORS.length ? IP_COLORS[i] : null, count: Number(g.c) });
   });
 
   const presetHref = (key: string) =>
     key === "custom"
       ? `/admin/clicks?period=custom&from=${range.fromStr}&to=${range.toStr}`
       : `/admin/clicks?period=${key}`;
+
+  const ipBadge = (info: { label: string; color: string | null; count: number } | undefined, showCount = false) =>
+    info ? (
+      <span
+        className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border px-2 py-0.5 text-xs font-semibold text-ink"
+        style={{
+          borderColor: info.color ?? "#d1d5db",
+          backgroundColor: info.color ? `${info.color}14` : "#f3f4f6",
+        }}
+        title={`${info.count} tıklama bu IP'den`}
+      >
+        <span
+          className="h-2.5 w-2.5 flex-shrink-0 rounded-full"
+          style={{ backgroundColor: info.color ?? IP_GRAY }}
+          aria-hidden="true"
+        />
+        {info.label}
+        {showCount && info.count > 1 && <span className="font-normal text-ink-muted">×{info.count}</span>}
+      </span>
+    ) : (
+      <span className="text-xs text-ink-muted">IP yok</span>
+    );
 
   return (
     <main className="mx-auto max-w-5xl px-4 py-10">
@@ -232,14 +293,34 @@ export default async function AdminClicksPage({
 
       {/* KPI cards */}
       <h2 className="mt-8 text-lg font-bold text-ink">Buton Tıklamaları</h2>
-      <div className="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-4">
+      <div className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {EVENTS.map((ev) => (
           <div key={ev} className="rounded-card border border-line bg-surface p-5">
             <p className="text-sm text-ink-soft">{LABELS[ev]}</p>
-            <p className="mt-1 text-3xl font-bold text-ink">{counts[ev]}</p>
+            <div className="mt-1 flex items-baseline gap-2">
+              <p className="text-3xl font-bold text-ink">{counts[ev].total}</p>
+              <p className="text-sm text-ink-muted">tıklama</p>
+            </div>
+            <div className="mt-3 flex gap-4 border-t border-line pt-3">
+              <div>
+                <p className="text-xl font-bold text-brand-green-dark">{counts[ev].ips}</p>
+                <p className="text-xs text-ink-muted">farklı kişi (IP)</p>
+              </div>
+              <div>
+                <p className="text-xl font-bold text-ink-soft">{counts[ev].sessions}</p>
+                <p className="text-xs text-ink-muted">farklı oturum</p>
+              </div>
+            </div>
           </div>
         ))}
       </div>
+      <p className="mt-3 text-xs text-ink-soft">
+        <strong>Tıklama</strong> her butona basışı sayar (aynı kişi 5 kez tıklarsa 5).{" "}
+        <strong>Farklı kişi (IP)</strong> aynı dönemde kaç ayrı IP&apos;den tıklama geldiğini
+        gösterir — gerçek kişi sayısına en yakın ölçüdür. <strong>Farklı oturum</strong> ayrı
+        tarayıcı/cihaz sayısıdır; aynı Wi-Fi&apos;ı paylaşan iki kişi tek IP ama iki oturum görünür.
+        Mobil operatör IP&apos;leri zamanla değişebildiği için kişi sayıları yaklaşık değerdir.
+      </p>
 
       {/* IP signal */}
       <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
@@ -247,21 +328,107 @@ export default async function AdminClicksPage({
           <p className="text-sm text-ink-soft">Toplam tıklama</p>
           <p className="mt-1 text-3xl font-bold text-ink">{total}</p>
         </div>
-        <div className="rounded-card border border-line bg-surface p-5">
-          <p className="text-sm text-ink-soft">Farklı IP</p>
-          <p className="mt-1 text-3xl font-bold text-ink">{uniqueIps}</p>
+        <div className="rounded-card border-2 border-brand-green bg-brand-green-soft p-5">
+          <p className="text-sm font-semibold text-brand-green-dark">Toplam benzersiz kişi</p>
+          <p className="mt-1 text-3xl font-bold text-brand-green-dark">{contactIps}</p>
+          <p className="mt-1 text-xs text-ink-soft">
+            Telefon + WhatsApp; iki butonu da kullanan tek sayılır
+          </p>
         </div>
         <div className="rounded-card border border-line bg-surface p-5">
           <p className="text-sm text-ink-soft">Tekrar eden IP</p>
           <p className="mt-1 text-3xl font-bold text-ink">{repeatIps}</p>
+          <p className="mt-1 text-xs text-ink-muted">tüm butonlar ({uniqueIps} farklı IP)</p>
         </div>
       </div>
 
-      <p className="mt-4 text-xs text-ink-muted">
-        Her farklı IP&apos;ye bir renk/numara verilir. Aynı renk = büyük olasılıkla aynı kişi/cihaz;
-        farklı renkler = farklı ziyaretçiler. IP&apos;ler gizlilik için geri döndürülemez şekilde
-        özetlenir (ham IP saklanmaz).
+      {/* Channel preference of unique contacts */}
+      <h2 className="mt-8 text-lg font-bold text-ink">Kanal Tercihi (kişi bazında)</h2>
+      <div className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="rounded-card border border-line bg-surface p-5 text-center">
+          <p className="text-sm text-ink-soft">Sadece Telefon</p>
+          <p className="mt-1 text-3xl font-bold text-ink">{onlyPhone}</p>
+          <p className="mt-1 text-xs text-ink-muted">kişi yalnızca aradı</p>
+        </div>
+        <div className="rounded-card border border-line bg-surface p-5 text-center">
+          <p className="text-sm text-ink-soft">Sadece WhatsApp</p>
+          <p className="mt-1 text-3xl font-bold text-ink">{onlyWa}</p>
+          <p className="mt-1 text-xs text-ink-muted">kişi yalnızca WhatsApp kullandı</p>
+        </div>
+        <div className="rounded-card border border-line bg-surface p-5 text-center">
+          <p className="text-sm text-ink-soft">Her İkisi</p>
+          <p className="mt-1 text-3xl font-bold text-ink">{bothChannels}</p>
+          <p className="mt-1 text-xs text-ink-muted">kişi hem aradı hem yazdı</p>
+        </div>
+      </div>
+      <p className="mt-3 text-xs text-ink-soft">
+        Kişi bazında (IP) sayılır: aynı kişi hem Telefon hem WhatsApp&apos;a tıklarsa
+        &quot;Toplam benzersiz kişi&quot; içinde bir kez, burada &quot;Her İkisi&quot; altında görünür.
+        Sadece Telefon + Sadece WhatsApp + Her İkisi = Toplam benzersiz kişi.
       </p>
+
+      <p className="mt-4 text-xs text-ink-muted">
+        Her farklı IP&apos;ye kalıcı bir numara verilir (IP #1 = en çok tıklayan). Kesin ayırt edici
+        olan numaradır; en yoğun 6 IP ayrıca birbirinden net ayrılan birer renk taşır, diğerleri
+        gri görünür. Aynı numara = aynı kişi/cihaz. IP&apos;ler gizlilik için geri döndürülemez
+        şekilde özetlenir (ham IP saklanmaz).
+      </p>
+
+      {/* Per-person clicks — for matching against the real phone call log */}
+      <div className="mt-6 overflow-hidden rounded-card border-2 border-brand-green bg-surface">
+        <div className="border-b border-line bg-brand-green-soft px-5 py-4">
+          <h2 className="font-semibold text-brand-green-dark">Kişi Bazında Tıklamalar</h2>
+          <p className="mt-1 text-xs text-ink-soft">
+            Her kişi (IP) ve buton için tek satır. Telefondaki gerçek arama kayıtları ve WhatsApp
+            sohbetleriyle karşılaştırmak için &quot;İlk Tıklama&quot; saatini kullanın — kişinin size
+            ilk ulaşmaya çalıştığı andır; kaydı olmayan tıklamalar kaçan müşteridir.
+          </p>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-surface-alt text-ink-soft">
+              <tr>
+                <th className="px-5 py-3 font-medium">Kişi</th>
+                <th className="px-5 py-3 font-medium">Buton</th>
+                <th className="px-5 py-3 font-medium">İlk Tıklama</th>
+                <th className="px-5 py-3 font-medium">Son Tıklama</th>
+                <th className="px-5 py-3 font-medium">Adet</th>
+                <th className="px-5 py-3 font-medium">Yer</th>
+                <th className="px-5 py-3 font-medium">Sayfa</th>
+              </tr>
+            </thead>
+            <tbody>
+              {personRows.length === 0 ? (
+                <tr>
+                  <td colSpan={7} className="px-5 py-8 text-center text-ink-muted">
+                    Bu aralıkta tıklama kaydı yok.
+                  </td>
+                </tr>
+              ) : (
+                personRows.map((g) => {
+                  const info = g.ip ? ipInfo.get(g.ip) : undefined;
+                  const firstAt = new Date(g.first);
+                  const lastAt = new Date(g.last);
+                  const repeated = Number(g.c) > 1;
+                  return (
+                    <tr key={`${g.ip}-${g.name}`} className="border-t border-line">
+                      <td className="px-5 py-3">{ipBadge(info)}</td>
+                      <td className="px-5 py-3 text-ink">{LABELS[g.name] ?? g.name}</td>
+                      <td className="px-5 py-3 font-semibold text-ink">{dateFmt.format(firstAt)}</td>
+                      <td className="px-5 py-3 text-ink-soft">
+                        {repeated ? dateFmt.format(lastAt) : "—"}
+                      </td>
+                      <td className="px-5 py-3 text-ink">{g.c}</td>
+                      <td className="px-5 py-3 text-ink-soft">{g.firstLoc ?? "—"}</td>
+                      <td className="px-5 py-3 text-ink-soft">{g.firstPage ?? "—"}</td>
+                    </tr>
+                  );
+                })
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       {/* Recent clicks table */}
       <div className="mt-6 overflow-hidden rounded-card border border-line bg-surface">
@@ -295,20 +462,7 @@ export default async function AdminClicksPage({
                       <td className="px-5 py-3 text-ink">{LABELS[r.name] ?? r.name}</td>
                       <td className="px-5 py-3 text-ink-soft">{r.location ?? "—"}</td>
                       <td className="px-5 py-3 text-ink-soft">{r.pageUrl ?? "—"}</td>
-                      <td className="px-5 py-3">
-                        {info ? (
-                          <span
-                            title={`${info.count} tıklama bu IP'den`}
-                            className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold text-white"
-                            style={{ backgroundColor: info.color }}
-                          >
-                            {info.label}
-                            {info.count > 1 && <span className="opacity-80">×{info.count}</span>}
-                          </span>
-                        ) : (
-                          <span className="text-xs text-ink-muted">IP yok</span>
-                        )}
-                      </td>
+                      <td className="px-5 py-3">{ipBadge(info, true)}</td>
                     </tr>
                   );
                 })

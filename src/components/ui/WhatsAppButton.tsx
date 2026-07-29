@@ -4,26 +4,26 @@
 'use client';
 
 import { siteConfig } from '@/config/site';
-import { trackWhatsAppClick, trackCTAClick } from '@/lib/analytics';
+import { trackWhatsAppClick } from '@/lib/analytics';
 
 interface WhatsAppButtonProps {
   variant?: 'primary' | 'secondary' | 'mega';
-  location?: string;
+  /** Button placement label (header, footer, hero, contact_cta...). */
+  location: string;
   message?: string;
   className?: string;
   children?: React.ReactNode;
 }
 
-export default function WhatsAppButton({ 
+export default function WhatsAppButton({
   variant = 'primary',
-  location = 'unknown',
+  location,
   message = 'Merhaba Yenice Otomotiv, aracım için teklif almak istiyorum.',
   className = '',
-  children 
+  children
 }: WhatsAppButtonProps) {
   const handleClick = () => {
     trackWhatsAppClick(location);
-    trackCTAClick('WhatsApp Button', location);
   };
 
   const baseClasses = 'font-black tracking-wider transition-all flex items-center justify-center gap-3';

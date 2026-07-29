@@ -3,24 +3,24 @@
 'use client';
 
 import { siteConfig } from '@/config/site';
-import { trackPhoneClick, trackCTAClick } from '@/lib/analytics';
+import { trackPhoneClick } from '@/lib/analytics';
 
 interface CallButtonProps {
   variant?: 'primary' | 'secondary' | 'mega';
-  location?: string;
+  /** Button placement label (header, footer, hero, contact_cta...). */
+  location: string;
   className?: string;
   children?: React.ReactNode;
 }
 
 export default function CallButton({
   variant = 'primary',
-  location = 'unknown',
+  location,
   className = '',
   children
 }: CallButtonProps) {
   const handleClick = () => {
     trackPhoneClick(location);
-    trackCTAClick('Call Button', location);
   };
 
   const baseClasses = 'font-black tracking-wider transition-all flex items-center justify-center gap-3';

@@ -1,14 +1,13 @@
 'use client';
 
 import { siteConfig } from '@/config/site';
-import { trackPhoneClick, trackCTAClick } from '@/lib/analytics';
+import { trackPhoneClick } from '@/lib/analytics';
 import { ModernIcon } from '@/components/ui/Icons';
 import SectionLabel from '@/components/ui/SectionLabel';
 
 export default function ProcessSteps() {
   const handlePhoneClick = () => {
     trackPhoneClick('process-steps-cta');
-    trackCTAClick('Process Steps CTA', 'process-steps');
   };
 
   return (
